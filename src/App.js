@@ -1,3 +1,5 @@
+import "./app.css"
+import Sidebar from "./components/sidebar/Sidebar";
 import Topbar from "./components/topbar/Topbar";
 
 function App() {
@@ -5,6 +7,9 @@ function App() {
     <>
       <div>
         <Topbar />
+        <div className="container">
+          <Sidebar />
+        </div>
       </div>
     </>
 
