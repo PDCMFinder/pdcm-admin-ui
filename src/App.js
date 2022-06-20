@@ -1,9 +1,13 @@
+import Topbar from "./components/topbar/Topbar";
 
 function App() {
   return (
-    <div>
-      PDCM Admin UI
-    </div>
+    <>
+      <div>
+        <Topbar />
+      </div>
+    </>
+
   );
 }
 
