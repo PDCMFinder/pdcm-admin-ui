@@ -1,0 +1,10 @@
+{
+    "prettier.requireConfig": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.fontSize": 16,
+    "editor.tabSize": 2,
+    "prettier.useEditorConfig": false,
+    "prettier.printWidth": 80,
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.formatOnSave": true
+}
