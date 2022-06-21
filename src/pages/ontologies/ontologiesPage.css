@@ -1,0 +1,19 @@
+.ontologiesPage {
+    flex: 4;
+}
+
+.ontologiesPageTitle {
+    font-size: 30px;
+    font-weight: 600;
+    align-content: center;
+    text-align: center;
+}
+
+.ontologiesPageContent {
+    margin-right: 20px;
+    line-height: 25px;
+}
+
+.reloadingProcess {
+    margin-top: 10px;
+}
