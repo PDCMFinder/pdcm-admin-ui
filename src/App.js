@@ -9,19 +9,26 @@ import {
   Routes
 } from "react-router-dom";
 import OntologiesPage from "./pages/ontologies/OntologiesPage";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+
+// Create a client
+const queryClient = new QueryClient();
 
 function App() {
   return (
     <Router>
       <Topbar />
-      <div className="container">
-        <Sidebar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/ontologies" element={<OntologiesPage />} />
-        </Routes>
+      <QueryClientProvider client={queryClient}>
+        <div className="container">
+          <Sidebar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/ontologies" element={<OntologiesPage />} />
+          </Routes>
 
-      </div>
+        </div>
+      </QueryClientProvider>
     </Router>
 
   );
