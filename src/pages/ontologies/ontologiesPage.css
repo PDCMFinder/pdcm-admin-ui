@@ -17,3 +17,24 @@
 .reloadingProcess {
     margin-top: 10px;
 }
+
+.dataLabel {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.dataValue {
+    font-size: 20px;
+}
+.reloadButton {
+    margin-left: 20px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #3bb077;
+    color: white;
+    cursor: pointer;
+
+}

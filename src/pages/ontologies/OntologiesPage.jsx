@@ -1,7 +1,22 @@
-import React from "react";
 import "./ontologiesPage.css";
+import { getOntologySummary } from "../../apis/Ontologies.api";
+import { useQuery } from "react-query";
+import OntologySummaryReport from "../../components/ontology/ontologySummaryReport/OntologySummaryReport";
 
 const OntologiesPage = () => {
+  const { isLoading, isError, data, error } = useQuery(
+    "todos",
+    getOntologySummary
+  );
+
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
+
+  if (isError) {
+    return <span>Error: {error.message}</span>;
+  }
+
   return (
     <div className="ontologiesPage">
       <div className="ontologiesPageTitle">Ontologies</div>
@@ -78,6 +93,8 @@ const OntologiesPage = () => {
         <div className="reloadingProcess">
           <h2>Reloading process</h2>
           The reloading process takes around 5 minutes to finish.
+          <OntologySummaryReport {...data} />
+          <button className="reloadButton">Reload Ontologies</button>
         </div>
       </div>
     </div>
