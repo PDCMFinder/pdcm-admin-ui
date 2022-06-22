@@ -10,6 +10,7 @@ import {
   AccountCircle,
   BarChart,
 } from "@mui/icons-material";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   return (
@@ -18,9 +19,16 @@ const Sidebar = () => {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Dashboard</h3>
           <ul className="sidebarList">
-            <li className="sidebarListItem active">
+            <li className="sidebarListItem">
               <LineStyle className="sidebarIcon" />
-              Home
+              <NavLink
+                to="/"
+                className={(e) =>
+                  "sidebarListItem" + (e.isActive ? " active" : "")
+                }
+              >
+                Home
+              </NavLink>
             </li>
             <li className="sidebarListItem">
               <Folder className="sidebarIcon" />
@@ -28,7 +36,15 @@ const Sidebar = () => {
             </li>
             <li className="sidebarListItem">
               <AccountTree className="sidebarIcon" />
-              Ontologies
+
+              <NavLink
+                to="/ontologies"
+                className={(e) =>
+                  "sidebarListItem" + (e.isActive ? " active" : "")
+                }
+              >
+                Ontologies
+              </NavLink>
             </li>
             <li className="sidebarListItem">
               <CompareArrows className="sidebarIcon" />

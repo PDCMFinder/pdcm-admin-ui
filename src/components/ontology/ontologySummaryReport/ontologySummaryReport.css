@@ -1,0 +1,29 @@
+.ontologySumaryContainer {
+    margin-left: 20px;
+}
+
+.cards {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.loadingDateInfo {
+    font-size: 20px;
+    padding-bottom: 20px;
+}
+
+.loadingDatelabel {
+    margin-right: 20px;
+    font-weight:bold;
+}
+
+.sectionTitle {
+    font-size: 20px;
+    padding-bottom: 20px;
+}
+
+.errors {
+    margin-left: 20px;
+}
