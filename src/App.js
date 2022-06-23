@@ -3,6 +3,8 @@ import Sidebar from "./components/sidebar/Sidebar";
 import Topbar from "./components/topbar/Topbar";
 import Home from "./pages/home/Home";
 
+import { ReactQueryDevtools } from 'react-query/devtools'
+
 import {
   BrowserRouter as Router,
   Route,
@@ -13,7 +15,14 @@ import { QueryClient, QueryClientProvider } from "react-query";
 
 
 // Create a client
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 function App() {
   return (
@@ -28,6 +37,7 @@ function App() {
           </Routes>
 
         </div>
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </Router>
 

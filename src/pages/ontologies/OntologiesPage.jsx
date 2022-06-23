@@ -2,12 +2,19 @@ import "./ontologiesPage.css";
 import { getOntologySummary } from "../../apis/Ontologies.api";
 import { useQuery } from "react-query";
 import OntologySummaryReport from "../../components/ontology/ontologySummaryReport/OntologySummaryReport";
+import OntologyLoader from "../../components/ontology/ontologyLoader/OntologyLoader";
 
 const OntologiesPage = () => {
-  const { isLoading, isError, data, error } = useQuery(
-    "todos",
+  const { isLoading, isError, data, error, refetch } = useQuery(
+    "getOntologySummary",
     getOntologySummary
   );
+
+  const handleOntologiesLoaded = (loaded) => {
+    if (loaded) {
+      refetch();
+    }
+  };
 
   if (isLoading) {
     return <span>Loading...</span>;
@@ -94,7 +101,9 @@ const OntologiesPage = () => {
           <h2>Reloading process</h2>
           The reloading process takes around 5 minutes to finish.
           <OntologySummaryReport {...data} />
-          <button className="reloadButton">Reload Ontologies</button>
+          <div className="loader">
+            <OntologyLoader onProcessFinished={handleOntologiesLoaded} />
+          </div>
         </div>
       </div>
     </div>
