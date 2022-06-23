@@ -64,7 +64,7 @@ const OntologySummaryReport = ({
         })}
       </div>
 
-      <div className="sectionTitle">Errrors in last loading process:</div>
+      <div className="sectionTitle">Errors in last loading process:</div>
       <div className="errors">{errors}</div>
     </div>
   );
