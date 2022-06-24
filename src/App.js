@@ -12,7 +12,7 @@ import {
 } from "react-router-dom";
 import OntologiesPage from "./pages/ontologies/OntologiesPage";
 import { QueryClient, QueryClientProvider } from "react-query";
-
+import Mappings from "./pages/mappings/Mappings";
 
 // Create a client
 const queryClient = new QueryClient({
@@ -34,6 +34,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/ontologies" element={<OntologiesPage />} />
+            <Route path="/mappings" element={<Mappings />} />
           </Routes>
 
         </div>
