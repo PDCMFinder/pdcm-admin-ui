@@ -1,0 +1,14 @@
+.menuOption {
+    text-align: center;
+}
+
+.link {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.iconLink {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
