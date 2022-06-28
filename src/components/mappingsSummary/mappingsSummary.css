@@ -1,0 +1,19 @@
+.mappingsSummary {
+    flex: 4;
+}
+
+.mappingSummaryTitle {
+    font-size: 30px;
+    font-weight: 600;
+    align-content: center;
+    text-align: center;
+}
+
+.mappingSummaryTable {
+    margin-top: 20px;
+    text-align: center;
+     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
