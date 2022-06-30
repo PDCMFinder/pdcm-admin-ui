@@ -38,14 +38,7 @@ const MappingsSummary = ({ type }) => {
     () => getMappingsSummary(type)
   );
 
-  const addProgressValue = (row) => {
-    const total = row.unmapped + row.mapped;
-    const progress = row.mapped / total;
-    row.progress = progress;
-    return row;
-  };
-
-  const rows = data?.summaryEntries.map((x) => addProgressValue(x)) || [];
+  const rows = data?.summaryEntries || [];
 
   return (
     <div className="mappingsSummary">
