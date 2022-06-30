@@ -48,7 +48,14 @@ const Sidebar = () => {
             </li>
             <li className="sidebarListItem">
               <CompareArrows className="sidebarIcon" />
-              Mappings
+              <NavLink
+                to="/mappings"
+                className={(e) =>
+                  "sidebarListItem" + (e.isActive ? " active" : "")
+                }
+              >
+                Mappings
+              </NavLink>
             </li>
           </ul>
         </div>
