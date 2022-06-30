@@ -7,27 +7,27 @@ import { useQuery } from "react-query";
 import { getMappingsSummary } from "../../apis/Mappings.api";
 import DashboardPieChart from "../../components/charts/dashboardPieChart/DashboardPieChart";
 
-const getTotalMappingsCountsPieData = (mappingsSummaries) => {
-  let totalMapped = 0;
-  let totalUnmapped = 0;
+const MAPPED = "mapped";
+const UNMAPPED = "unmapped";
 
-  mappingsSummaries.summaryEntries.forEach((x) => {
-    totalMapped += x.mapped;
-    totalUnmapped += x.unmapped;
+const titlesByStatus = new Map();
+titlesByStatus.set(MAPPED, "Mapped terms");
+titlesByStatus.set(UNMAPPED, "Unmapped terms");
+
+const getReducedCountsByType = (data) => {
+  const countsByType = data.reduce(
+    (counts, e) => {
+      counts[MAPPED] += e.mapped;
+      counts[UNMAPPED] += e.unmapped;
+
+      return counts;
+    },
+    { [MAPPED]: 0, [UNMAPPED]: 0 }
+  );
+
+  return Object.entries(countsByType).map((x) => {
+    return { id: x[0], label: titlesByStatus.get(x[0]), value: x[1] };
   });
-
-  return [
-    {
-      id: "mapped",
-      label: "Mapped Terms",
-      value: totalMapped,
-    },
-    {
-      id: "unmapped",
-      label: "Unmapped Terms",
-      value: totalUnmapped,
-    },
-  ];
 };
 
 const Home = () => {
@@ -47,16 +47,16 @@ const Home = () => {
   let diagnosisTotalMappingsCounts = [];
 
   if (diagnosisMappingsSummary.data) {
-    diagnosisTotalMappingsCounts = getTotalMappingsCountsPieData(
-      diagnosisMappingsSummary.data
+    diagnosisTotalMappingsCounts = getReducedCountsByType(
+      diagnosisMappingsSummary.data.summaryEntries
     );
   }
 
   let treatmentTotalMappingsCounts = [];
 
   if (treatmentMappingsSummary.data) {
-    treatmentTotalMappingsCounts = getTotalMappingsCountsPieData(
-      treatmentMappingsSummary.data
+    treatmentTotalMappingsCounts = getReducedCountsByType(
+      treatmentMappingsSummary.data.summaryEntries
     );
   }
 

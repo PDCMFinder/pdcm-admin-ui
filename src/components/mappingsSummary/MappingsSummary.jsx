@@ -10,7 +10,7 @@ const columns = [
   {
     field: "dataSource",
     headerName: "Data Source",
-    width: 100,
+    width: 120,
     headerClassName: "super-app-theme--header",
     headerAlign: "center",
   },
@@ -33,9 +33,8 @@ const columns = [
 const MappingsSummary = ({ type }) => {
   const title = type || "unknown";
 
-  const { isLoading, isError, data, error, refetch, isFetching } = useQuery(
-    ["getMappingsSummary", { type }],
-    () => getMappingsSummary(type)
+  const { data } = useQuery(["getMappingsSummary", { type }], () =>
+    getMappingsSummary(type)
   );
 
   const rows = data?.summaryEntries || [];
@@ -44,16 +43,8 @@ const MappingsSummary = ({ type }) => {
     <div className="mappingsSummary">
       <div className="mappingSummaryTitle">{title} Mappings summary</div>
       <div className="mappingSummaryTable">
-        <div style={{ height: "100%", width: "70%" }}>
+        <div style={{ height: "100%", width: "60%" }}>
           <DataGrid
-            sx={{
-              boxShadow: 2,
-              border: 2,
-              borderColor: "primary.light",
-              "& .MuiDataGrid-cell:hover": {
-                color: "primary.main",
-              },
-            }}
             getRowId={(row) => row.dataSource}
             rows={rows}
             columns={columns}

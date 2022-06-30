@@ -19,6 +19,7 @@ const DashboardPieChart = ({ title, data }) => {
         arcLabelsSkipAngle={10}
         arcLinkLabelsTextColor="#333333"
         arcLinkLabelsThickness={2}
+        arcLinkLabel={"label"}
         arcLinkLabelsColor={{ from: "color" }}
         arcLabelsTextColor={{ from: "color", modifiers: [["darker", 5]] }}
         arcLinkLabelsStraightLength={5}

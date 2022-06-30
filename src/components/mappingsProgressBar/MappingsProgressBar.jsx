@@ -44,7 +44,6 @@ const useStyles = makeStyles(
 const MappingsProgressBar = React.memo(function MappingsProgressBar(props) {
   const { value } = props;
   const valueInPercent = Number(value * 100).toFixed(1);
-  console.log("valueInPercent", valueInPercent);
   const classes = useStyles();
 
   return (
