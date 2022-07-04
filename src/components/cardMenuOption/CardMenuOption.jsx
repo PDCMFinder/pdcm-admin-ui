@@ -11,19 +11,25 @@ import { Link } from "react-router-dom";
 const CardMenuOption = ({ title, description, path, icon }) => {
   return (
     <Card sx={{ maxWidth: 200 }}>
-      <CardContent>
-        <div className="menuOption">
-          <Typography gutterBottom variant="h5" component="div">
-            {title || "Default title"}
-          </Typography>
-          <Link className="iconLink" to={path}>
-            {icon}
-          </Link>
-          <Link className="link" to={path || "/"}>
-            <Button size="small">{description || "default"} </Button>
-          </Link>
-        </div>
-      </CardContent>
+      <div className="menuOption">
+        <CardContent>
+          <div className="menuOptionTitle">
+            <Typography gutterBottom variant="h5" component="div">
+              {title || "Default title"}
+            </Typography>
+          </div>
+          <div className="icon">
+            <Link className="iconLink" to={path}>
+              {icon}
+            </Link>
+          </div>
+          <div className="description">
+            <Link className="link" to={path || "/"}>
+              <Button size="small">{description || "default"} </Button>
+            </Link>
+          </div>
+        </CardContent>
+      </div>
     </Card>
   );
 };
