@@ -12,3 +12,14 @@ export async function getMappingsSummary(entityTypeName) {
     }
     return response.json()
 }
+
+export async function getMappingsWithFilters(type, dataSource, status) {
+    console.log("called getMappingsByTypeAndStatus with", type, status);
+    let response = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/mappings/search?entityType=${type}&status=${status}&mq=DataSource:${dataSource}`
+    );
+    if (!response.ok) {
+        throw new Error("Network response was not ok");
+    }
+    return response.json()
+}

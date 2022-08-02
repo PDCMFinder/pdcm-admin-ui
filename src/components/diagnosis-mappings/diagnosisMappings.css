@@ -1,15 +1,18 @@
-.mappingsSummary {
+
+
+.diagnosisContainer {
     flex: 4;
 }
 
-.mappingSummaryTitle {
+.diagnosisMappingsTitle {
     font-size: 30px;
     font-weight: 600;
     align-content: center;
     text-align: center;
 }
 
-.mappingSummaryTable {
+
+.diagnosisTable {
     margin-top: 20px;
     text-align: center;
     height: 100%;

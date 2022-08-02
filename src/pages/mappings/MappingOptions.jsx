@@ -4,10 +4,9 @@ import {
   faStethoscope,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Biotech } from "@mui/icons-material";
 import React from "react";
 import CardMenuOption from "../../components/cardMenuOption/CardMenuOption";
-import "./mappings.css";
+import "./mappingOptions.css";
 
 const options = [
   {
@@ -33,7 +32,7 @@ const options = [
   },
 ];
 
-const Mappings = () => {
+const MappingOptions = () => {
   return (
     <div className="mappings">
       <div className="mappingsTitle">Mappings</div>
@@ -46,4 +45,4 @@ const Mappings = () => {
   );
 };
 
-export default Mappings;
+export default MappingOptions;
