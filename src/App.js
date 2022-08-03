@@ -33,8 +33,7 @@ function App() {
     <Router>
       <Topbar />
       <QueryClientProvider client={queryClient}>
-        <div className="container">
-          <Sidebar />
+        <div>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/ontologies" element={<OntologiesPage />} />

@@ -51,7 +51,7 @@ const DiagnosisMappings = () => {
   console.log("Called with", statusList);
 
   const [page, setPage] = React.useState(0);
-  const [pageSize, setPageSize] = React.useState(5);
+  const [pageSize, setPageSize] = React.useState(10);
 
   const queryOptions = React.useMemo(
     () => ({
@@ -117,14 +117,24 @@ const DiagnosisMappings = () => {
   const rows = dataToTableData() || [];
 
   return (
-    <div className="diagnosisContainer">
+    <>
       <div className="diagnosisMappingsTitle">
-        {dataSource.toUpperCase()} Diagnosis Mappings ({statusList} ) Page:{" "}
-        {page}
-        pageSize: {pageSize}
+        {dataSource.toUpperCase()} Diagnosis Mappings ({statusList} )
       </div>
-      <div className="diagnosisTable">
-        <div style={{ height: "90%", width: "95%" }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          style={{
+            height: "800px",
+            width: "90%",
+            marginTop: "20px",
+          }}
+        >
           <DataGrid
             rows={rows}
             columns={columns}
@@ -142,7 +152,7 @@ const DiagnosisMappings = () => {
           />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

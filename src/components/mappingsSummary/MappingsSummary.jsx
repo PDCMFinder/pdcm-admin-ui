@@ -58,10 +58,16 @@ const MappingsSummary = ({ type }) => {
   };
 
   return (
-    <div className="mappingsSummary">
+    <>
       <div className="mappingSummaryTitle">{title} Mappings summary</div>
-      <div className="mappingSummaryTable">
-        <div style={{ height: "100%", width: "60%" }}>
+      <div className="container">
+        <div
+          style={{
+            height: "800px",
+            width: "650px",
+            marginTop: "20px",
+          }}
+        >
           <DataGrid
             onCellClick={handleOnCellClick}
             getRowId={(row) => row.dataSource}
@@ -71,7 +77,7 @@ const MappingsSummary = ({ type }) => {
           />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

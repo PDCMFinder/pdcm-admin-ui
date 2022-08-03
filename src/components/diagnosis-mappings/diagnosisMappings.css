@@ -1,22 +1,6 @@
-
-
-.diagnosisContainer {
-    flex: 4;
-}
-
 .diagnosisMappingsTitle {
     font-size: 30px;
     font-weight: 600;
     align-content: center;
     text-align: center;
-}
-
-
-.diagnosisTable {
-    margin-top: 20px;
-    text-align: center;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
