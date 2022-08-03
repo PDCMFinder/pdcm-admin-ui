@@ -9,14 +9,6 @@ import Tooltip from "@mui/material/Tooltip";
 import { renderCellTooltip } from "../cellTooltip/CellTooltip";
 
 const columns = [
-  //   {
-  //     field: "dataSource",
-  //     headerName: "Data Source",
-  //     width: 150,
-  //     headerClassName: "super-app-theme--header",
-  //     headerAlign: "center",
-  //     renderCell: renderCellTooltip,
-  //   },
   {
     field: "sampleDiagnosis",
     width: 300,
@@ -27,6 +19,7 @@ const columns = [
     field: "originTissue",
     width: 200,
     headerName: "Origin Tissue",
+    renderCell: renderCellTooltip,
   },
   {
     field: "tumourType",
@@ -37,11 +30,17 @@ const columns = [
     field: "mappedTermLabel",
     width: 300,
     headerName: "Mapped Term",
-    renderCell: (params) => (
-      <Tooltip title={params.value}>
-        <span>{params.value}</span>
-      </Tooltip>
-    ),
+    renderCell: renderCellTooltip,
+  },
+  {
+    field: "mappingType",
+    width: 100,
+    headerName: "Mapping Type",
+  },
+  {
+    field: "source",
+    width: 100,
+    headerName: "Source",
   },
 ];
 
@@ -51,13 +50,46 @@ const DiagnosisMappings = () => {
   let { dataSource, statusList } = useParams();
   console.log("Called with", statusList);
 
-  const { data } = useQuery(
-    ["getMappingsWithFilters", { type, dataSource, statusList }],
-    () => getMappingsWithFilters(type, dataSource, statusList)
+  const [page, setPage] = React.useState(0);
+  const [pageSize, setPageSize] = React.useState(5);
+
+  const queryOptions = React.useMemo(
+    () => ({
+      page,
+      pageSize,
+    }),
+    [page, pageSize]
   );
 
-  console.log("data", data);
-  console.log("type", typeof data);
+  console.log("page:", page);
+  console.log("pageSize:", pageSize);
+
+  const { isLoading, data } = useQuery(
+    [
+      "getMappingsWithFilters",
+      { type, dataSource, statusList, page, pageSize },
+    ],
+    () => getMappingsWithFilters(type, dataSource, statusList, page, pageSize)
+  );
+
+  const pageInfo = data?.page || {};
+
+  console.log("isLoading", isLoading);
+  console.log("pageInfo", pageInfo);
+
+  // Some API clients return undefined while loading
+  // Following lines are here to prevent `rowCountState` from being undefined during the loading
+  const [rowCountState, setRowCountState] = React.useState(
+    pageInfo.totalElements || 0
+  );
+
+  React.useEffect(() => {
+    setRowCountState((prevRowCountState) =>
+      pageInfo?.totalElements !== undefined
+        ? pageInfo?.totalElements
+        : prevRowCountState
+    );
+  }, [pageInfo?.totalElements, setRowCountState]);
 
   const dataToTableData = () => {
     let mappings = [];
@@ -74,6 +106,8 @@ const DiagnosisMappings = () => {
         tumourType: x.mappingValues.TumourType,
         mappedTermLabel: x.mappedTermLabel,
         mappedTermUrl: x.mappedTermUrl,
+        mappingType: x.mappingType,
+        source: x.source,
       };
     });
 
@@ -85,17 +119,26 @@ const DiagnosisMappings = () => {
   return (
     <div className="diagnosisContainer">
       <div className="diagnosisMappingsTitle">
-        {dataSource.toUpperCase()} Diagnosis Mappings ({statusList} )
+        {dataSource.toUpperCase()} Diagnosis Mappings ({statusList} ) Page:{" "}
+        {page}
+        pageSize: {pageSize}
       </div>
       <div className="diagnosisTable">
-        <div style={{ height: "90%", width: "90%" }}>
+        <div style={{ height: "90%", width: "95%" }}>
           <DataGrid
             rows={rows}
             columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[5]}
             checkboxSelection
             disableSelectionOnClick
+            rowCount={rowCountState}
+            loading={isLoading}
+            rowsPerPageOptions={[5, 10, 20, 50]}
+            pagination
+            page={page}
+            pageSize={pageSize}
+            paginationMode="server"
+            onPageChange={(newPage) => setPage(newPage)}
+            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
           />
         </div>
       </div>
