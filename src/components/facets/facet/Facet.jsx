@@ -14,6 +14,13 @@ import "./facet.css";
 const Facet = ({ name, type, options, selection, onSelectionChange }) => {
   const [open, setOpen] = useState(selection.length > 0);
   const [currentSelection, setCurrentSelection] = useState(selection);
+
+  const containsKey = (key) => {
+    return currentSelection.some((element) => {
+      return element.key === key;
+    });
+  };
+
   const renderOptions = () => {
     switch (type) {
       case "check":
@@ -25,7 +32,7 @@ const Facet = ({ name, type, options, selection, onSelectionChange }) => {
                 control={
                   <Checkbox
                     key={option.key}
-                    defaultChecked={selection.includes(option)}
+                    checked={containsKey(option.key)}
                     onChange={(e) => {
                       let newSelection = [...currentSelection];
                       if (e.target.checked) {
