@@ -13,10 +13,10 @@ import OntologiesPage from "./pages/ontologies/OntologiesPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import MappingsSummary from "./components/mappingsSummary/MappingsSummary";
 import { DIAGNOSIS_TYPE, TREATMENT_TYPE } from "./constants";
-import MappingOptions from "./pages/mappings/MappingOptions";
 import Mappings from "./components/mappings/Mappings";
 import DiagnosisMappings from "./components/diagnosis-mappings/DiagnosisMappings";
 import { ThemeProvider, useTheme } from "@mui/material";
+import MappingOptions from "./pages/mappings-options/MappingOptions";
 
 // Create a client
 const queryClient = new QueryClient({
@@ -42,11 +42,11 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/ontologies" element={<OntologiesPage />} />
-              <Route path="/mappings" element={<MappingOptions />} />
+              <Route path="/mappings-options" element={<MappingOptions />} />
               <Route path="mappings/diagnosisSummary" element={<MappingsSummary type={DIAGNOSIS_TYPE} />} />
               <Route path="mappings/treatmentSummary" element={<MappingsSummary type={TREATMENT_TYPE} />} />
               <Route path="/mappings/diagnosisSummary/detail/:dataSource/:statusList" element={<DiagnosisMappings />} />
-              <Route path="/mappings/treatmentSummary/details/:statusList" element={<Mappings />} />
+              <Route path="/mappings" element={<Mappings />} />
             </Routes>
           </ThemeProvider>
         </div>

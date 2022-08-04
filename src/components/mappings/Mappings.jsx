@@ -1,34 +1,34 @@
+import { Grid } from "@mui/material";
 import React from "react";
-import { useParams } from "react-router";
+import FacetSideBar from "../facets/facetSideBar/FacetSideBar";
 
-const columns = [
-  {
-    field: "dataSource",
-    headerName: "Data Source",
-    width: 120,
-    headerClassName: "super-app-theme--header",
-    headerAlign: "center",
-  },
-  {
-    field: "unmapped",
-    headerName: "Unmapped terms",
-    type: "number",
-    width: 150,
-  },
-  { field: "mapped", headerName: "Mapped terms", type: "number", width: 150 },
-  {
-    field: "progress",
-    headerName: "Progress",
-    type: "number",
-    width: 150,
-  },
-];
+import searchFacets from "./../../data/search-facets.json";
 
 const Mappings = () => {
-  let { statusList } = useParams();
-  console.log(statusList);
+  const facets = searchFacets.facets;
 
-  return <div className="mappings">Mappings {statusList}</div>;
+  const facetsSelection = [];
+
+  let selectionChanged = (e) => {
+    console.log("selection change aknowdleged", e);
+  };
+
+  return (
+    <Grid container spacing={2}>
+      <Grid item xs={3}>
+        <div className="filtersx">
+          <FacetSideBar
+            facets={facets}
+            onSelectionChange={selectionChanged}
+            facetsSelection={facetsSelection}
+          />
+        </div>
+      </Grid>
+      <Grid item xs={9}>
+        Section for results
+      </Grid>
+    </Grid>
+  );
 };
 
 export default Mappings;

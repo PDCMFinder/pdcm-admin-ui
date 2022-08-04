@@ -8,6 +8,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import { styled } from "@mui/material/styles";
 
 import "./facet.css";
 
@@ -21,6 +22,12 @@ const Facet = ({ name, type, options, selection, onSelectionChange }) => {
     });
   };
 
+  const Div = styled("div")(({ theme }) => ({
+    ...theme.typography.button,
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(1),
+  }));
+
   const renderOptions = () => {
     switch (type) {
       case "check":
@@ -31,6 +38,7 @@ const Facet = ({ name, type, options, selection, onSelectionChange }) => {
                 key={option.key}
                 control={
                   <Checkbox
+                    size="small"
                     key={option.key}
                     checked={containsKey(option.key)}
                     onChange={(e) => {
@@ -65,7 +73,7 @@ const Facet = ({ name, type, options, selection, onSelectionChange }) => {
           onClick={() => setOpen(!open)}
           expandIcon={<FontAwesomeIcon icon={faAngleRight} />}
         >
-          {name}
+          <Div>{name}</Div>
         </AccordionSummary>
         <AccordionDetails>
           <div id={`facet-section-${name}`}>{renderOptions()}</div>
