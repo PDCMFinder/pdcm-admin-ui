@@ -1,0 +1,119 @@
+{
+    "facets": [
+        {
+            "key": "data_source",
+            "name": "Data Source",
+            "options": [
+                {
+                    "key": "CMP",
+                    "name": "CMP"
+                },
+                {
+                    "key": "CRL",
+                    "name": "CRL"
+                },
+                {
+                    "key": "Curie-BC",
+                    "name": "Curie-BC"
+                },
+                {
+                    "key": "Curie-LC",
+                    "name": "Curie-LC"
+                },
+                {
+                    "key": "Curie-OC",
+                    "name": "Curie-OC"
+                },
+                {
+                    "key": "DFCI CPDM",
+                    "name": "DFCI CPDM"
+                },
+                {
+                    "key": "HCI-BCM",
+                    "name": "HCI-BCM"
+                },
+                {
+                    "key": "HCMI",
+                    "name": "HCMI"
+                },
+                {
+                    "key": "IRCC-CRC",
+                    "name": "IRCC-CRC"
+                },
+                {
+                    "key": "IRCC-GC",
+                    "name": "IRCC-GC"
+                },
+                {
+                    "key": "JAX",
+                    "name": "JAX"
+                },
+                {
+                    "key": "LIH",
+                    "name": "LIH"
+                },
+                {
+                    "key": "MDAnderson",
+                    "name": "MDAnderson"
+                },
+                {
+                    "key": "NKI",
+                    "name": "NKI"
+                },
+                {
+                    "key": "PDMR",
+                    "name": "PDMR"
+                },
+                {
+                    "key": "PMLB",
+                    "name": "PMLB"
+                },
+                {
+                    "key": "PPTC",
+                    "name": "PPTC"
+                },
+                {
+                    "key": "SJCRH",
+                    "name": "SJCRH"
+                },
+                {
+                    "key": "TRACE",
+                    "name": "TRACE"
+                },
+                {
+                    "key": "UMCG",
+                    "name": "UMCG"
+                },
+                {
+                    "key": "UOC-BC",
+                    "name": "UOC-BC"
+                },
+                {
+                    "key": "UOM-BC",
+                    "name": "UOM-BC"
+                },
+                {
+                    "key": "VHIO-BC",
+                    "name": "VHIO-BC"
+                },
+                {
+                    "key": "VHIO-CRC",
+                    "name": "VHIO-CRC"
+                },
+                {
+                    "key": "VHIO-PC",
+                    "name": "VHIO-PC"
+                },
+                {
+                    "key": "Wistar-MDAnderson-Penn",
+                    "name": "Wistar-MDAnderson-Penn"
+                },
+                {
+                    "key": "WUSTL",
+                    "name": "WUSTL"
+                }
+            ],
+            "type": "check"
+        }
+    ]
+}

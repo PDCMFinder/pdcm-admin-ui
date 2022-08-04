@@ -16,6 +16,7 @@ import { DIAGNOSIS_TYPE, TREATMENT_TYPE } from "./constants";
 import MappingOptions from "./pages/mappings/MappingOptions";
 import Mappings from "./components/mappings/Mappings";
 import DiagnosisMappings from "./components/diagnosis-mappings/DiagnosisMappings";
+import { ThemeProvider, useTheme } from "@mui/material";
 
 // Create a client
 const queryClient = new QueryClient({
@@ -28,22 +29,26 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+  const theme = useTheme()
 
   return (
     <Router>
       <Topbar />
       <QueryClientProvider client={queryClient}>
         <div>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/ontologies" element={<OntologiesPage />} />
-            <Route path="/mappings" element={<MappingOptions />} />
-            <Route path="mappings/diagnosisSummary" element={<MappingsSummary type={DIAGNOSIS_TYPE} />} />
-            <Route path="mappings/treatmentSummary" element={<MappingsSummary type={TREATMENT_TYPE} />} />
-            <Route path="/mappings/diagnosisSummary/detail/:dataSource/:statusList" element={<DiagnosisMappings />} />
-            <Route path="/mappings/treatmentSummary/details/:statusList" element={<Mappings />} />
-          </Routes>
+          <ThemeProvider theme={theme}>
 
+
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/ontologies" element={<OntologiesPage />} />
+              <Route path="/mappings" element={<MappingOptions />} />
+              <Route path="mappings/diagnosisSummary" element={<MappingsSummary type={DIAGNOSIS_TYPE} />} />
+              <Route path="mappings/treatmentSummary" element={<MappingsSummary type={TREATMENT_TYPE} />} />
+              <Route path="/mappings/diagnosisSummary/detail/:dataSource/:statusList" element={<DiagnosisMappings />} />
+              <Route path="/mappings/treatmentSummary/details/:statusList" element={<Mappings />} />
+            </Routes>
+          </ThemeProvider>
         </div>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

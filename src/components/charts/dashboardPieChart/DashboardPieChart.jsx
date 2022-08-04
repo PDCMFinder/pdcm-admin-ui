@@ -2,7 +2,6 @@ import { ResponsivePie } from "@nivo/pie";
 import React from "react";
 
 const DashboardPieChart = ({ title, data }) => {
-  console.log("pie data", data);
   return (
     <>
       <div className="verticalTitle">{title}</div>
