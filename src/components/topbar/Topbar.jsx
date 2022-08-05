@@ -4,7 +4,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
-import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -32,7 +31,7 @@ const StyledBar = styled(MuiAppBar, {
 
 function TopBar() {
   return (
-    <StyledBar className="topbar" open={true}>
+    <StyledBar open={true}>
       <Toolbar>
         <Grid
           container

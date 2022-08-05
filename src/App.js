@@ -1,6 +1,4 @@
 import "./app.css"
-import Sidebar from "./components/sidebar/Sidebar";
-import Home from "./pages/home/Home";
 
 import { ReactQueryDevtools } from 'react-query/devtools'
 import {
@@ -42,35 +40,26 @@ function App() {
           <CssBaseline />
           <Router>
             <TopBar />
-
-
             <QueryClientProvider client={queryClient}>
-              <div>
-                <ThemeProvider theme={theme}>
 
+              <ThemeProvider theme={theme}>
+                <Routes>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/ontologies" element={<OntologiesPage />} />
+                  <Route path="/mappings-options" element={<MappingOptions />} />
+                  <Route path="mappings/diagnosisSummary" element={<MappingsSummary type={DIAGNOSIS_TYPE} />} />
+                  <Route path="mappings/treatmentSummary" element={<MappingsSummary type={TREATMENT_TYPE} />} />
+                  <Route path="/mappings/diagnosisSummary/detail/:dataSource/:statusList" element={<DiagnosisMappings />} />
+                  <Route path="/mappings" element={<Mappings />} />
+                </Routes>
+              </ThemeProvider>
 
-                  <Routes>
-                    <Route path="/" element={<Dashboard />} />
-                    <Route path="/ontologies" element={<OntologiesPage />} />
-                    <Route path="/mappings-options" element={<MappingOptions />} />
-                    <Route path="mappings/diagnosisSummary" element={<MappingsSummary type={DIAGNOSIS_TYPE} />} />
-                    <Route path="mappings/treatmentSummary" element={<MappingsSummary type={TREATMENT_TYPE} />} />
-                    <Route path="/mappings/diagnosisSummary/detail/:dataSource/:statusList" element={<DiagnosisMappings />} />
-                    <Route path="/mappings" element={<Mappings />} />
-                  </Routes>
-                </ThemeProvider>
-              </div>
               <ReactQueryDevtools initialIsOpen={false} />
             </QueryClientProvider>
           </Router>
         </Box>
       </ThemeProvider>
-
-
     </>
-
-
-
   );
 }
 

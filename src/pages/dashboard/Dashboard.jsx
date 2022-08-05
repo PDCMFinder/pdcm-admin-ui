@@ -8,23 +8,10 @@ import DashboardBarChart from "../../components/charts/dashboardBarChart/Dashboa
 import { useQuery } from "react-query";
 import { getMappingsSummary } from "../../apis/Mappings.api";
 import DashboardPieChart from "../../components/charts/dashboardPieChart/DashboardPieChart";
-import Sidebar from "../../components/sidebar/Sidebar";
-import Facet from "../../components/facets/facet/Facet";
-import FacetSideBar from "../../components/facets/facetSideBar/FacetSideBar";
 import { Drawer, Toolbar } from "@mui/material";
 
 import List from "@mui/material/List";
-import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import Badge from "@mui/material/Badge";
-import Container from "@mui/material/Container";
-
-import Paper from "@mui/material/Paper";
-import Link from "@mui/material/Link";
-import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 
 import { ListItems } from "./DashboardMenuList";
 
@@ -81,102 +68,14 @@ const Dashboard = () => {
     );
   }
 
-  let options = [
-    {
-      key: "cmp",
-      name: "cmp",
-    },
-    {
-      key: "clr",
-      name: "clr",
-    },
-  ];
-
-  let selection = options.slice(1);
-  console.log("selection: ", selection);
-
-  let facetSelection = [];
-  facetSelection["data_source"] = [
-    {
-      key: "CMP",
-      name: "CMP",
-    },
-    {
-      key: "CRL",
-      name: "CRL",
-    },
-  ];
-  let selectionChanged = (e) => {
-    console.log("ok", e);
-  };
-
-  let facets = [
-    {
-      key: "data_source",
-      name: "Data Source",
-      options: [
-        {
-          key: "CMP",
-          name: "CMP",
-        },
-        {
-          key: "CRL",
-          name: "CRL",
-        },
-        {
-          key: "Curie-BC",
-          name: "Curie-BC",
-        },
-        {
-          key: "Wistar-MDAnderson-Penn",
-          name: "Wistar-MDAnderson-Penn",
-        },
-        {
-          key: "WUSTL",
-          name: "WUSTL",
-        },
-      ],
-      type: "check",
-    },
-  ];
-
   return (
     <>
-      <div
-        id="facettests"
-        style={{
-          height: "300px",
-          width: "200px",
-          marginTop: "20px",
-        }}
+      <Grid
+        container
+        spacing={2}
+        style={{ marginTop: "20px", marginLeft: "20px" }}
       >
-        <FacetSideBar
-          facets={facets}
-          onSelectionChange={selectionChanged}
-          facetsSelection={facetSelection}
-        />
-
-        {/* <Facet
-          name={"Option 1"}
-          options={options}
-          type={"check"}
-          selection={selection}
-          onSelectionChange={selectionChanged}
-        /> */}
-        {/* <Facet
-          name={"Option 2"}
-          options={options}
-          type={"check"}
-          selection={selection}
-          onSelectionChange={selectionChanged}
-        /> */}
-        {/* <Facet name={"Option 2"} />
-        <Facet name={"Option 3"} /> */}
-      </div>
-
-      <Grid container spacing={2}>
         <Grid item xs={2}>
-          {/* <Sidebar /> */}
           <Drawer variant="permanent" open={true}>
             <Toolbar
               sx={{
@@ -185,11 +84,7 @@ const Dashboard = () => {
                 justifyContent: "flex-end",
                 px: [1],
               }}
-            >
-              <IconButton>
-                <ChevronLeftIcon />
-              </IconButton>
-            </Toolbar>
+            ></Toolbar>
             <Divider />
             <List component="nav">
               {ListItems}
