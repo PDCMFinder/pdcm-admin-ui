@@ -54,7 +54,7 @@ const Sidebar = () => {
                   "sidebarListItem" + (e.isActive ? " active" : "")
                 }
               >
-                Mappings(*)
+                Mappings options
               </NavLink>
             </li>
             <li className="sidebarListItem">
