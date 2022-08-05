@@ -13,14 +13,21 @@ const Mappings = () => {
     console.log("selection change aknowdleged", e);
   };
 
+  let onFacetSidebarChange = (params1, params2) => {
+    console.log("handle this later:", params1, params2);
+  };
+
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} style={{ marginTop: "20px" }}>
       <Grid item xs={3}>
         <div className="filtersx">
           <FacetSideBar
             facets={facets}
             onSelectionChange={selectionChanged}
             facetsSelection={facetsSelection}
+            onReset={() => {
+              onFacetSidebarChange({}, {});
+            }}
           />
         </div>
       </Grid>

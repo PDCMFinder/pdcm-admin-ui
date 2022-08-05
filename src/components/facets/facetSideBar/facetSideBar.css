@@ -1,0 +1,9 @@
+.filterTitle {
+    /* border-bottom: 3px solid; */
+    max-width: fit-content;
+    text-transform: uppercase;
+    font-weight: bold;
+    /* font-family: $font-family-headings; */
+    font-size: large;
+    margin-left: 40px;
+}

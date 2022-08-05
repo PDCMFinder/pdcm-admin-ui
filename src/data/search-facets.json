@@ -1,6 +1,21 @@
 {
     "facets": [
         {
+            "key": "type",
+            "name": "Type",
+            "options": [
+                {
+                    "key": "treatment",
+                    "name": "Treatment"
+                },
+                {
+                    "key": "diagnosis",
+                    "name": "Diagnosis"
+                }
+            ],
+            "type": "check"
+        },
+        {
             "key": "data_source",
             "name": "Data Source",
             "options": [
@@ -111,6 +126,40 @@
                 {
                     "key": "WUSTL",
                     "name": "WUSTL"
+                }
+            ],
+            "type": "check"
+        },
+        {
+            "key": "mapping_type",
+            "name": "Mapping Type",
+            "options": [
+                {
+                    "key": "manual",
+                    "name": "Manual"
+                },
+                {
+                    "key": "automatic",
+                    "name": "Automatic"
+                }
+            ],
+            "type": "check"
+        },
+        {
+            "key": "source",
+            "name": "Source",
+            "options": [
+                {
+                    "key": "rule",
+                    "name": "Rule"
+                },
+                {
+                    "key": "ncit",
+                    "name": "NCIt"
+                },
+                {
+                    "key": "legacy",
+                    "name": "Legacy"
                 }
             ],
             "type": "check"
