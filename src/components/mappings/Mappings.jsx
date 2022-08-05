@@ -18,7 +18,7 @@ const Mappings = () => {
   };
 
   return (
-    <Grid container spacing={2} style={{ marginTop: "20px" }}>
+    <Grid container spacing={2} style={{ marginTop: "5px" }}>
       <Grid item xs={3}>
         <div className="filtersx">
           <FacetSideBar

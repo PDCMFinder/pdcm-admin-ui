@@ -37,12 +37,14 @@ export const ListItems = (
         <ListItemText primary="Ontologies" />
       </ListItemButton>
     </Link>
-    <ListItemButton>
-      <ListItemIcon>
-        <CompareArrows />
-      </ListItemIcon>
-      <ListItemText primary="Mappings Options" />
-    </ListItemButton>
+    <Link to="/mappings-options" className="link">
+      <ListItemButton>
+        <ListItemIcon>
+          <CompareArrows />
+        </ListItemIcon>
+        <ListItemText primary="Mappings Options" />
+      </ListItemButton>
+    </Link>
     <Link to="/mappings" className="link">
       <ListItemButton>
         <ListItemIcon>

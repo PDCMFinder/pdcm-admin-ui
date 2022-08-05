@@ -12,10 +12,11 @@ import MappingsSummary from "./components/mappingsSummary/MappingsSummary";
 import { DIAGNOSIS_TYPE, TREATMENT_TYPE } from "./constants";
 import Mappings from "./components/mappings/Mappings";
 import DiagnosisMappings from "./components/diagnosis-mappings/DiagnosisMappings";
-import { Box, createTheme, CssBaseline, ThemeProvider, useTheme } from "@mui/material";
+import { Box, createTheme, CssBaseline, Grid, ThemeProvider, useTheme } from "@mui/material";
 import MappingOptions from "./pages/mappings-options/MappingOptions";
 import Dashboard from "./pages/dashboard/Dashboard";
 import TopBar from "./components/topBar/TopBar";
+import Footer from "./components/footer/Footer";
 
 
 // Create a client
@@ -34,31 +35,36 @@ function App() {
 
   return (
     <>
+      <Router>
+        <ThemeProvider theme={mdTheme}>
+          <Grid container spacing={2} rowSpacing={10}>
+            <Grid item xs={12}>
+              <TopBar />
+            </Grid>
+            <Grid item xs={12} style={{ marginLeft: "20px" }}>
+              <QueryClientProvider client={queryClient}>
 
-      <ThemeProvider theme={mdTheme}>
-        <Box sx={{ display: 'flex' }}>
-          <CssBaseline />
-          <Router>
-            <TopBar />
-            <QueryClientProvider client={queryClient}>
+                <ThemeProvider theme={theme}>
+                  <Routes>
+                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/ontologies" element={<OntologiesPage />} />
+                    <Route path="/mappings-options" element={<MappingOptions />} />
+                    <Route path="mappings/diagnosisSummary" element={<MappingsSummary type={DIAGNOSIS_TYPE} />} />
+                    <Route path="mappings/treatmentSummary" element={<MappingsSummary type={TREATMENT_TYPE} />} />
+                    <Route path="/mappings/diagnosisSummary/detail/:dataSource/:statusList" element={<DiagnosisMappings />} />
+                    <Route path="/mappings" element={<Mappings />} />
+                  </Routes>
+                </ThemeProvider>
 
-              <ThemeProvider theme={theme}>
-                <Routes>
-                  <Route path="/" element={<Dashboard />} />
-                  <Route path="/ontologies" element={<OntologiesPage />} />
-                  <Route path="/mappings-options" element={<MappingOptions />} />
-                  <Route path="mappings/diagnosisSummary" element={<MappingsSummary type={DIAGNOSIS_TYPE} />} />
-                  <Route path="mappings/treatmentSummary" element={<MappingsSummary type={TREATMENT_TYPE} />} />
-                  <Route path="/mappings/diagnosisSummary/detail/:dataSource/:statusList" element={<DiagnosisMappings />} />
-                  <Route path="/mappings" element={<Mappings />} />
-                </Routes>
-              </ThemeProvider>
-
-              <ReactQueryDevtools initialIsOpen={false} />
-            </QueryClientProvider>
-          </Router>
-        </Box>
-      </ThemeProvider>
+                <ReactQueryDevtools initialIsOpen={false} />
+              </QueryClientProvider>
+            </Grid>
+          </Grid>
+          <Grid item xs={12}>
+            <Footer />
+          </Grid>
+        </ThemeProvider>
+      </Router>
     </>
   );
 }
