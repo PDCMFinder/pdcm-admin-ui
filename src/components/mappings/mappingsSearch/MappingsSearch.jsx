@@ -1,10 +1,11 @@
 import { Grid } from "@mui/material";
 import React from "react";
-import FacetSideBar from "../facets/facetSideBar/FacetSideBar";
+import FacetSideBar from "../../facets/facetSideBar/FacetSideBar";
 
-import searchFacets from "./../../data/search-facets.json";
+import searchFacets from "../../../data/search-facets.json";
+import MappingCard from "../mappingCard/MappingCard";
 
-const Mappings = () => {
+const MappingsSearch = () => {
   const facets = searchFacets.facets;
 
   const facetsSelection = [];
@@ -33,9 +34,10 @@ const Mappings = () => {
       </Grid>
       <Grid item xs={9}>
         Section for results
+        <MappingCard />
       </Grid>
     </Grid>
   );
 };
 
-export default Mappings;
+export default MappingsSearch;
