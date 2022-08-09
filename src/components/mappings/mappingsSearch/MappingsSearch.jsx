@@ -21,19 +21,16 @@ const MappingsSearch = () => {
   return (
     <Grid container spacing={2} style={{ marginTop: "5px" }}>
       <Grid item xs={3}>
-        <div className="filtersx">
-          <FacetSideBar
-            facets={facets}
-            onSelectionChange={selectionChanged}
-            facetsSelection={facetsSelection}
-            onReset={() => {
-              onFacetSidebarChange({}, {});
-            }}
-          />
-        </div>
+        <FacetSideBar
+          facets={facets}
+          onSelectionChange={selectionChanged}
+          facetsSelection={facetsSelection}
+          onReset={() => {
+            onFacetSidebarChange({}, {});
+          }}
+        />
       </Grid>
       <Grid item xs={9}>
-        Section for results
         <MappingCard />
       </Grid>
     </Grid>

@@ -7,12 +7,12 @@ import {
 import { Grid, Typography } from "@mui/material";
 import React from "react";
 
-function DiagnosisKeyData() {
+function DiagnosisKeyData({ titleVariant }) {
   return (
     <React.Fragment>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Typography variant="h5" component="div">
+          <Typography variant={titleVariant} component="div">
             osteosarcoma giant rich cell ho neurofibrosarcomapath necrosis
             microscopic or macroscopic present 70 tumor gradestage high grade
             pt1pnxrecurrent disease primary tumor site long bones of upper limb
