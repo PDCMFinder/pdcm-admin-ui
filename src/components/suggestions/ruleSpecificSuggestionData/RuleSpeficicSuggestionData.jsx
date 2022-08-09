@@ -10,15 +10,27 @@ import DiagnosisKeyData from "../../mappings/mappingCard/keyData/diagnosisKeyDat
 import TreatmentKeyData from "../../mappings/mappingCard/keyData/treatmentKeyData/TreatmentKeyData";
 
 const RuleSpeficicSuggestionData = ({ suggestion }) => {
-  console.log("suggestion (RuleSpeficicSuggestionData) ", suggestion);
+  console.log("suggestion", suggestion);
   const EntityTypeSpecificData = () => {
-    if (suggestion.ruleSuggestion.entityTypeName === "diagnosis") {
-      return <DiagnosisKeyData titleVariant={"subtitle1"} />;
+    const data = suggestion.ruleSuggestion.data;
+    if (
+      suggestion.ruleSuggestion.entityTypeName.toLowerCase() === "diagnosis"
+    ) {
+      return (
+        <DiagnosisKeyData
+          titleVariant={"subtitle1"}
+          sampleDiagnosis={data["rule.value.sampleDiagnosis"]}
+          tumourType={data["rule.value.tumourType"]}
+          dataSource={data["rule.value.dataSource"]}
+          originTissue={data["rule.value.originTissue"]}
+        />
+      );
     } else {
       return (
         <TreatmentKeyData
           titleVariant={"subtitle1"}
-          treatmentData={suggestion.ruleSuggestion.data}
+          treatmentname={data["rule.value.treatmentName"]}
+          dataSource={data["rule.value.dataSource"]}
         />
       );
     }

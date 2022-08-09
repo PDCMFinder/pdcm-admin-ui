@@ -14,7 +14,6 @@ export async function getMappingsSummary(entityTypeName) {
 }
 
 export async function getMappingsWithFilters(type, dataSource, status, page, pageSize) {
-    console.log("called getMappingsByTypeAndStatus with", type, status);
     let response = await fetch(
         `${process.env.REACT_APP_API_URL}/api/mappings/search?entityType=${type}&status=${status}&mq=DataSource:${dataSource}&size=${pageSize}&page=${page}`
     );

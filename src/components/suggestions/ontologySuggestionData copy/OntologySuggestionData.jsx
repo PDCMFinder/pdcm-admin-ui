@@ -11,8 +11,6 @@ import React from "react";
 import { extractNCTiName } from "../../../util/Util";
 
 const OntologySuggestionData = ({ suggestion }) => {
-  console.log("suggestionData in OntologySuggestionData", suggestion);
-
   const ListItem = styled("li")(({ theme }) => ({
     margin: theme.spacing(0.5),
   }));
