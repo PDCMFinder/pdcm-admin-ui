@@ -109,9 +109,7 @@ const SuggestionsList = () => {
       <AccordionDetails>
         <div>
           {suggestions.map((suggestion) => {
-            return (
-              <Suggestion suggestionData={suggestion} key={suggestion.id} />
-            );
+            return <Suggestion suggestion={suggestion} key={suggestion.id} />;
           })}
         </div>
       </AccordionDetails>

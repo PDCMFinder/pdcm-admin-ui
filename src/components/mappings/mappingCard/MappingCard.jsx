@@ -4,23 +4,7 @@ import CommonData from "./commonData/CommonData";
 import DiagnosisKeyData from "./keyData/diagnosisKeyData/DiagnosisKeyData";
 import SuggestionsList from "../../suggestions/suggestionsList/SuggestionsList";
 
-const ExistingMappingInfo = (params) => {
-  return (
-    <React.Fragment>
-      <Typography variant="body2" component="span">
-        Mapping Type / Source:
-      </Typography>
-      <Chip
-        style={{ marginLeft: "5px" }}
-        label="Manual (Rule)"
-        color="primary"
-        variant="outlined"
-      />
-    </React.Fragment>
-  );
-};
-
-function MappingCard() {
+function MappingCard({ mappingEntity }) {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
