@@ -9,10 +9,18 @@
     text-align: center;
 }
 
-.mappingSummaryTable {
+/* .mappingSummaryTable {
     margin-top: 20px;
+    display: inline;
     text-align: center;
-     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 800px;
+    width: 300px,
+} */
+
+.container {
     display: flex;
     align-items: center;
     justify-content: center;

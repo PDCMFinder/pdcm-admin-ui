@@ -4,10 +4,11 @@ import {
   faStethoscope,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Biotech } from "@mui/icons-material";
 import React from "react";
 import CardMenuOption from "../../components/cardMenuOption/CardMenuOption";
-import "./mappings.css";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import "./mappingOptions.css";
 
 const options = [
   {
@@ -33,17 +34,36 @@ const options = [
   },
 ];
 
-const Mappings = () => {
+const MappingOptions = () => {
   return (
-    <div className="mappings">
-      <div className="mappingsTitle">Mappings</div>
-      <div className="options">
-        {options.map((option) => {
-          return <CardMenuOption key={option.id} {...option} />;
-        })}
-      </div>
+    <div
+      style={{
+        textAlign: "center",
+        marginLeft: "50px",
+      }}
+    >
+      <Box sx={{ width: "80%", height: 400 }}>
+        <div className="mappingsTitle">Mappings Options</div>
+
+        <Grid
+          marginLeft={"200px"}
+          container
+          rowSpacing={1}
+          justifyContent="flex-end"
+          alignItems="center"
+          columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+        >
+          {options.map((option) => {
+            return (
+              <Grid item xs={4}>
+                <CardMenuOption key={option.id} {...option} />
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Box>
     </div>
   );
 };
 
-export default Mappings;
+export default MappingOptions;
