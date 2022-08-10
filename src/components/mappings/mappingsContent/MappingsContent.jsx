@@ -1,15 +1,18 @@
-import { Box } from "@mui/system";
+import { Grid } from "@mui/material";
 import React from "react";
 import MappingCard from "../mappingCard/MappingCard";
 
 const MappingsContent = ({ mappings }) => {
-  console.log("MappingsContent mappings", mappings);
   return (
-    <Box>
+    <Grid container spacing={2}>
       {mappings.map((element, index) => {
-        return <MappingCard mappingEntity={element} key={index} />;
+        return (
+          <Grid item xs={12}>
+            <MappingCard mappingEntity={element} key={index} />
+          </Grid>
+        );
       })}
-    </Box>
+    </Grid>
   );
 };
 
