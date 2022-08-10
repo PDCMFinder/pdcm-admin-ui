@@ -1,4 +1,10 @@
-import { Grid, TablePagination } from "@mui/material";
+import {
+  Alert,
+  Box,
+  CircularProgress,
+  Grid,
+  TablePagination,
+} from "@mui/material";
 import React from "react";
 import FacetSideBar from "../../facets/facetSideBar/FacetSideBar";
 
@@ -11,7 +17,6 @@ const MappingsSearch = () => {
   let type = "diagnosis";
   let dataSource = "pdmr";
   let statusList = "unmapped";
-  let pageSize = 10;
 
   const facets = searchFacets.facets;
 
@@ -41,9 +46,10 @@ const MappingsSearch = () => {
   const { isLoading, data, error } = useQuery(
     [
       "getMappingsWithFilters",
-      { type, dataSource, statusList, page, pageSize },
+      { type, dataSource, statusList, page, rowsPerPage },
     ],
-    () => getMappingsWithFilters(type, dataSource, statusList, page, pageSize)
+    () =>
+      getMappingsWithFilters(type, dataSource, statusList, page, rowsPerPage)
   );
 
   console.log("data", data);
@@ -75,7 +81,23 @@ const MappingsSearch = () => {
             {data && data._embedded && (
               <MappingsContent mappings={data?._embedded.mappings} />
             )}
-            {data && !data._embedded && <div>No data</div>}
+            {data && !data._embedded && (
+              <Alert severity="warning">
+                Your query/filter did not return any results
+              </Alert>
+            )}
+            {isLoading && (
+              <Box
+                sx={{
+                  height: 200,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <CircularProgress size={100} />
+              </Box>
+            )}
           </Grid>
           <Grid item xs={9}>
             Other actions
