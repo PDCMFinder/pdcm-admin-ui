@@ -13,9 +13,7 @@ import SuggestionsList from "../../suggestions/suggestionsList/SuggestionsList";
 import TreatmentKeyData from "./keyData/treatmentKeyData/TreatmentKeyData";
 
 const EntityTypeSpecificData = ({ mappingEntity }) => {
-  console.log("EntityTypeSpecificData mappingEntity", mappingEntity);
-
-  if (mappingEntity.entityTypeName === "diagnosis") {
+  if (mappingEntity.entityTypeName.toLowerCase() === "diagnosis") {
     return (
       <DiagnosisKeyData
         titleVariant={"h5"}
@@ -37,6 +35,7 @@ const EntityTypeSpecificData = ({ mappingEntity }) => {
 };
 
 function MappingCard({ mappingEntity }) {
+  const isMapped = mappingEntity.status.toLowerCase() === "mapped";
   return (
     <Card sx={{ boxShadow: 3, width: "100%" }}>
       <CardContent>
@@ -54,7 +53,8 @@ function MappingCard({ mappingEntity }) {
         </Grid>
       </CardContent>
       <CardActions>
-        <Button size="small">Move to Revision</Button>
+        {isMapped && <Button size="small">Move to Revision</Button>}
+
         <Button size="small">Open Ontology Search</Button>
       </CardActions>
     </Card>
