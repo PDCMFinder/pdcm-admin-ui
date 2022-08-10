@@ -2,15 +2,12 @@ import {
   faBook,
   faBookOpenReader,
   faCheckToSlot,
-  faDatabase,
   faSquareArrowUpRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Chip, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import React from "react";
 import { extractNCTiName } from "../../../../util/Util";
-
-const url = "http://purl.obolibrary.org/obo/NCIT_C9145";
 
 function CommonData({ mappingEntity }) {
   return (

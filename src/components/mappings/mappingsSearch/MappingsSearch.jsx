@@ -3,15 +3,14 @@ import React from "react";
 import FacetSideBar from "../../facets/facetSideBar/FacetSideBar";
 
 import searchFacets from "../../../data/search-facets.json";
-import MappingCard from "../mappingCard/MappingCard";
 import { useQuery } from "react-query";
 import { getMappingsWithFilters } from "../../../apis/Mappings.api";
 import MappingsContent from "../mappingsContent/MappingsContent";
 
 const MappingsSearch = () => {
   let type = "diagnosis";
-  let dataSource = "trace";
-  let statusList = "mapped";
+  let dataSource = "pdmr";
+  let statusList = "unmapped";
   let pageSize = 10;
 
   const facets = searchFacets.facets;
@@ -73,16 +72,15 @@ const MappingsSearch = () => {
             />
           </Grid>
           <Grid item xs={9}>
-            {data && <MappingsContent mappings={data?._embedded.mappings} />}
-
-            {/* <MappingCard />
-            <MappingCard /> */}
+            {data && data._embedded && (
+              <MappingsContent mappings={data?._embedded.mappings} />
+            )}
+            {data && !data._embedded && <div>No data</div>}
           </Grid>
           <Grid item xs={9}>
             Other actions
           </Grid>
         </Grid>
-        {/* <MappingCard /> */}
       </Grid>
     </Grid>
   );

@@ -1,7 +1,11 @@
 export const extractNCTiName = (url) => {
-    const index = url.indexOf("NCIT");
-    if (index > -1) {
-        return url.substring(index);
+    let name = null;
+    if (url) {
+        const index = url.indexOf("NCIT");
+        if (index > -1) {
+            name = url.substring(index);
+        }
     }
-    return "N/A";
+
+    return name;
 };
