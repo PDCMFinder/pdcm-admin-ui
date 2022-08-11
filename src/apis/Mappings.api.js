@@ -1,5 +1,7 @@
 import { useLocation } from "react-router-dom";
 
+const mappingKeyAttributes = ['dataSource', 'treatmentName', 'sampleDiagnosis', 'tumorType', 'originTissue'];
+
 /**
  * Get mappings summary by entity type
  * @returns Status counts by provider for a specific entity type.
@@ -25,18 +27,38 @@ export async function getMappingsWithFilters(type, dataSource, status, page, pag
     return response.json()
 }
 
-export async function searchMappings(facetSelections, page, pageSize) {
-    let query = "";
+export function buildSearchParameters(facetSelections) {
+    let searchParameters = "";
+
     if (facetSelections) {
         for (let key in facetSelections) {
-            query += key + "=" + facetSelections[key].join(",") + "&"
+            if (mappingKeyAttributes.includes(key)) {
+                searchParameters += buildQueryKeyAttribute(key, facetSelections[key])
+            } else {
+                searchParameters += key + "=" + facetSelections[key].join(",") + "&"
+            }
+
         }
     }
-    console.log("query so far[1]", query);
-    query += "&page=" + page;
-    query += "&size=" + pageSize;
-    console.log("query so far[2]", query);
-    const url = `${process.env.REACT_APP_API_URL}/api/mappings/search?${query}`
+    console.log("searchParameters", searchParameters);
+    return searchParameters;
+}
+
+const buildQueryKeyAttribute = (key, values) => {
+    console.log("key", key, "values", values);
+    let query = "";
+    for (const idx in values) {
+        console.log("VALUE", values[idx]);
+        query += "mq=" + key + ":" + values[idx] + "&";
+    }
+    return query;
+}
+
+export async function searchMappings(facetSelections, page, pageSize) {
+    let searchParameters = buildSearchParameters(facetSelections);
+    searchParameters += "&page=" + page;
+    searchParameters += "&size=" + pageSize;
+    const url = `${process.env.REACT_APP_API_URL}/api/mappings/search?${searchParameters}`
     console.log("url", url);
     let response = await fetch(url);
     if (!response.ok) {

@@ -44,12 +44,15 @@ const Facet = ({ name, type, options, selection, onSelectionChange }) => {
                     onChange={(e) => {
                       let newSelection = [...currentSelection];
                       if (e.target.checked) {
-                        newSelection.push(option);
+                        newSelection.push(option.name);
                       } else {
                         newSelection = newSelection.filter(
-                          (selectedKey) => selectedKey.key !== option.key
+                          (selectedKey) =>
+                            selectedKey.toLowerCase() !==
+                            option.name.toLowerCase()
                         );
                       }
+
                       setCurrentSelection(newSelection);
                       onSelectionChange(newSelection);
                     }}
