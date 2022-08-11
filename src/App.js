@@ -16,7 +16,8 @@ import MappingOptions from "./pages/mappings-options/MappingOptions";
 import Dashboard from "./pages/dashboard/Dashboard";
 import TopBar from "./components/topBar/TopBar";
 import Footer from "./components/footer/Footer";
-import MappingsSearch from "./components/mappings/mappingsSearch/MappingsSearch";
+import MappingsSearch from "./components/mappingsSearch/mappingsSearch/MappingsSearch";
+import MappingsSearchPage from "./pages/mappingsSearchPage/MappingsSearchPage";
 
 
 // Create a client
@@ -54,6 +55,7 @@ function App() {
                     <Route path="mappings/treatmentSummary" element={<MappingsSummary type={TREATMENT_TYPE} />} />
                     <Route path="/mappings/diagnosisSummary/detail/:dataSource/:statusList" element={<DiagnosisMappings />} />
                     <Route path="/mappings" element={<MappingsSearch />} />
+                    <Route path="/search" element={<MappingsSearchPage />} />
                   </Routes>
                 </ThemeProvider>
 

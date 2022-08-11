@@ -6,11 +6,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Grid, Typography } from "@mui/material";
 import React from "react";
 import { extractNCTiName } from "../../../util/Util";
-import DiagnosisKeyData from "../../mappings/mappingCard/keyData/diagnosisKeyData/DiagnosisKeyData";
-import TreatmentKeyData from "../../mappings/mappingCard/keyData/treatmentKeyData/TreatmentKeyData";
+import DiagnosisKeyData from "../../mappingsSearch/mappingCard/keyData/diagnosisKeyData/DiagnosisKeyData";
+import TreatmentKeyData from "../../mappingsSearch/mappingCard/keyData/treatmentKeyData/TreatmentKeyData";
 
 const RuleSpeficicSuggestionData = ({ suggestion }) => {
-  console.log("suggestion", suggestion);
   const EntityTypeSpecificData = () => {
     const data = suggestion.ruleSuggestion.data;
     if (

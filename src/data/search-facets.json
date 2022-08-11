@@ -1,7 +1,7 @@
 {
     "facets": [
         {
-            "key": "type",
+            "key": "entityType",
             "name": "Type",
             "options": [
                 {

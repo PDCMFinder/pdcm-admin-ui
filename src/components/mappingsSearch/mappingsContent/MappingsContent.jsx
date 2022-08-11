@@ -7,8 +7,8 @@ const MappingsContent = ({ mappings }) => {
     <Grid container spacing={2}>
       {mappings.map((element, index) => {
         return (
-          <Grid item xs={12}>
-            <MappingCard mappingEntity={element} key={index} />
+          <Grid item xs={12} key={index}>
+            <MappingCard mappingEntity={element} />
           </Grid>
         );
       })}

@@ -18,7 +18,7 @@ const Facet = ({ name, type, options, selection, onSelectionChange }) => {
 
   const containsKey = (key) => {
     return currentSelection.some((element) => {
-      return element.key === key;
+      return element.toLowerCase() === key.toLowerCase();
     });
   };
 
