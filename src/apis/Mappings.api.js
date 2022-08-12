@@ -73,13 +73,19 @@ export function useQueryParams() {
 
     let facetSelection = {};
     for (const element of search) {
-        const [key, value] = element;
+        let [key, value] = element;
+        if (key === 'mq') {
+            let data = value.split(':');
+            key = data[0]
+            value = data[1]
+        }
         if (!facetSelection[key]) {
             facetSelection[key] = [value]
         } else {
             facetSelection[key].push(value)
         }
     }
+    console.log("!facetSelection", facetSelection);
     return [facetSelection];
 }
 
