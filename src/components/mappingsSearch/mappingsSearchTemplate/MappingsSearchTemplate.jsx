@@ -3,6 +3,8 @@ import React from "react";
 import FacetSideBar from "../../facets/facetSideBar/FacetSideBar";
 import MappingSearchResults from "../mappingSearchResults/MappingSearchResults";
 
+import TabsByStatus from "../tabsByStatus/TabsByStatus";
+
 const MappingsSearchTemplate = ({
   facets,
   facetsSelection,
@@ -16,6 +18,20 @@ const MappingsSearchTemplate = ({
   onPageSizeChange,
 }) => {
   const returnedMappings = searchResults?._embedded?.mappings || [];
+
+  const [selectedTabIndex, setSelectedTabIndex] = React.useState(0);
+
+  const handleTabChanged = (event, newValue) => {
+    if (newValue === 0) {
+      facetsSelection["status"] = ["unmapped"];
+    } else if (newValue === 1) {
+      facetsSelection["status"] = ["mapped"];
+    } else if (newValue === 2) {
+      facetsSelection["status"] = ["revision"];
+    }
+    onFacetSidebarChange(facetsSelection);
+    setSelectedTabIndex(newValue);
+  };
   return (
     <Grid container spacing={2} style={{ marginTop: "5px" }}>
       <Grid item xs={3}>
@@ -31,7 +47,9 @@ const MappingsSearchTemplate = ({
           }}
           facetsSelection={facetsSelection}
           onReset={() => {
-            onFacetSidebarChange({}, {});
+            facetsSelection = { status: ["unmapped"] };
+            onFacetSidebarChange(facetsSelection);
+            setSelectedTabIndex(0);
           }}
         />
       </Grid>
@@ -48,6 +66,14 @@ const MappingsSearchTemplate = ({
               onRowsPerPageChange={onPageSizeChange}
             />
           </Grid>
+
+          <Grid item xs={9}>
+            <TabsByStatus
+              value={selectedTabIndex}
+              onTabChanged={handleTabChanged}
+            ></TabsByStatus>
+          </Grid>
+
           <Grid item xs={9}>
             <MappingSearchResults
               results={returnedMappings}

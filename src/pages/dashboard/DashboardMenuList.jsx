@@ -45,7 +45,7 @@ export const ListItems = (
         <ListItemText primary="Mappings Options" />
       </ListItemButton>
     </Link>
-    <Link to="/mappings" className="link">
+    <Link to="/search" className="link">
       <ListItemButton>
         <ListItemIcon>
           <CompareArrows />

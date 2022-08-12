@@ -16,25 +16,6 @@
             "type": "check"
         },
         {
-            "key": "status",
-            "name": "Status",
-            "options": [
-                {
-                    "key": "mapped",
-                    "name": "Mapped"
-                },
-                {
-                    "key": "unmapped",
-                    "name": "Unmapped"
-                },
-                {
-                    "key": "revision",
-                    "name": "Revision"
-                }
-            ],
-            "type": "check"
-        },
-        {
             "key": "dataSource",
             "name": "Data Source",
             "options": [
