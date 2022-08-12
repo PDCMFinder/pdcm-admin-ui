@@ -65,7 +65,7 @@ const MappingsSearchPage = () => {
       loadingSearchResults={isLoading}
       totalElements={pageInfo?.totalElements || 0}
       page={pageInfo?.number || 0}
-      size={pageInfo?.size || 5}
+      size={pageInfo?.size || 10}
       onPaginationChange={handleChangePage}
       onPageSizeChange={handleChangeRowsPerPage}
     />

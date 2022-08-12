@@ -50,6 +50,7 @@ const MappingsSearchTemplate = ({
             facetsSelection = { status: ["unmapped"] };
             onFacetSidebarChange(facetsSelection);
             setSelectedTabIndex(0);
+            onPaginationChange(0);
           }}
         />
       </Grid>
@@ -62,7 +63,7 @@ const MappingsSearchTemplate = ({
               page={page}
               onPageChange={onPaginationChange}
               rowsPerPage={size}
-              rowsPerPageOptions={[5, 10, 20]}
+              rowsPerPageOptions={[10, 20, 50]}
               onRowsPerPageChange={onPageSizeChange}
             />
           </Grid>

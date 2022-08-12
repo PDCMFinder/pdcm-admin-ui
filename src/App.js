@@ -11,7 +11,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import MappingsSummary from "./components/mappingsSummary/MappingsSummary";
 import { DIAGNOSIS_TYPE, TREATMENT_TYPE } from "./constants";
 import DiagnosisMappings from "./components/diagnosis-mappings/DiagnosisMappings";
-import { Box, createTheme, CssBaseline, Grid, ThemeProvider, useTheme } from "@mui/material";
+import { createTheme, CssBaseline, Grid, ThemeProvider, useTheme } from "@mui/material";
 import MappingOptions from "./pages/mappings-options/MappingOptions";
 import Dashboard from "./pages/dashboard/Dashboard";
 import TopBar from "./components/topBar/TopBar";

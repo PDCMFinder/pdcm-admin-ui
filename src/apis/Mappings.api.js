@@ -7,7 +7,6 @@ const mappingKeyAttributes = ['dataSource', 'treatmentName', 'sampleDiagnosis', 
  * @returns Status counts by provider for a specific entity type.
  */
 export async function getMappingsSummary(entityTypeName) {
-    console.log("called getMappingsSummary with", entityTypeName);
     let response = await fetch(
         `${process.env.REACT_APP_API_URL}/api/mappings/getSummary?entityTypeName=${entityTypeName}`
     );
@@ -40,12 +39,10 @@ export function buildSearchParameters(facetSelections) {
 
         }
     }
-    console.log("searchParameters", searchParameters);
     return searchParameters;
 }
 
 const buildQueryKeyAttribute = (key, values) => {
-    console.log("key", key, "values", values);
     let query = "";
     for (const idx in values) {
         console.log("VALUE", values[idx]);
@@ -59,7 +56,6 @@ export async function searchMappings(facetSelections, page, pageSize) {
     searchParameters += "&page=" + page;
     searchParameters += "&size=" + pageSize;
     const url = `${process.env.REACT_APP_API_URL}/api/mappings/search?${searchParameters}`
-    console.log("url", url);
     let response = await fetch(url);
     if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -85,21 +81,5 @@ export function useQueryParams() {
             facetSelection[key].push(value)
         }
     }
-    console.log("!facetSelection", facetSelection);
     return [facetSelection];
 }
-
-// export function parseSelectedFacetFromUrl(
-//     facetsByKey
-//   ) {
-//     const facetSidebarSelection= {};
-//     Object.keys(facetsByKey).forEach((key) => {
-//       const [sectionKey, facetKey] = compoundKey.split(".");
-//       const urlFacetSelection = facetsByKey[key];
-//       if (!facetSidebarSelection[sectionKey]) {
-//         facetSidebarSelection[sectionKey] = {};
-//       }
-//       facetSidebarSelection[sectionKey][facetKey] = urlFacetSelection || [];
-//     });
-//     return facetSidebarSelection;
-//   }

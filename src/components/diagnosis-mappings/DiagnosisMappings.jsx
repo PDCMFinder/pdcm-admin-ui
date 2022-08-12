@@ -48,7 +48,6 @@ const type = "Diagnosis";
 
 const DiagnosisMappings = () => {
   let { dataSource, statusList } = useParams();
-  console.log("Called with", statusList);
 
   const [page, setPage] = React.useState(0);
   const [pageSize, setPageSize] = React.useState(10);
@@ -61,9 +60,6 @@ const DiagnosisMappings = () => {
     [page, pageSize]
   );
 
-  console.log("page:", page);
-  console.log("pageSize:", pageSize);
-
   const { isLoading, data } = useQuery(
     [
       "getMappingsWithFilters",
@@ -73,9 +69,6 @@ const DiagnosisMappings = () => {
   );
 
   const pageInfo = data?.page || {};
-
-  console.log("isLoading", isLoading);
-  console.log("pageInfo", pageInfo);
 
   // Some API clients return undefined while loading
   // Following lines are here to prevent `rowCountState` from being undefined during the loading
