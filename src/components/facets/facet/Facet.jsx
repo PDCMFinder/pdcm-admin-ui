@@ -13,8 +13,11 @@ import { styled } from "@mui/material/styles";
 import "./facet.css";
 
 const Facet = ({ name, type, options, selection, onSelectionChange }) => {
-  const [open, setOpen] = useState(selection.length > 0);
-  const [currentSelection, setCurrentSelection] = useState(selection);
+  const elementsSelected = selection.length > 0;
+
+  const [open, setOpen] = useState(elementsSelected);
+
+  let currentSelection = selection;
 
   const containsKey = (key) => {
     return currentSelection.some((element) => {
@@ -52,8 +55,7 @@ const Facet = ({ name, type, options, selection, onSelectionChange }) => {
                             option.name.toLowerCase()
                         );
                       }
-
-                      setCurrentSelection(newSelection);
+                      currentSelection = newSelection;
                       onSelectionChange(newSelection);
                     }}
                   />
@@ -70,19 +72,17 @@ const Facet = ({ name, type, options, selection, onSelectionChange }) => {
   };
 
   return (
-    <>
-      <Accordion disableGutters elevation={0} expanded={open}>
-        <AccordionSummary
-          onClick={() => setOpen(!open)}
-          expandIcon={<FontAwesomeIcon icon={faAngleRight} />}
-        >
-          <Div>{name}</Div>
-        </AccordionSummary>
-        <AccordionDetails>
-          <div id={`facet-section-${name}`}>{renderOptions()}</div>
-        </AccordionDetails>
-      </Accordion>
-    </>
+    <Accordion disableGutters elevation={0} expanded={open || elementsSelected}>
+      <AccordionSummary
+        onClick={() => setOpen(!open)}
+        expandIcon={<FontAwesomeIcon icon={faAngleRight} />}
+      >
+        <Div>{name}</Div>
+      </AccordionSummary>
+      <AccordionDetails>
+        <div id={`facet-section-${name}`}>{renderOptions()}</div>
+      </AccordionDetails>
+    </Accordion>
   );
 };
 
