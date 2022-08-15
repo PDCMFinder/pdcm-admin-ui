@@ -81,9 +81,6 @@ const MappingsSearchTemplate = ({
               isLoading={loadingSearchResults}
             />
           </Grid>
-          <Grid item xs={9}>
-            Other actions
-          </Grid>
         </Grid>
       </Grid>
     </Grid>

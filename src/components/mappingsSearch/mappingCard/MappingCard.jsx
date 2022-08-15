@@ -11,24 +11,34 @@ import CommonData from "./commonData/CommonData";
 import DiagnosisKeyData from "./keyData/diagnosisKeyData/DiagnosisKeyData";
 import SuggestionsList from "../../suggestions/suggestionsList/SuggestionsList";
 import TreatmentKeyData from "./keyData/treatmentKeyData/TreatmentKeyData";
+import { getValueByKey } from "../../../util/Util";
 
 const EntityTypeSpecificData = ({ mappingEntity }) => {
   if (mappingEntity.entityTypeName.toLowerCase() === "diagnosis") {
     return (
       <DiagnosisKeyData
         titleVariant={"h5"}
-        sampleDiagnosis={mappingEntity.mappingValues["SampleDiagnosis"]}
-        tumourType={mappingEntity.mappingValues["TumourType"]}
-        dataSource={mappingEntity.mappingValues["DataSource"]}
-        originTissue={mappingEntity.mappingValues["OriginTissue"]}
+        sampleDiagnosis={getValueByKey(
+          mappingEntity.mappingValues,
+          "SampleDiagnosis"
+        )}
+        tumourType={getValueByKey(mappingEntity.mappingValues, "TumourType")}
+        dataSource={getValueByKey(mappingEntity.mappingValues, "DataSource")}
+        originTissue={getValueByKey(
+          mappingEntity.mappingValues,
+          "OriginTissue"
+        )}
       />
     );
   } else {
     return (
       <TreatmentKeyData
         titleVariant={"h5"}
-        treatmentname={mappingEntity.mappingValues["TreatmentName"]}
-        dataSource={mappingEntity.mappingValues["DataSource"]}
+        treatmentname={getValueByKey(
+          mappingEntity.mappingValues,
+          "TreatmentName"
+        )}
+        dataSource={getValueByKey(mappingEntity.mappingValues, "DataSource")}
       />
     );
   }
@@ -48,7 +58,7 @@ function MappingCard({ mappingEntity }) {
             <CommonData mappingEntity={mappingEntity} />
           </Grid>
           <Grid item xs={12}>
-            <SuggestionsList suggestions={mappingEntity.suggestions} />
+            <SuggestionsList mappingEntityId={mappingEntity.id} />
           </Grid>
         </Grid>
       </CardContent>

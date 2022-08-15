@@ -9,3 +9,8 @@ export const extractNCTiName = (url) => {
 
     return name;
 };
+
+export const getValueByKey = (mappingValues, key) => {
+    const found = mappingValues.find(element => element.mappingKey.key.toLowerCase() === key.toLowerCase());
+    return found.value;
+}
