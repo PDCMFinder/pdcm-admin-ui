@@ -39,7 +39,7 @@ const MappingsSearchTemplate = ({
     calculateTabIndex()
   );
 
-  const handleTabChanged = (selectedIndex) => {
+  const handleTabChanged = (e, selectedIndex) => {
     if (selectedIndex === 0) {
       facetsSelection["status"] = ["unmapped"];
     } else if (selectedIndex === 1) {
