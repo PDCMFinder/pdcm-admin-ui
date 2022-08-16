@@ -47,7 +47,8 @@ const TabsByStatus = ({ value, onTabChanged }) => {
         >
           <Tab label="Unmapped" {...a11yProps(0)} />
           <Tab label="Mapped" {...a11yProps(1)} />
-          <Tab label="Revision" {...a11yProps(2)} />
+          <Tab label="Revise" {...a11yProps(2)} />
+          <Tab label="Request" {...a11yProps(3)} />
         </Tabs>
       </Box>
     </Box>

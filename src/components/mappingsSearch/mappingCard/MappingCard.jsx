@@ -12,6 +12,8 @@ import DiagnosisKeyData from "./keyData/diagnosisKeyData/DiagnosisKeyData";
 import SuggestionsList from "../../suggestions/suggestionsList/SuggestionsList";
 import TreatmentKeyData from "./keyData/treatmentKeyData/TreatmentKeyData";
 import { getValueByKey } from "../../../util/Util";
+import { updateEntity } from "../../../apis/Mappings.api";
+import { useMutation, useQueryClient } from "react-query";
 
 const EntityTypeSpecificData = ({ mappingEntity }) => {
   if (mappingEntity.entityTypeName.toLowerCase() === "diagnosis") {
@@ -46,6 +48,27 @@ const EntityTypeSpecificData = ({ mappingEntity }) => {
 
 function MappingCard({ mappingEntity }) {
   const isMapped = mappingEntity.status.toLowerCase() === "mapped";
+  const isUnmapped = mappingEntity.status.toLowerCase() === "unmapped";
+  const isRevise = mappingEntity.status.toLowerCase() === "revise";
+  const isRequest = mappingEntity.status.toLowerCase() === "request";
+
+  const queryClient = useQueryClient();
+
+  const updateMutation = useMutation(
+    ["updateEntity", { mappingEntity }],
+    () => updateEntity(mappingEntity),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["searchMappings"]);
+      },
+    }
+  );
+
+  const changeStatus = (newStatus) => {
+    mappingEntity.status = newStatus;
+    updateMutation.mutate();
+  };
+
   return (
     <Card sx={{ boxShadow: 3, width: "100%" }}>
       <CardContent>
@@ -63,8 +86,26 @@ function MappingCard({ mappingEntity }) {
         </Grid>
       </CardContent>
       <CardActions>
-        {isMapped && <Button size="small">Move to Revision</Button>}
-
+        {isMapped && (
+          <Button size="small" onClick={() => changeStatus("Revise")}>
+            Move to Revise
+          </Button>
+        )}
+        {isUnmapped && (
+          <Button size="small" onClick={() => changeStatus("Request")}>
+            Move to Request
+          </Button>
+        )}
+        {isRevise && (
+          <Button size="small" onClick={() => changeStatus("Mapped")}>
+            Move to Mapped
+          </Button>
+        )}
+        {isRequest && (
+          <Button size="small" onClick={() => changeStatus("Unmapped")}>
+            Move to Unmapped
+          </Button>
+        )}
         <Button size="small">Open Ontology Search</Button>
       </CardActions>
     </Card>

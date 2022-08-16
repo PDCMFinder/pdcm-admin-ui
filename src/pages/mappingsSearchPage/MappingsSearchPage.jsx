@@ -11,8 +11,6 @@ import MappingsSearchTemplate from "../../components/mappingsSearch/mappingsSear
 import { useNavigate } from "react-router-dom";
 
 const MappingsSearchPage = () => {
-  let [facetSelection, setFacetSelection] = useState({});
-
   let navigate = useNavigate();
 
   const [page, setPage] = useState(0);
@@ -22,14 +20,16 @@ const MappingsSearchPage = () => {
 
   let [facetsByKey] = useQueryParams();
 
-  const { isLoading, data, error } = useQuery(
+  let [facetSelection, setFacetSelection] = useState(facetsByKey);
+
+  const { isLoading, data } = useQuery(
     ["searchMappings", { facetSelection, page, pageSize }],
     () => searchMappings(facetSelection, page, pageSize)
   );
 
   const pageInfo = data?.page || {};
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (newPage) => {
     setPage(newPage);
   };
 
@@ -38,29 +38,22 @@ const MappingsSearchPage = () => {
     setPage(0);
   };
 
-  const updateSearchParams = (facetSelection) => {
-    // setActivePage(1);
-    navigate("../search?" + buildSearchParameters(facetSelection), {
+  const handleFiltersChange = (newFilters) => {
+    setFacetSelection(newFilters);
+    updateSearchParams(newFilters);
+  };
+
+  const updateSearchParams = (newfFacetSelection) => {
+    navigate("../search?" + buildSearchParameters(newfFacetSelection), {
       replace: true,
     });
   };
-
-  if (
-    !isLoading &&
-    Object.keys(facetsByKey).length > 0 &&
-    Object.keys(facetSelection).length === 0
-  ) {
-    setFacetSelection(facetsByKey);
-  }
 
   return (
     <MappingsSearchTemplate
       facets={facets}
       facetsSelection={facetSelection}
-      onFacetSidebarChange={(facetSelection) => {
-        setFacetSelection(facetSelection);
-        updateSearchParams(facetSelection);
-      }}
+      onFacetSidebarChange={handleFiltersChange}
       searchResults={data}
       loadingSearchResults={isLoading}
       totalElements={pageInfo?.totalElements || 0}

@@ -79,6 +79,23 @@ export async function getMappingEntitySuggestions(mappingEntityId) {
     return response.json()
 }
 
+export async function updateEntity(mappingEntity) {
+    const url = `${process.env.REACT_APP_API_URL}/api/mappings/${mappingEntity.id}`
+    const settings = {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(mappingEntity)
+    };
+    let response = await fetch(url, settings);
+    if (!response.ok) {
+        throw new Error("Network response was not ok");
+    }
+    return response.json()
+}
+
 
 export function useQueryParams() {
     const search = new URLSearchParams(useLocation().search);

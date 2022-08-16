@@ -30,9 +30,7 @@ const SuggestionsList = ({ mappingEntityId }) => {
   let suggestionsQueryIsLoading = suggestionsQuery.isLoading;
   const refetchSuggestions = suggestionsQuery.refetch;
 
-  const handleChange = (panel) => (event, isExpanded) => {
-    console.log("suggestions.length", suggestions.length);
-    console.log("suggestions", suggestions);
+  const handleChange = (panel) => (isExpanded) => {
     if (suggestions.length === 0) {
       refetchSuggestions();
     }

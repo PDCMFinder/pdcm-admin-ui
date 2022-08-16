@@ -5,6 +5,12 @@ import MappingSearchResults from "../mappingSearchResults/MappingSearchResults";
 
 import TabsByStatus from "../tabsByStatus/TabsByStatus";
 
+const tabStatusMap = new Map();
+tabStatusMap.set("unmapped", 0);
+tabStatusMap.set("mapped", 1);
+tabStatusMap.set("revise", 2);
+tabStatusMap.set("request", 3);
+
 const MappingsSearchTemplate = ({
   facets,
   facetsSelection,
@@ -19,18 +25,32 @@ const MappingsSearchTemplate = ({
 }) => {
   const returnedMappings = searchResults?._embedded?.mappings || [];
 
-  const [selectedTabIndex, setSelectedTabIndex] = React.useState(0);
+  const calculateTabIndex = () => {
+    let index = 0;
+    const facetStatusValues = facetsSelection["status"];
+    if (facetStatusValues) {
+      const currentSelectedStatus = facetStatusValues[0].toLowerCase();
+      index = tabStatusMap.get(currentSelectedStatus);
+    }
+    return index;
+  };
 
-  const handleTabChanged = (event, newValue) => {
-    if (newValue === 0) {
+  const [selectedTabIndex, setSelectedTabIndex] = React.useState(
+    calculateTabIndex()
+  );
+
+  const handleTabChanged = (selectedIndex) => {
+    if (selectedIndex === 0) {
       facetsSelection["status"] = ["unmapped"];
-    } else if (newValue === 1) {
+    } else if (selectedIndex === 1) {
       facetsSelection["status"] = ["mapped"];
-    } else if (newValue === 2) {
-      facetsSelection["status"] = ["revision"];
+    } else if (selectedIndex === 2) {
+      facetsSelection["status"] = ["revise"];
+    } else if (selectedIndex === 3) {
+      facetsSelection["status"] = ["request"];
     }
     onFacetSidebarChange(facetsSelection);
-    setSelectedTabIndex(newValue);
+    setSelectedTabIndex(selectedIndex);
   };
   return (
     <Grid container spacing={2} style={{ marginTop: "5px" }}>
