@@ -31,6 +31,7 @@ const Suggestion = ({ suggestion, mappingEntity }) => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["searchMappings"]);
+        queryClient.invalidateQueries(["getCountsByStatusWithFilter"]);
       },
     }
   );

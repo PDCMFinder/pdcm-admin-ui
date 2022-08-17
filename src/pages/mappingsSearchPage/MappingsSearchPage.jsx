@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import searchFacets from "../../data/search-facets.json";
 import {
   buildSearchParameters,
+  getCountsByStatusWithFilter,
   searchMappings,
   useQueryParams,
 } from "../../apis/Mappings.api";
@@ -25,6 +26,11 @@ const MappingsSearchPage = () => {
   const { isLoading, data } = useQuery(
     ["searchMappings", { facetSelection, page, pageSize }],
     () => searchMappings(facetSelection, page, pageSize)
+  );
+
+  const countsByStatusQuery = useQuery(
+    ["getCountsByStatusWithFilter", { facetSelection }],
+    () => getCountsByStatusWithFilter(facetSelection)
   );
 
   const pageInfo = data?.page || {};
@@ -56,6 +62,8 @@ const MappingsSearchPage = () => {
       onFacetSidebarChange={handleFiltersChange}
       searchResults={data}
       loadingSearchResults={isLoading}
+      loadingCountsByStatus={countsByStatusQuery.isLoading}
+      countsByStatus={countsByStatusQuery.data}
       totalElements={pageInfo?.totalElements || 0}
       page={pageInfo?.number || 0}
       size={pageInfo?.size || 10}

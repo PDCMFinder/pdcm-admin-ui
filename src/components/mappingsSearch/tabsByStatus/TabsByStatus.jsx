@@ -36,19 +36,44 @@ function a11yProps(index) {
   };
 }
 
-const TabsByStatus = ({ value, onTabChanged }) => {
+const TabsByStatus = ({
+  value,
+  countsByStatus,
+  loadingCountsByStatus,
+  onTabChanged,
+}) => {
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <Tabs
-          value={value}
-          onChange={onTabChanged}
-          aria-label="basic tabs example"
-        >
-          <Tab label="Unmapped" {...a11yProps(0)} />
-          <Tab label="Mapped" {...a11yProps(1)} />
-          <Tab label="Revise" {...a11yProps(2)} />
-          <Tab label="Request" {...a11yProps(3)} />
+        <Tabs value={value} onChange={onTabChanged} aria-label="tabs by status">
+          {loadingCountsByStatus && [
+            <Tab key={0} label="Unmapped" {...a11yProps(0)} />,
+            <Tab key={2} label="Mapped" {...a11yProps(1)} />,
+            <Tab key={3} label="Revise" {...a11yProps(2)} />,
+            <Tab key={4} label="Request" {...a11yProps(3)} />,
+          ]}
+          {!loadingCountsByStatus && [
+            <Tab
+              key={0}
+              label={"Unmapped (" + countsByStatus["Unmapped"] + ")"}
+              {...a11yProps(0)}
+            />,
+            <Tab
+              key={1}
+              label={"Mapped (" + countsByStatus["Mapped"] + ")"}
+              {...a11yProps(1)}
+            />,
+            <Tab
+              key={2}
+              label={"Revise (" + countsByStatus["Revise"] + ")"}
+              {...a11yProps(2)}
+            />,
+            <Tab
+              key={3}
+              label={"Request (" + countsByStatus["Request"] + ")"}
+              {...a11yProps(3)}
+            />,
+          ]}
         </Tabs>
       </Box>
     </Box>

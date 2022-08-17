@@ -45,7 +45,6 @@ export function buildSearchParameters(facetSelections) {
 const buildQueryKeyAttribute = (key, values) => {
     let query = "";
     for (const idx in values) {
-        console.log("VALUE", values[idx]);
         query += "mq=" + key + ":" + values[idx] + "&";
     }
     return query;
@@ -58,6 +57,17 @@ export async function searchMappings(facetSelections, page, pageSize) {
     searchParameters += "&sort=dateUpdated,desc";
 
     const url = `${process.env.REACT_APP_API_URL}/api/mappings/search?${searchParameters}`
+    let response = await fetch(url);
+    if (!response.ok) {
+        throw new Error("Network response was not ok");
+    }
+    return response.json()
+}
+
+export async function getCountsByStatusWithFilter(facetSelections) {
+    let searchParameters = buildSearchParameters(facetSelections);
+
+    const url = `${process.env.REACT_APP_API_URL}/api/mappings/statusCounts?${searchParameters}`
     let response = await fetch(url);
     if (!response.ok) {
         throw new Error("Network response was not ok");

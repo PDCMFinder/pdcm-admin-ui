@@ -17,6 +17,8 @@ const MappingsSearchTemplate = ({
   onFacetSidebarChange,
   searchResults,
   loadingSearchResults,
+  loadingCountsByStatus,
+  countsByStatus,
   totalElements,
   page,
   size,
@@ -91,6 +93,8 @@ const MappingsSearchTemplate = ({
           <Grid item xs={9}>
             <TabsByStatus
               value={selectedTabIndex}
+              countsByStatus={countsByStatus}
+              loadingCountsByStatus={loadingCountsByStatus}
               onTabChanged={handleTabChanged}
             ></TabsByStatus>
           </Grid>

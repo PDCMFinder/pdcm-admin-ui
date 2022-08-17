@@ -60,6 +60,7 @@ function MappingCard({ mappingEntity }) {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["searchMappings"]);
+        queryClient.invalidateQueries(["getCountsByStatusWithFilter"]);
       },
     }
   );

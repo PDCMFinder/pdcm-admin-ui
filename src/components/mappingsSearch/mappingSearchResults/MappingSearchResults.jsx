@@ -25,7 +25,9 @@ const MappingSearchResults = ({ results, isLoading }) => {
         </Box>
       )}
 
-      {results.length > 0 && <MappingsContent mappings={results} />}
+      {!isLoading && results.length > 0 && (
+        <MappingsContent mappings={results} />
+      )}
     </div>
   );
 };
