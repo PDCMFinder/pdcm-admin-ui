@@ -55,6 +55,8 @@ export async function searchMappings(facetSelections, page, pageSize) {
     let searchParameters = buildSearchParameters(facetSelections);
     searchParameters += "&page=" + page;
     searchParameters += "&size=" + pageSize;
+    searchParameters += "&sort=dateUpdated,desc";
+
     const url = `${process.env.REACT_APP_API_URL}/api/mappings/search?${searchParameters}`
     let response = await fetch(url);
     if (!response.ok) {
