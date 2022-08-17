@@ -81,7 +81,7 @@ function MappingCard({ mappingEntity }) {
             <CommonData mappingEntity={mappingEntity} />
           </Grid>
           <Grid item xs={12}>
-            <SuggestionsList mappingEntityId={mappingEntity.id} />
+            <SuggestionsList mappingEntity={mappingEntity} />
           </Grid>
         </Grid>
       </CardContent>

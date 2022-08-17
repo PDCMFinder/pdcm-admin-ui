@@ -14,12 +14,12 @@ import { useQuery } from "react-query";
 import { getMappingEntitySuggestions } from "../../../apis/Mappings.api";
 import { Box } from "@mui/system";
 
-const SuggestionsList = ({ mappingEntityId }) => {
+const SuggestionsList = ({ mappingEntity }) => {
   const [expanded, setExpanded] = React.useState(false);
 
   const suggestionsQuery = useQuery(
-    ["getMappingEntitySuggestions", mappingEntityId],
-    () => getMappingEntitySuggestions(mappingEntityId),
+    ["getMappingEntitySuggestions", mappingEntity.id],
+    () => getMappingEntitySuggestions(mappingEntity.id),
     {
       refetchOnWindowFocus: false,
       enabled: false, // disable this query from automatically running
@@ -30,7 +30,7 @@ const SuggestionsList = ({ mappingEntityId }) => {
   let suggestionsQueryIsLoading = suggestionsQuery.isLoading;
   const refetchSuggestions = suggestionsQuery.refetch;
 
-  const handleChange = (panel) => (isExpanded) => {
+  const handleChange = (panel) => (_event, isExpanded) => {
     if (suggestions.length === 0) {
       refetchSuggestions();
     }
@@ -69,7 +69,13 @@ const SuggestionsList = ({ mappingEntityId }) => {
           {suggestions.length > 0 && (
             <div>
               {suggestions.map((suggestion, index) => {
-                return <Suggestion suggestion={suggestion} key={index} />;
+                return (
+                  <Suggestion
+                    suggestion={suggestion}
+                    key={index}
+                    mappingEntity={mappingEntity}
+                  />
+                );
               })}
             </div>
           )}

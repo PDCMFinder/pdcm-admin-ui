@@ -9,6 +9,8 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
+import { useMutation, useQueryClient } from "react-query";
+import { updateEntity } from "../../../apis/Mappings.api";
 import OntologySuggestionData from "../ontologySuggestionData copy/OntologySuggestionData";
 import RuleSpeficicSuggestionData from "../ruleSpecificSuggestionData/RuleSpeficicSuggestionData";
 
@@ -20,7 +22,25 @@ const SourceSpecificData = ({ suggestion }) => {
   }
 };
 
-const Suggestion = ({ suggestion }) => {
+const Suggestion = ({ suggestion, mappingEntity }) => {
+  const queryClient = useQueryClient();
+
+  const acceptSuggestionMutation = useMutation(
+    ["updateEntity", { mappingEntity }],
+    () => updateEntity(mappingEntity),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["searchMappings"]);
+      },
+    }
+  );
+
+  const acceptSuggestion = () => {
+    mappingEntity.mappedTermUrl = suggestion.suggestedTermUrl;
+    mappingEntity.mappedTermLabel = suggestion.suggestedTermLabel;
+    mappingEntity.source = suggestion.sourceType;
+    acceptSuggestionMutation.mutate();
+  };
   return (
     <Card
       sx={{
@@ -60,7 +80,9 @@ const Suggestion = ({ suggestion }) => {
         </Grid>
       </CardContent>
       <CardActions>
-        <Button size="small">Accept suggestion</Button>
+        <Button size="small" onClick={acceptSuggestion}>
+          Accept suggestion
+        </Button>
       </CardActions>
     </Card>
   );
