@@ -29,7 +29,7 @@ const MappingsSearchPage = () => {
 
   const pageInfo = data?.page || {};
 
-  const handleChangePage = (newPage) => {
+  const handleChangePage = (_event, newPage) => {
     setPage(newPage);
   };
 
