@@ -2,16 +2,14 @@ import {
   faBook,
   faBookOpenReader,
   faCheckToSlot,
-  faDatabase,
   faSquareArrowUpRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Chip, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import React from "react";
+import { extractNCTiName } from "../../../../util/Util";
 
-const url = "http://purl.obolibrary.org/obo/NCIT_C9145";
-
-function CommonData() {
+function CommonData({ mappingEntity }) {
   return (
     <React.Fragment>
       <Grid
@@ -23,7 +21,7 @@ function CommonData() {
         <Grid item xs={12} sm={6}>
           <Typography variant="button" component="div">
             <FontAwesomeIcon style={{ marginRight: "5px" }} icon={faBook} />
-            OSTEOSARCOMA
+            {mappingEntity.mappedTermLabel}
           </Typography>
           <Typography variant="caption" component="div">
             Ontology Term Label
@@ -35,8 +33,12 @@ function CommonData() {
               style={{ marginRight: "5px" }}
               icon={faSquareArrowUpRight}
             />
-            <a href={url} target="_blank" rel="noreferrer">
-              NCIT_C9145
+            <a
+              href={mappingEntity.mappedTermUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {extractNCTiName(mappingEntity.mappedTermUrl)}
             </a>
           </Typography>
           <Typography variant="caption" component="div">
@@ -50,7 +52,7 @@ function CommonData() {
               style={{ marginRight: "5px" }}
               icon={faBookOpenReader}
             />
-            Manual (Rule)
+            {mappingEntity.mappingType} ({mappingEntity.source})
           </Typography>
           <Typography variant="caption" component="div">
             Mapping Type / Source
@@ -62,7 +64,7 @@ function CommonData() {
               style={{ marginRight: "5px" }}
               icon={faCheckToSlot}
             />
-            Mapped
+            {mappingEntity.status}
           </Typography>
           <Typography variant="caption" component="div">
             Status

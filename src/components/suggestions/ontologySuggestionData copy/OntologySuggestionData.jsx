@@ -6,35 +6,21 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Chip, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
+
 import React from "react";
-import CommonData from "../../mappings/mappingCard/commonData/CommonData";
-import DiagnosisKeyData from "../../mappings/mappingCard/keyData/diagnosisKeyData/DiagnosisKeyData";
+import { extractNCTiName } from "../../../util/Util";
 
-const url = "http://purl.obolibrary.org/obo/NCIT_C9145";
-
-const extractNCTiName = (url) => {
-  console.log("url", url);
-  const index = url.indexOf("NCIT");
-  console.log(index);
-  if (index > -1) {
-    return url.substring(index);
-  }
-  return "N/A";
-};
-
-const OntologySuggestionData = ({ suggestionData }) => {
-  console.log("suggestionData in OntologySuggestionData", suggestionData);
-
+const OntologySuggestionData = ({ suggestion }) => {
   const ListItem = styled("li")(({ theme }) => ({
     margin: theme.spacing(0.5),
   }));
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={3}>
+      <Grid item xs={4}>
         <Typography variant="button" component="div">
           <FontAwesomeIcon style={{ marginRight: "5px" }} icon={faBook} />
-          {suggestionData.suggestedTermLabel}
+          {suggestion.suggestedTermLabel}
         </Typography>
         <Typography variant="caption" component="div">
           Ontology Term Label
@@ -47,11 +33,11 @@ const OntologySuggestionData = ({ suggestionData }) => {
             icon={faSquareArrowUpRight}
           />
           <a
-            href={suggestionData.suggestedTermUrl}
+            href={suggestion.suggestedTermUrl}
             target="_blank"
             rel="noreferrer"
           >
-            {extractNCTiName(suggestionData.suggestedTermUrl)}
+            {extractNCTiName(suggestion.suggestedTermUrl)}
           </a>
         </Typography>
         <Typography variant="caption" component="div">
@@ -61,7 +47,7 @@ const OntologySuggestionData = ({ suggestionData }) => {
 
       <Grid item xs={12}>
         <Typography variant="body2" component="div">
-          {suggestionData.ontologySuggestion.definition}
+          {suggestion.ontologySuggestion.definition}
         </Typography>
         <Typography variant="caption" component="div">
           Definition
@@ -81,15 +67,13 @@ const OntologySuggestionData = ({ suggestionData }) => {
               m: 0,
             }}
           >
-            {suggestionData.ontologySuggestion.synonyms.map(
-              (synonym, index) => {
-                return (
-                  <ListItem key={index}>
-                    <Chip label={synonym} />
-                  </ListItem>
-                );
-              }
-            )}
+            {suggestion.ontologySuggestion.synonyms.map((synonym, index) => {
+              return (
+                <ListItem key={index}>
+                  <Chip label={synonym} />
+                </ListItem>
+              );
+            })}
           </Box>
         </Typography>
         <Typography variant="caption" component="div">

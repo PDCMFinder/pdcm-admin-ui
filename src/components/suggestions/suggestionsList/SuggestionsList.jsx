@@ -3,119 +3,85 @@ import {
   AccordionDetails,
   AccordionSummary,
   Button,
-  Typography,
+  CircularProgress,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import React from "react";
 
 import Suggestion from "../suggestion/Suggestion";
-import RuleSpeficicSuggestionData from "../ruleSpecificSuggestionData/RuleSpeficicSuggestionData";
+import { useQuery } from "react-query";
+import { getMappingEntitySuggestions } from "../../../apis/Mappings.api";
+import { Box } from "@mui/system";
 
-const SuggestionsList = () => {
+const SuggestionsList = ({ mappingEntity }) => {
   const [expanded, setExpanded] = React.useState(false);
 
-  const handleChange = (panel) => (event, isExpanded) => {
+  const suggestionsQuery = useQuery(
+    ["getMappingEntitySuggestions", mappingEntity.id],
+    () => getMappingEntitySuggestions(mappingEntity.id),
+    {
+      refetchOnWindowFocus: false,
+      enabled: false, // disable this query from automatically running
+    }
+  );
+
+  const suggestions = suggestionsQuery.data || [];
+  let suggestionsQueryIsLoading = suggestionsQuery.isLoading;
+  const refetchSuggestions = suggestionsQuery.refetch;
+
+  const handleChange = (panel) => (_event, isExpanded) => {
+    if (suggestions.length === 0) {
+      refetchSuggestions();
+    }
     setExpanded(isExpanded ? panel : false);
   };
 
-  const suggestions = [
-    {
-      sourceType: "Rule",
-      suggestedTermLabel: "Pancreatic Adenocarcinoma",
-      suggestedTermUrl: "http://purl.obolibrary.org/obo/NCIT_C8294",
-      score: 131.12985229492188,
-      relativeScore: 0.0,
-      ruleSuggestion: {
-        id: 1616601,
-        mappingEntityId: 812316,
-        entityTypeName: "diagnosis",
-        data: {
-          "rule.value.originTissue": "pancreas",
-          "rule.value.dataSource": "jax",
-          "rule.value.tumourType": "primary",
-          "rule.value.sampleDiagnosis": "mucinous adenocarcinoma",
-        },
-      },
-      ontologySuggestion: null,
-      id: 1616600,
-    },
-    {
-      sourceType: "Ontology",
-      suggestedTermLabel: "Colon Mucinous Adenocarcinoma",
-      suggestedTermUrl: "http://purl.obolibrary.org/obo/NCIT_C7966",
-      score: 175.65565490722656,
-      relativeScore: 0.0,
-      ruleSuggestion: null,
-      ontologySuggestion: {
-        id: 1628343,
-        definition:
-          "An invasive adenocarcinoma of the colon characterized by the presence of pools of extracellular mucin.  Malignant glandular epithelial cells are pr...",
-        synonyms: [
-          "mucinous adenocarcinoma of colon",
-          "colonic colloidal adenocarcinoma",
-          "colon mucinous adenocarcinoma",
-          "colloid adenocarcinoma of colon",
-          "colon colloid adenocarcinoma",
-          "mucinous adenocarcinoma of the colon",
-          "colloid adenocarcinoma of the colon",
-          "colonic mucinous adenocarcinoma",
-          "colloidal adenocarcinoma of the colon",
-          "colloidal colon adenocarcinoma",
-          "colon colloidal adenocarcinoma",
-          "colloidal adenocarcinoma of colon",
-          "colloid colon adenocarcinoma",
-          "mucinous colon adenocarcinoma",
-          "colonic colloid adenocarcinoma",
-        ],
-      },
-      id: 1628342,
-    },
-
-    {
-      sourceType: "Rule",
-      suggestedTermLabel: "EPIRUBICIN",
-      suggestedTermUrl: "http://purl.obolibrary.org/obo/NCIT_C62028",
-      score: 2622.358642578125,
-      relativeScore: 0.0,
-      ruleSuggestion: {
-        id: null,
-        mappingEntityId: 819696,
-        entityTypeName: "treatment",
-        data: {
-          "rule.value.treatmentName": "epirubicin",
-          "rule.value.dataSource": "pdmr",
-        },
-      },
-      ontologySuggestion: null,
-      id: 12,
-    },
-  ];
-
   return (
-    <Accordion
-      expanded={expanded === "panel1"}
-      onChange={handleChange("panel1")}
-    >
-      <AccordionSummary
-        expandIcon={<ExpandMoreIcon />}
-        aria-controls="panel1a-content"
-        id="panel1a-header"
+    <>
+      {suggestionsQueryIsLoading && (
+        <Box
+          sx={{
+            height: 200,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <CircularProgress size={100} />
+        </Box>
+      )}
+
+      <Accordion
+        expanded={expanded === "panel1"}
+        onChange={handleChange("panel1")}
       >
-        <Button variant="text">
-          {expanded ? "Hide sugestions" : "See suggestions"}
-        </Button>
-      </AccordionSummary>
-      <AccordionDetails>
-        <div>
-          {suggestions.map((suggestion) => {
-            return (
-              <Suggestion suggestionData={suggestion} key={suggestion.id} />
-            );
-          })}
-        </div>
-      </AccordionDetails>
-    </Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Button variant="text">
+            {expanded ? "Hide sugestions" : "See suggestions"}
+          </Button>
+        </AccordionSummary>
+        <AccordionDetails>
+          {suggestions.length > 0 && (
+            <div>
+              {suggestions.map((suggestion, index) => {
+                return (
+                  <Suggestion
+                    suggestion={suggestion}
+                    key={index}
+                    mappingEntity={mappingEntity}
+                  />
+                );
+              })}
+            </div>
+          )}
+        </AccordionDetails>
+      </Accordion>
+    </>
   );
 };
 

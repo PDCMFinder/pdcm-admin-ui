@@ -7,17 +7,19 @@ import {
 import { Grid, Typography } from "@mui/material";
 import React from "react";
 
-function DiagnosisKeyData({ titleVariant }) {
+function DiagnosisKeyData({
+  titleVariant,
+  sampleDiagnosis,
+  tumourType,
+  dataSource,
+  originTissue,
+}) {
   return (
     <React.Fragment>
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Typography variant={titleVariant} component="div">
-            osteosarcoma giant rich cell ho neurofibrosarcomapath necrosis
-            microscopic or macroscopic present 70 tumor gradestage high grade
-            pt1pnxrecurrent disease primary tumor site long bones of upper limb
-            scapula with cortical involvement medullary cavity involvement and
-            extension into soft tissue
+            {sampleDiagnosis}
           </Typography>
         </Grid>
         <Grid item xs={12} sm={3}>
@@ -26,7 +28,7 @@ function DiagnosisKeyData({ titleVariant }) {
               style={{ marginRight: "5px" }}
               icon={faSuitcaseMedical}
             />
-            Metastatic
+            {tumourType}
           </Typography>
           <Typography variant="caption" component="div">
             Tumor Type
@@ -35,7 +37,7 @@ function DiagnosisKeyData({ titleVariant }) {
         <Grid item xs={12} sm={3}>
           <Typography variant="button" component="div">
             <FontAwesomeIcon style={{ marginRight: "5px" }} icon={faBullseye} />
-            musculoskeletal
+            {originTissue}
           </Typography>
           <Typography variant="caption" component="div">
             Origin Tissue
@@ -44,7 +46,7 @@ function DiagnosisKeyData({ titleVariant }) {
         <Grid item xs={12} sm={3}>
           <Typography variant="button" component="div">
             <FontAwesomeIcon style={{ marginRight: "5px" }} icon={faDatabase} />
-            pdmr
+            {dataSource}
           </Typography>
           <Typography variant="caption" component="div">
             Data Source

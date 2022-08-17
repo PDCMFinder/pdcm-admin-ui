@@ -5,23 +5,31 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Grid, Typography } from "@mui/material";
 import React from "react";
-import CommonData from "../../mappings/mappingCard/commonData/CommonData";
-import DiagnosisKeyData from "../../mappings/mappingCard/keyData/diagnosisKeyData/DiagnosisKeyData";
-import TreatmentKeyData from "../../mappings/mappingCard/keyData/treatmentKeyData/TreatmentKeyData";
+import { extractNCTiName } from "../../../util/Util";
+import DiagnosisKeyData from "../../mappingsSearch/mappingCard/keyData/diagnosisKeyData/DiagnosisKeyData";
+import TreatmentKeyData from "../../mappingsSearch/mappingCard/keyData/treatmentKeyData/TreatmentKeyData";
 
-const url = "http://purl.obolibrary.org/obo/NCIT_C9145";
-
-const RuleSpeficicSuggestionData = ({ ruleData }) => {
-  console.log("ruleData", ruleData);
+const RuleSpeficicSuggestionData = ({ suggestion }) => {
   const EntityTypeSpecificData = () => {
-    console.log(ruleData);
-    if (ruleData.entityTypeName === "diagnosis") {
-      return <DiagnosisKeyData titleVariant={"subtitle1"} />;
+    const data = suggestion.ruleSuggestion.data;
+    if (
+      suggestion.ruleSuggestion.entityTypeName.toLowerCase() === "diagnosis"
+    ) {
+      return (
+        <DiagnosisKeyData
+          titleVariant={"subtitle1"}
+          sampleDiagnosis={data["rule.value.sampleDiagnosis"]}
+          tumourType={data["rule.value.tumourType"]}
+          dataSource={data["rule.value.dataSource"]}
+          originTissue={data["rule.value.originTissue"]}
+        />
+      );
     } else {
       return (
         <TreatmentKeyData
           titleVariant={"subtitle1"}
-          treatmentData={ruleData.data}
+          treatmentname={data["rule.value.treatmentName"]}
+          dataSource={data["rule.value.dataSource"]}
         />
       );
     }
@@ -30,13 +38,13 @@ const RuleSpeficicSuggestionData = ({ ruleData }) => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <EntityTypeSpecificData ruleData={ruleData} />
+        <EntityTypeSpecificData ruleData={suggestion.ruleSuggestion} />
       </Grid>
 
       <Grid item xs={3}>
         <Typography variant="button" component="div">
           <FontAwesomeIcon style={{ marginRight: "5px" }} icon={faBook} />
-          OSTEOSARCOMA
+          {suggestion.suggestedTermLabel}
         </Typography>
         <Typography variant="caption" component="div">
           Ontology Term Label
@@ -48,8 +56,13 @@ const RuleSpeficicSuggestionData = ({ ruleData }) => {
             style={{ marginRight: "5px" }}
             icon={faSquareArrowUpRight}
           />
-          <a href={url} target="_blank" rel="noreferrer">
-            NCIT_C9145
+
+          <a
+            href={suggestion.suggestedTermUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {extractNCTiName(suggestion.suggestedTermUrl)}
           </a>
         </Typography>
         <Typography variant="caption" component="div">

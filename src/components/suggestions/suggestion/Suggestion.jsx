@@ -1,4 +1,4 @@
-import { faBook, faBookOpenReader } from "@fortawesome/free-solid-svg-icons";
+import { faBookOpenReader } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Button,
@@ -6,24 +6,42 @@ import {
   CardActions,
   CardContent,
   Grid,
-  Paper,
   Typography,
 } from "@mui/material";
 import React from "react";
+import { useMutation, useQueryClient } from "react-query";
+import { updateEntity } from "../../../apis/Mappings.api";
 import OntologySuggestionData from "../ontologySuggestionData copy/OntologySuggestionData";
 import RuleSpeficicSuggestionData from "../ruleSpecificSuggestionData/RuleSpeficicSuggestionData";
 
-const SourceSpecificData = ({ suggestionData }) => {
-  if (suggestionData.sourceType === "Rule") {
-    return (
-      <RuleSpeficicSuggestionData ruleData={suggestionData.ruleSuggestion} />
-    );
+const SourceSpecificData = ({ suggestion }) => {
+  if (suggestion.sourceType === "Rule") {
+    return <RuleSpeficicSuggestionData suggestion={suggestion} />;
   } else {
-    return <OntologySuggestionData suggestionData={suggestionData} />;
+    return <OntologySuggestionData suggestion={suggestion} />;
   }
 };
 
-const Suggestion = ({ suggestionData }) => {
+const Suggestion = ({ suggestion, mappingEntity }) => {
+  const queryClient = useQueryClient();
+
+  const acceptSuggestionMutation = useMutation(
+    ["updateEntity", { mappingEntity }],
+    () => updateEntity(mappingEntity),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["searchMappings"]);
+        queryClient.invalidateQueries(["getCountsByStatusWithFilter"]);
+      },
+    }
+  );
+
+  const acceptSuggestion = () => {
+    mappingEntity.mappedTermUrl = suggestion.suggestedTermUrl;
+    mappingEntity.mappedTermLabel = suggestion.suggestedTermLabel;
+    mappingEntity.source = suggestion.sourceType;
+    acceptSuggestionMutation.mutate();
+  };
   return (
     <Card
       sx={{
@@ -41,7 +59,7 @@ const Suggestion = ({ suggestionData }) => {
                 style={{ marginRight: "5px" }}
                 icon={faBookOpenReader}
               />
-              {suggestionData.sourceType}
+              {suggestion.sourceType}
             </Typography>
             <Typography variant="caption" component="div">
               Source
@@ -58,12 +76,14 @@ const Suggestion = ({ suggestionData }) => {
           </Grid>
 
           <Grid item xs={12}>
-            <SourceSpecificData suggestionData={suggestionData} />
+            <SourceSpecificData suggestion={suggestion} />
           </Grid>
         </Grid>
       </CardContent>
       <CardActions>
-        <Button size="small">Accept suggestion</Button>
+        <Button size="small" onClick={acceptSuggestion}>
+          Accept suggestion
+        </Button>
       </CardActions>
     </Card>
   );

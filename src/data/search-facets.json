@@ -1,7 +1,7 @@
 {
     "facets": [
         {
-            "key": "type",
+            "key": "entityType",
             "name": "Type",
             "options": [
                 {
@@ -16,7 +16,7 @@
             "type": "check"
         },
         {
-            "key": "data_source",
+            "key": "dataSource",
             "name": "Data Source",
             "options": [
                 {
@@ -40,8 +40,8 @@
                     "name": "Curie-OC"
                 },
                 {
-                    "key": "DFCI CPDM",
-                    "name": "DFCI CPDM"
+                    "key": "DFCI-CPDM",
+                    "name": "DFCI-CPDM"
                 },
                 {
                     "key": "HCI-BCM",
@@ -131,7 +131,7 @@
             "type": "check"
         },
         {
-            "key": "mapping_type",
+            "key": "mappingType",
             "name": "Mapping Type",
             "options": [
                 {
