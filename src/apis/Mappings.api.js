@@ -114,5 +114,9 @@ export function useQueryParams() {
             facetSelection[key].push(value)
         }
     }
+    // If nothing selected, by default show unmapped terms
+    if (Object.keys(facetSelection).length === 0) {
+        facetSelection = { status: ["unmapped"] }
+    }
     return [facetSelection];
 }
