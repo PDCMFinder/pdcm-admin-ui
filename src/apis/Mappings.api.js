@@ -8,7 +8,7 @@ const mappingKeyAttributes = ['dataSource', 'treatmentName', 'sampleDiagnosis', 
  */
 export async function getMappingsSummary(entityTypeName) {
     let response = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/mappings/getSummary?entityTypeName=${entityTypeName}`
+        `${process.env.REACT_APP_API_URL}/api/mappings/reports/getSummary?entityTypeName=${entityTypeName}`
     );
     if (!response.ok) {
         throw new Error("Network response was not ok");
