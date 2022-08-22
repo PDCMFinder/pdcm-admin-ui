@@ -24,7 +24,7 @@ const EntityTypeSpecificData = ({ mappingEntity }) => {
           mappingEntity.mappingValues,
           "SampleDiagnosis"
         )}
-        tumourType={getValueByKey(mappingEntity.mappingValues, "TumourType")}
+        tumourType={getValueByKey(mappingEntity.mappingValues, "TumorType")}
         dataSource={getValueByKey(mappingEntity.mappingValues, "DataSource")}
         originTissue={getValueByKey(
           mappingEntity.mappingValues,
