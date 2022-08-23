@@ -34,7 +34,7 @@ function DiagnosisKeyData({
             Tumor Type
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={3}>
+        <Grid item xs={12} sm={5}>
           <Typography variant="button" component="div">
             <FontAwesomeIcon style={{ marginRight: "5px" }} icon={faBullseye} />
             {originTissue}
@@ -43,7 +43,7 @@ function DiagnosisKeyData({
             Origin Tissue
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={3}>
+        <Grid item xs={12} sm={4}>
           <Typography variant="button" component="div">
             <FontAwesomeIcon style={{ marginRight: "5px" }} icon={faDatabase} />
             {dataSource}
