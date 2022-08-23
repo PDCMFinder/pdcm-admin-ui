@@ -41,7 +41,7 @@ const RuleSpeficicSuggestionData = ({ suggestion }) => {
         <EntityTypeSpecificData ruleData={suggestion.ruleSuggestion} />
       </Grid>
 
-      <Grid item xs={3}>
+      <Grid item xs={12} sm={3}>
         <Typography variant="button" component="div">
           <FontAwesomeIcon style={{ marginRight: "5px" }} icon={faBook} />
           {suggestion.suggestedTermLabel}
@@ -50,7 +50,7 @@ const RuleSpeficicSuggestionData = ({ suggestion }) => {
           Ontology Term Label
         </Typography>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={12} sm={3}>
         <Typography variant="button" component="div">
           <FontAwesomeIcon
             style={{ marginRight: "5px" }}
