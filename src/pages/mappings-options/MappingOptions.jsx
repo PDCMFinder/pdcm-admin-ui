@@ -15,8 +15,8 @@ import { detectNewMappings } from "../../apis/Mappings.api";
 const options = [
   {
     id: 1,
-    title: "Diagnosis",
-    description: "See mappings summary",
+    title: "Diagnosis Summary",
+    description: "See summary",
     icon: <FontAwesomeIcon className="fa-5x" icon={faStethoscope} />,
     path: "/mappings/diagnosisSummary",
     type: "link",
@@ -24,8 +24,8 @@ const options = [
   },
   {
     id: 2,
-    title: "Treatment",
-    description: "See mappings summary",
+    title: "Treatment Summary",
+    description: "See summary",
     icon: <FontAwesomeIcon className="fa-5x" icon={faPrescription} />,
     path: "/mappings/treatmentSummary",
     type: "link",
@@ -76,8 +76,9 @@ const MappingOptions = () => {
 
         <Grid
           marginLeft={"200px"}
+          marginTop={"20px"}
           container
-          rowSpacing={1}
+          rowSpacing={2}
           columnSpacing={{ xs: 1, sm: 2, md: 3 }}
         >
           {options.map((option) => {
