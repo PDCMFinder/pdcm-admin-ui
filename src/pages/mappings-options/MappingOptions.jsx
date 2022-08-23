@@ -1,4 +1,5 @@
 import {
+  faArrowRotateRight,
   faFileLines,
   faPrescription,
   faStethoscope,
@@ -52,7 +53,7 @@ const options = [
     id: 5,
     title: "New mappings",
     description: "Load new mappings",
-    icon: <FontAwesomeIcon className="fa-5x" icon={faFileLines} />,
+    icon: <FontAwesomeIcon className="fa-5x" icon={faArrowRotateRight} />,
     path: "/mappings/mappingRules",
     type: "executableAction",
     enabled: true,
