@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 
 import { Link } from "react-router-dom";
 import ExecuterResult from "../executerResult/ExecuterResult";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 
 const CardMenuOption = ({
   title,
@@ -21,13 +21,13 @@ const CardMenuOption = ({
   const emptyFunction = () => void 0;
   const methodName = apiMethodToExecute?.name;
   const methodToExecute = apiMethodToExecute || emptyFunction;
+  const queryClient = useQueryClient();
 
   const [executorIsActive, setExecutorIsActive] = useState(false);
 
   const mutation = useMutation(methodName, () => methodToExecute(), {
     onSuccess: () => {
-      // queryClient.invalidateQueries(["searchMappings"]);
-      console.log("mutation successful");
+      queryClient.invalidateQueries();
     },
   });
 

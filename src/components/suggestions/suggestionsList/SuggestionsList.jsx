@@ -30,11 +30,16 @@ const SuggestionsList = ({ mappingEntity, onDataChanged }) => {
   let suggestionsQueryIsLoading = suggestionsQuery.isLoading;
   const refetchSuggestions = suggestionsQuery.refetch;
 
-  const handleChange = (panel) => (_event, isExpanded) => {
+  const handleChange = (_event, isExpanded) => {
     if (suggestions.length === 0) {
       refetchSuggestions();
     }
-    setExpanded(isExpanded ? panel : false);
+    setExpanded(isExpanded);
+  };
+
+  const handleSuggestionAccepted = () => {
+    setExpanded(false);
+    onDataChanged();
   };
 
   return (
@@ -52,10 +57,7 @@ const SuggestionsList = ({ mappingEntity, onDataChanged }) => {
         </Box>
       )}
 
-      <Accordion
-        expanded={expanded === "panel1"}
-        onChange={handleChange("panel1")}
-      >
+      <Accordion expanded={expanded} onChange={handleChange}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
@@ -74,7 +76,7 @@ const SuggestionsList = ({ mappingEntity, onDataChanged }) => {
                     suggestion={suggestion}
                     key={index}
                     mappingEntity={mappingEntity}
-                    onDataChanged={onDataChanged}
+                    onDataChanged={handleSuggestionAccepted}
                   />
                 );
               })}
