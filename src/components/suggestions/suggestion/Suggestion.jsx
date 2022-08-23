@@ -11,7 +11,7 @@ import {
 import React from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { updateEntity } from "../../../apis/Mappings.api";
-import OntologySuggestionData from "../ontologySuggestionData copy/OntologySuggestionData";
+import OntologySuggestionData from "../ontologySuggestionData/OntologySuggestionData";
 import RuleSpeficicSuggestionData from "../ruleSpecificSuggestionData/RuleSpeficicSuggestionData";
 
 const SourceSpecificData = ({ suggestion }) => {

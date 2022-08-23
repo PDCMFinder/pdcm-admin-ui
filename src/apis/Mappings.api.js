@@ -108,6 +108,23 @@ export async function updateEntity(mappingEntity) {
     return response.json()
 }
 
+/**
+ * Detects new mappings by reading treatment and diagnosis data from the providers
+ * @returns Counts by entity type.
+ */
+export async function detectNewMappings() {
+    const settings = {
+        method: 'PUT',
+    };
+    let response = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/mappings/detectNewMappings`, settings
+    );
+    if (!response.ok) {
+        throw new Error("Network response was not ok");
+    }
+    return response.json()
+}
+
 
 export function useQueryParams() {
     const search = new URLSearchParams(useLocation().search);

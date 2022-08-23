@@ -8,7 +8,8 @@ import React from "react";
 import CardMenuOption from "../../components/cardMenuOption/CardMenuOption";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import "./mappingOptions.css";
+import { Typography } from "@mui/material";
+import { detectNewMappings } from "../../apis/Mappings.api";
 
 const options = [
   {
@@ -17,6 +18,8 @@ const options = [
     description: "See mappings summary",
     icon: <FontAwesomeIcon className="fa-5x" icon={faStethoscope} />,
     path: "/mappings/diagnosisSummary",
+    type: "link",
+    enabled: true,
   },
   {
     id: 2,
@@ -24,13 +27,36 @@ const options = [
     description: "See mappings summary",
     icon: <FontAwesomeIcon className="fa-5x" icon={faPrescription} />,
     path: "/mappings/treatmentSummary",
+    type: "link",
+    enabled: true,
   },
   {
     id: 3,
-    title: "Mapping rules",
-    description: "See mapping rules",
+    title: "Treatment Rules",
+    description: "Download",
     icon: <FontAwesomeIcon className="fa-5x" icon={faFileLines} />,
     path: "/mappings/mappingRules",
+    type: "executableAction",
+    enabled: true,
+  },
+  {
+    id: 4,
+    title: "Diagnosis Rules",
+    description: "Download",
+    icon: <FontAwesomeIcon className="fa-5x" icon={faFileLines} />,
+    path: "/mappings/mappingRules",
+    type: "executableAction",
+    enabled: true,
+  },
+  {
+    id: 5,
+    title: "New mappings",
+    description: "Load new mappings",
+    icon: <FontAwesomeIcon className="fa-5x" icon={faFileLines} />,
+    path: "/mappings/mappingRules",
+    type: "executableAction",
+    enabled: true,
+    apiMethodToExecute: detectNewMappings,
   },
 ];
 
@@ -42,20 +68,20 @@ const MappingOptions = () => {
         marginLeft: "50px",
       }}
     >
-      <Box sx={{ width: "80%", height: 400 }}>
-        <div className="mappingsTitle">Mappings Options</div>
+      <Box sx={{ width: "80%" }}>
+        <Typography variant="h4" component="h2">
+          Mappings Options
+        </Typography>
 
         <Grid
           marginLeft={"200px"}
           container
           rowSpacing={1}
-          justifyContent="flex-end"
-          alignItems="center"
           columnSpacing={{ xs: 1, sm: 2, md: 3 }}
         >
           {options.map((option) => {
             return (
-              <Grid item xs={4}>
+              <Grid key={option.id} item xs={4}>
                 <CardMenuOption key={option.id} {...option} />
               </Grid>
             );
