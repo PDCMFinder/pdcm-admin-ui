@@ -16,7 +16,6 @@ const CardMenuOption = ({
   path,
   icon,
   type,
-  enabled,
   apiMethodToExecute,
 }) => {
   const emptyFunction = () => void 0;

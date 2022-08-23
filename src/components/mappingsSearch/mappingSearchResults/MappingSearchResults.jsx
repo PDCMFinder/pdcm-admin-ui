@@ -3,7 +3,7 @@ import { Box } from "@mui/system";
 import React from "react";
 import MappingsContent from "../mappingsContent/MappingsContent";
 
-const MappingSearchResults = ({ results, isLoading }) => {
+const MappingSearchResults = ({ results, isLoading, onDataChanged }) => {
   return (
     <div>
       {results.length === 0 && !isLoading && (
@@ -26,7 +26,7 @@ const MappingSearchResults = ({ results, isLoading }) => {
       )}
 
       {!isLoading && results.length > 0 && (
-        <MappingsContent mappings={results} />
+        <MappingsContent mappings={results} onDataChanged={onDataChanged} />
       )}
     </div>
   );

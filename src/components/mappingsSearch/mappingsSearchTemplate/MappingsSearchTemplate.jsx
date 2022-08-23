@@ -15,6 +15,7 @@ const MappingsSearchTemplate = ({
   facets,
   facetsSelection,
   onFacetSidebarChange,
+  onDataChanged,
   searchResults,
   loadingSearchResults,
   loadingCountsByStatus,
@@ -103,6 +104,7 @@ const MappingsSearchTemplate = ({
             <MappingSearchResults
               results={returnedMappings}
               isLoading={loadingSearchResults}
+              onDataChanged={onDataChanged}
             />
           </Grid>
         </Grid>

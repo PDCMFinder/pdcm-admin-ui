@@ -14,7 +14,7 @@ import { useQuery } from "react-query";
 import { getMappingEntitySuggestions } from "../../../apis/Mappings.api";
 import { Box } from "@mui/system";
 
-const SuggestionsList = ({ mappingEntity }) => {
+const SuggestionsList = ({ mappingEntity, onDataChanged }) => {
   const [expanded, setExpanded] = React.useState(false);
 
   const suggestionsQuery = useQuery(
@@ -62,7 +62,7 @@ const SuggestionsList = ({ mappingEntity }) => {
           id="panel1a-header"
         >
           <Button variant="text">
-            {expanded ? "Hide sugestions" : "See suggestions"}
+            {expanded ? "Hide suggestions" : "See suggestions"}
           </Button>
         </AccordionSummary>
         <AccordionDetails>
@@ -74,6 +74,7 @@ const SuggestionsList = ({ mappingEntity }) => {
                     suggestion={suggestion}
                     key={index}
                     mappingEntity={mappingEntity}
+                    onDataChanged={onDataChanged}
                   />
                 );
               })}
