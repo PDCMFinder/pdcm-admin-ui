@@ -22,6 +22,10 @@ const SourceSpecificData = ({ suggestion }) => {
   }
 };
 
+const FormatScore = (score) => {
+  return Number(score).toFixed(1);
+};
+
 const Suggestion = ({ suggestion, mappingEntity, onDataChanged }) => {
   const acceptSuggestionMutation = useMutation(
     ["updateEntity", { mappingEntity }],
@@ -64,8 +68,8 @@ const Suggestion = ({ suggestion, mappingEntity, onDataChanged }) => {
           </Grid>
 
           <Grid item xs={12} sm={3}>
-            <Typography variant="button" component="div">
-              N/A
+            <Typography variant="h6" component="div">
+              {FormatScore(suggestion.relativeScore)}
             </Typography>
             <Typography variant="caption" component="div">
               Score

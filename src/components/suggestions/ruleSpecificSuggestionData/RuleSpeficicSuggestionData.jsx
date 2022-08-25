@@ -5,31 +5,41 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Grid, Typography } from "@mui/material";
 import React from "react";
-import { extractNCTiName } from "../../../util/Util";
+import { extractNCTiName, getSuggestionValueByKey } from "../../../util/Util";
 import DiagnosisKeyData from "../../mappingsSearch/mappingCard/keyData/diagnosisKeyData/DiagnosisKeyData";
 import TreatmentKeyData from "../../mappingsSearch/mappingCard/keyData/treatmentKeyData/TreatmentKeyData";
 
 const RuleSpeficicSuggestionData = ({ suggestion }) => {
   const EntityTypeSpecificData = () => {
-    const data = suggestion.ruleSuggestion.data;
+    const data = suggestion.ruleSuggestion.mappingValues;
+
     if (
       suggestion.ruleSuggestion.entityTypeName.toLowerCase() === "diagnosis"
     ) {
       return (
         <DiagnosisKeyData
           titleVariant={"subtitle1"}
-          sampleDiagnosis={data["rule.value.sampleDiagnosis"]}
-          tumourType={data["rule.value.tumourType"]}
-          dataSource={data["rule.value.dataSource"]}
-          originTissue={data["rule.value.originTissue"]}
+          sampleDiagnosis={getSuggestionValueByKey(
+            data,
+            "rule.value.sampleDiagnosis"
+          )}
+          tumorType={getSuggestionValueByKey(data, "rule.value.tumorType")}
+          dataSource={getSuggestionValueByKey(data, "rule.value.dataSource")}
+          originTissue={getSuggestionValueByKey(
+            data,
+            "rule.value.originTissue"
+          )}
         />
       );
     } else {
       return (
         <TreatmentKeyData
           titleVariant={"subtitle1"}
-          treatmentname={data["rule.value.treatmentName"]}
-          dataSource={data["rule.value.dataSource"]}
+          treatmentname={getSuggestionValueByKey(
+            data,
+            "rule.value.treatmentName"
+          )}
+          dataSource={getSuggestionValueByKey(data, "rule.value.dataSource")}
         />
       );
     }

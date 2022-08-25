@@ -10,7 +10,7 @@ import React from "react";
 function DiagnosisKeyData({
   titleVariant,
   sampleDiagnosis,
-  tumourType,
+  tumorType,
   dataSource,
   originTissue,
 }) {
@@ -28,7 +28,7 @@ function DiagnosisKeyData({
               style={{ marginRight: "5px" }}
               icon={faSuitcaseMedical}
             />
-            {tumourType}
+            {tumorType}
           </Typography>
           <Typography variant="caption" component="div">
             Tumor Type

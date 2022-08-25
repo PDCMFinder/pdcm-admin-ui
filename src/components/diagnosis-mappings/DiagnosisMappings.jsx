@@ -22,7 +22,7 @@ const columns = [
     renderCell: renderCellTooltip,
   },
   {
-    field: "tumourType",
+    field: "tumorType",
     width: 100,
     headerName: "Tumor Type",
   },
@@ -96,7 +96,7 @@ const DiagnosisMappings = () => {
         dataSource: x.mappingValues.DataSource,
         sampleDiagnosis: x.mappingValues.SampleDiagnosis,
         originTissue: x.mappingValues.OriginTissue,
-        tumourType: x.mappingValues.TumourType,
+        tumorType: x.mappingValues.TumorType,
         mappedTermLabel: x.mappedTermLabel,
         mappedTermUrl: x.mappedTermUrl,
         mappingType: x.mappingType,
