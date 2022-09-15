@@ -8,8 +8,10 @@ import {
   TextField,
 } from "@mui/material";
 import React from "react";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
+import { updateEntity } from "../../../../apis/Mappings.api";
 import { searchOntologies } from "../../../../apis/Ontologies.api";
+import { getValueByKey } from "../../../../util/Util";
 import OntologySearchResults from "../ontologySearchResults/OntologySearchResults";
 
 const style = {
@@ -24,19 +26,31 @@ const style = {
   p: 4,
 };
 
+const getSearchTextFromMappingEntity = (mappingEntity) => {
+  let inputByEntity = "-";
+  if (mappingEntity) {
+    if (mappingEntity.entityTypeName === "diagnosis") {
+      inputByEntity = getValueByKey(
+        mappingEntity.mappingValues,
+        "SampleDiagnosis"
+      );
+    } else if (mappingEntity.entityTypeName === "treatment") {
+      inputByEntity = getValueByKey(
+        mappingEntity.mappingValues,
+        "TreatmentName"
+      );
+    }
+  }
+  return inputByEntity;
+};
+
 const OntologySearchBar = ({
   isOpen,
   mappingEntity,
-  initialInput,
+  onDataChanged,
   onClosed,
 }) => {
-  // console.log("OntologySearchBar::isOpen", isOpen);
-  // console.log("OntologySearchBar::mappingEntity", mappingEntity);
-  // console.log("OntologySearchBar::initialInput", initialInput);
-
-  let currentInput = initialInput;
-
-  const [input, setInput] = React.useState(initialInput);
+  let input = getSearchTextFromMappingEntity(mappingEntity);
 
   const { isLoading, data, refetch } = useQuery(
     ["searchOntologies", { input }],
@@ -45,34 +59,38 @@ const OntologySearchBar = ({
       enabled: false,
     }
   );
-  // console.log("Current input:", input);
-  // console.log("Current mappingEntity:", mappingEntity);
 
-  let testData = [];
+  const acceptTermMutation = useMutation(
+    ["updateEntity", { mappingEntity }],
+    () => updateEntity(mappingEntity),
+    {
+      onSuccess: () => {
+        onDataChanged();
+      },
+    }
+  );
 
   const handleClose = () => {
-    setInput("");
     onClosed();
   };
 
   const handleInputChanged = (event) => {
-    currentInput = event.target.value;
+    console.log("event.target.value", event.target.value);
+    // currentInput = event.target.value;
   };
 
-  const handleSearch = (event) => {
-    console.log("?-->", testData);
-    currentInput = document.getElementById("inputTextField").value;
-    setInput(currentInput);
+  const handleSearch = () => {
+    input = document.getElementById("inputTextField").value;
     refetch();
-    testData = data || [];
-    console.log("changed?-->", testData);
-    console.log("data?-->", data);
   };
 
-  const handleTermAccepted = (x) => {
-    console.log("accepted:", x);
-    testData = [];
-    onClosed();
+  const handleTermAccepted = (result) => {
+    handleClose();
+
+    mappingEntity.mappedTermUrl = result.suggestedTermUrl;
+    mappingEntity.mappedTermLabel = result.suggestedTermLabel;
+    mappingEntity.source = result.sourceType;
+    acceptTermMutation.mutate();
   };
 
   return (
@@ -84,14 +102,15 @@ const OntologySearchBar = ({
         open={isOpen}
         onClose={handleClose}
       >
-        <DialogTitle>
-          Search in OLS [{input}] dataL: {data?.length | 0} :: {testData.length}{" "}
-        </DialogTitle>
-        <div>initialInput: {initialInput}</div>
+        <DialogTitle>Search in OLS {input}</DialogTitle>
+
         <DialogContent>
           <DialogContentText>
-            ...To subscribe to this website, please enter your email address
-            here. We will send updates occasionally.
+            Introduce the text to search. Initially it contains the{" "}
+            {mappingEntity?.entityTypeName.toLowerCase() === "diagnosis"
+              ? "diagnosis name"
+              : "treatment name"}{" "}
+            of the term to be mapped.
           </DialogContentText>
           <TextField
             autoFocus
@@ -99,11 +118,9 @@ const OntologySearchBar = ({
             id="inputTextField"
             label="Text to search"
             type="text"
-            // value={input}
-            defaultValue={initialInput}
+            defaultValue={input}
             fullWidth
             variant="standard"
-            onChange={handleInputChanged}
           />
 
           <DialogActions>

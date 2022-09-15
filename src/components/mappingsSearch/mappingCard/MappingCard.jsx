@@ -14,7 +14,6 @@ import TreatmentKeyData from "./keyData/treatmentKeyData/TreatmentKeyData";
 import { getValueByKey } from "../../../util/Util";
 import { updateEntity } from "../../../apis/Mappings.api";
 import { useMutation } from "react-query";
-import OntologySearchLauncher from "../../ontology/ontologySearcher/ontologySearchLauncher/OntologySearchLauncher";
 
 const EntityTypeSpecificData = ({ mappingEntity }) => {
   if (mappingEntity.entityTypeName.toLowerCase() === "diagnosis") {
@@ -47,11 +46,7 @@ const EntityTypeSpecificData = ({ mappingEntity }) => {
   }
 };
 
-function MappingCard({
-  mappingEntity,
-  onDataChanged,
-  onOpenOntologySearchClicked,
-}) {
+function MappingCard({ mappingEntity, onDataChanged, onOntoSearchOpen }) {
   const isMapped = mappingEntity.status.toLowerCase() === "mapped";
   const isUnmapped = mappingEntity.status.toLowerCase() === "unmapped";
   const isRevise = mappingEntity.status.toLowerCase() === "revise";
@@ -72,14 +67,14 @@ function MappingCard({
     updateMutation.mutate();
   };
 
-  const handleOpenOntologySearchClicked = () => {
-    console.log("Open search");
-    onOpenOntologySearchClicked(mappingEntity);
+  const handleOpenOntoSearch = () => {
+    onOntoSearchOpen(mappingEntity);
   };
 
   return (
     <Card sx={{ boxShadow: 3, width: "100%" }}>
       <CardContent>
+        {mappingEntity.id}
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <EntityTypeSpecificData mappingEntity={mappingEntity} />
@@ -117,11 +112,10 @@ function MappingCard({
             Move to Unmapped
           </Button>
         )}
-        <Button size="small" onClick={handleOpenOntologySearchClicked}>
-          Open Ontology Search
-        </Button>
 
-        <OntologySearchLauncher mappingEntity={mappingEntity} />
+        <Button size="small" onClick={handleOpenOntoSearch}>
+          Ontology Search
+        </Button>
       </CardActions>
     </Card>
   );
