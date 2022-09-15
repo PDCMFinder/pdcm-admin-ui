@@ -11,35 +11,24 @@ import TreatmentKeyData from "../../mappingsSearch/mappingCard/keyData/treatment
 
 const RuleSpeficicSuggestionData = ({ suggestion }) => {
   const EntityTypeSpecificData = () => {
-    const data = suggestion.ruleSuggestion.mappingValues;
+    const data = suggestion.rule.values;
 
-    if (
-      suggestion.ruleSuggestion.entityTypeName.toLowerCase() === "diagnosis"
-    ) {
+    if (suggestion.rule.entityTypeName.toLowerCase() === "diagnosis") {
       return (
         <DiagnosisKeyData
           titleVariant={"subtitle1"}
-          sampleDiagnosis={getSuggestionValueByKey(
-            data,
-            "rule.value.sampleDiagnosis"
-          )}
-          tumorType={getSuggestionValueByKey(data, "rule.value.tumorType")}
-          dataSource={getSuggestionValueByKey(data, "rule.value.dataSource")}
-          originTissue={getSuggestionValueByKey(
-            data,
-            "rule.value.originTissue"
-          )}
+          sampleDiagnosis={data.SampleDiagnosis}
+          tumorType={data.TumorType}
+          dataSource={data.DataSource}
+          originTissue={data.OriginTissue}
         />
       );
     } else {
       return (
         <TreatmentKeyData
           titleVariant={"subtitle1"}
-          treatmentname={getSuggestionValueByKey(
-            data,
-            "rule.value.treatmentName"
-          )}
-          dataSource={getSuggestionValueByKey(data, "rule.value.dataSource")}
+          treatmentname={data.TreatmentName}
+          dataSource={data.DataSource}
         />
       );
     }
@@ -48,7 +37,7 @@ const RuleSpeficicSuggestionData = ({ suggestion }) => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <EntityTypeSpecificData ruleData={suggestion.ruleSuggestion} />
+        <EntityTypeSpecificData ruleData={suggestion.rule} />
       </Grid>
 
       <Grid item xs={12} sm={8}>

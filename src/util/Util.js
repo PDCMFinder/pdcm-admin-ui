@@ -16,6 +16,7 @@ export const getValueByKey = (mappingValues, key) => {
 }
 
 export const getSuggestionValueByKey = (mappingValues, key) => {
+    console.log('f: ', mappingValues, key);
     const found = mappingValues.find(element => element.key.toLowerCase() === key.toLowerCase());
     return found.value;
 }

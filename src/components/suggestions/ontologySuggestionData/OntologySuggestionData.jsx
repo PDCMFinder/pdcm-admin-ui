@@ -47,7 +47,7 @@ const OntologySuggestionData = ({ suggestion }) => {
 
       <Grid item xs={12}>
         <Typography variant="body2" component="div">
-          {suggestion.ontologySuggestion.definition}
+          {suggestion.ontology.description}
         </Typography>
         <Typography variant="caption" component="div">
           Definition
@@ -67,7 +67,7 @@ const OntologySuggestionData = ({ suggestion }) => {
               m: 0,
             }}
           >
-            {suggestion.ontologySuggestion.synonyms.map((synonym, index) => {
+            {suggestion.ontology.synonyms.map((synonym, index) => {
               return (
                 <ListItem key={index}>
                   <Chip label={synonym} />
