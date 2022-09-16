@@ -14,18 +14,6 @@ import { searchOntologies } from "../../../../apis/Ontologies.api";
 import { getValueByKey } from "../../../../util/Util";
 import OntologySearchResults from "../ontologySearchResults/OntologySearchResults";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
-
 const getSearchTextFromMappingEntity = (mappingEntity) => {
   let inputByEntity = "-";
   if (mappingEntity) {
@@ -74,11 +62,6 @@ const OntologySearchBar = ({
     onClosed();
   };
 
-  const handleInputChanged = (event) => {
-    console.log("event.target.value", event.target.value);
-    // currentInput = event.target.value;
-  };
-
   const handleSearch = () => {
     input = document.getElementById("inputTextField").value;
     refetch();
@@ -102,7 +85,7 @@ const OntologySearchBar = ({
         open={isOpen}
         onClose={handleClose}
       >
-        <DialogTitle>Search in OLS {input}</DialogTitle>
+        <DialogTitle>Search in OLS</DialogTitle>
 
         <DialogContent>
           <DialogContentText>

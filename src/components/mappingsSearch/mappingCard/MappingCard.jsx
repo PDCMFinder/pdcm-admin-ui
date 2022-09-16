@@ -74,7 +74,6 @@ function MappingCard({ mappingEntity, onDataChanged, onOntoSearchOpen }) {
   return (
     <Card sx={{ boxShadow: 3, width: "100%" }}>
       <CardContent>
-        {mappingEntity.id}
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <EntityTypeSpecificData mappingEntity={mappingEntity} />
