@@ -10,6 +10,19 @@ import { Link } from "react-router-dom";
 import ExecuterResult from "../executerResult/ExecuterResult";
 import { useMutation, useQueryClient } from "react-query";
 
+/**
+ * This component represents an optin in the system. It could be:
+ *  - A link to another page.
+ *  - A call to an api that changes something in the system, in which case the api response
+ *    is expected to return a map where the key is what changed and the change is either a
+ *    count or other relevant information
+ *  - A download link that calls the API to get a file
+ * @param title The title of the option.
+ * @param path Path of the page to go if the option is of type "link".
+ * @param icon Icon to display.
+ * @param type Type of the option: link, executableAction, download.
+ * @returns
+ */
 const CardMenuOption = ({
   title,
   description,
@@ -43,10 +56,20 @@ const CardMenuOption = ({
   const Content = () => {
     if (type === "link") {
       return <LinkContent />;
-    } else {
+    } else if (type === "executableAction") {
       return <ExecutableActionContent />;
+    } else if (type === "download") {
+      return <DownloadContent />;
     }
   };
+
+  function downloadThroughAnchorLink(downloadUrl) {
+    const a = document.createElement("a");
+    a.href = downloadUrl;
+    // We provided a header called Content-Disposition so we dont need to set "a.download" here
+    // a.download = fileName || 'download'
+    a.click();
+  }
 
   const LinkContent = () => {
     return (
@@ -60,6 +83,26 @@ const CardMenuOption = ({
           <Link className="link" to={path || "/"}>
             <Button size="small">{description || "default"} </Button>
           </Link>
+        </div>
+      </>
+    );
+  };
+
+  const DownloadContent = () => {
+    return (
+      <>
+        <div className="icon">
+          <div
+            className="iconLink"
+            onClick={() => downloadThroughAnchorLink(path)}
+          >
+            {icon}
+          </div>
+        </div>
+        <div className="description">
+          <div className="link" onClick={() => downloadThroughAnchorLink(path)}>
+            <Button size="small">{description || "default"} </Button>
+          </div>
         </div>
       </>
     );

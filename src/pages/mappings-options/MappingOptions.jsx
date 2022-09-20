@@ -10,7 +10,11 @@ import CardMenuOption from "../../components/cardMenuOption/CardMenuOption";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
-import { detectNewMappings } from "../../apis/Mappings.api";
+import {
+  detectNewMappings,
+  downloadRules,
+  getDownloadMappingRulesUrl,
+} from "../../apis/Mappings.api";
 
 const options = [
   {
@@ -33,24 +37,15 @@ const options = [
   },
   {
     id: 3,
-    title: "Treatment Rules",
+    title: "Mapping Rules",
     description: "Download",
     icon: <FontAwesomeIcon className="fa-5x" icon={faFileLines} />,
-    path: "/mappings/mappingRules",
-    type: "executableAction",
+    path: getDownloadMappingRulesUrl(),
+    type: "download",
     enabled: true,
   },
   {
     id: 4,
-    title: "Diagnosis Rules",
-    description: "Download",
-    icon: <FontAwesomeIcon className="fa-5x" icon={faFileLines} />,
-    path: "/mappings/mappingRules",
-    type: "executableAction",
-    enabled: true,
-  },
-  {
-    id: 5,
     title: "New mappings",
     description: "Load new mappings",
     icon: <FontAwesomeIcon className="fa-5x" icon={faArrowRotateRight} />,

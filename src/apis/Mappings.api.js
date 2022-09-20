@@ -125,6 +125,15 @@ export async function detectNewMappings() {
     return response.json()
 }
 
+/**
+ * Gets the url of the endpoint that returns a zip with the json mapping files 
+ * for treatment and diagnosis.
+ * @returns endpoint's url.
+ */
+export function getDownloadMappingRulesUrl() {
+    return `${process.env.REACT_APP_API_URL}/api/mappings/rules/mappingRules`;
+}
+
 
 export function useQueryParams() {
     const search = new URLSearchParams(useLocation().search);
