@@ -50,6 +50,9 @@ function TopBar() {
               >
                 PDCM Admin
               </Typography>
+              {process.env.NODE_ENV !== "production"
+                ? "(This is a " + process.env.NODE_ENV + " environment)"
+                : ""}
             </Link>
           </Grid>
           <Grid item xs={1} style={{ textAlign: "end" }}>
