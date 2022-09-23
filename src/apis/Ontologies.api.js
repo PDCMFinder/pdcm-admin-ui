@@ -28,3 +28,19 @@ export async function loadOntologies() {
     return response.json()
 }
 
+export async function searchOntologies(input) {
+    let result = {}
+
+    if (input && input !== "") {
+        const url = `${process.env.REACT_APP_API_URL}/api/ontology/search?input=${input}`
+        let response = await fetch(url);
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        result = response.json()
+    }
+
+    return result;
+}
+
+

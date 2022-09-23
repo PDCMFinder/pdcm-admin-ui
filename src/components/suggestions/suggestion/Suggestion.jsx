@@ -9,9 +9,9 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation } from "react-query";
 import { updateEntity } from "../../../apis/Mappings.api";
-import OntologySuggestionData from "../ontologySuggestionData copy/OntologySuggestionData";
+import OntologySuggestionData from "../ontologySuggestionData/OntologySuggestionData";
 import RuleSpeficicSuggestionData from "../ruleSpecificSuggestionData/RuleSpeficicSuggestionData";
 
 const SourceSpecificData = ({ suggestion }) => {
@@ -22,16 +22,17 @@ const SourceSpecificData = ({ suggestion }) => {
   }
 };
 
-const Suggestion = ({ suggestion, mappingEntity }) => {
-  const queryClient = useQueryClient();
+const FormatScore = (score) => {
+  return Number(score).toFixed(1);
+};
 
+const Suggestion = ({ suggestion, mappingEntity, onDataChanged }) => {
   const acceptSuggestionMutation = useMutation(
     ["updateEntity", { mappingEntity }],
     () => updateEntity(mappingEntity),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(["searchMappings"]);
-        queryClient.invalidateQueries(["getCountsByStatusWithFilter"]);
+        onDataChanged();
       },
     }
   );
@@ -53,7 +54,7 @@ const Suggestion = ({ suggestion, mappingEntity }) => {
     >
       <CardContent>
         <Grid container spacing={2}>
-          <Grid item xs={3}>
+          <Grid item xs={12} sm={3}>
             <Typography variant="button" component="div">
               <FontAwesomeIcon
                 style={{ marginRight: "5px" }}
@@ -66,9 +67,9 @@ const Suggestion = ({ suggestion, mappingEntity }) => {
             </Typography>
           </Grid>
 
-          <Grid item xs={3}>
-            <Typography variant="button" component="div">
-              N/A
+          <Grid item xs={12} sm={3}>
+            <Typography variant="h6" component="div">
+              {FormatScore(suggestion.relativeScore)}
             </Typography>
             <Typography variant="caption" component="div">
               Score

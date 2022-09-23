@@ -7,12 +7,13 @@ import {
   searchMappings,
   useQueryParams,
 } from "../../apis/Mappings.api";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import MappingsSearchTemplate from "../../components/mappingsSearch/mappingsSearchTemplate/MappingsSearchTemplate";
 import { useNavigate } from "react-router-dom";
 
 const MappingsSearchPage = () => {
   let navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(10);
@@ -49,6 +50,11 @@ const MappingsSearchPage = () => {
     updateSearchParams(newFilters);
   };
 
+  const handleDataChange = () => {
+    queryClient.invalidateQueries(["searchMappings"]);
+    queryClient.invalidateQueries(["getCountsByStatusWithFilter"]);
+  };
+
   const updateSearchParams = (newfFacetSelection) => {
     navigate("../search?" + buildSearchParameters(newfFacetSelection), {
       replace: true,
@@ -60,6 +66,7 @@ const MappingsSearchPage = () => {
       facets={facets}
       facetsSelection={facetSelection}
       onFacetSidebarChange={handleFiltersChange}
+      onDataChanged={handleDataChange}
       searchResults={data}
       loadingSearchResults={isLoading}
       loadingCountsByStatus={countsByStatusQuery.isLoading}

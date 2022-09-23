@@ -1,4 +1,5 @@
 import {
+  faArrowRotateRight,
   faFileLines,
   faPrescription,
   faStethoscope,
@@ -8,29 +9,50 @@ import React from "react";
 import CardMenuOption from "../../components/cardMenuOption/CardMenuOption";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import "./mappingOptions.css";
+import { Typography } from "@mui/material";
+import {
+  detectNewMappings,
+  downloadRules,
+  getDownloadMappingRulesUrl,
+} from "../../apis/Mappings.api";
 
 const options = [
   {
     id: 1,
-    title: "Diagnosis",
-    description: "See mappings summary",
+    title: "Diagnosis Summary",
+    description: "See summary",
     icon: <FontAwesomeIcon className="fa-5x" icon={faStethoscope} />,
     path: "/mappings/diagnosisSummary",
+    type: "link",
+    enabled: true,
   },
   {
     id: 2,
-    title: "Treatment",
-    description: "See mappings summary",
+    title: "Treatment Summary",
+    description: "See summary",
     icon: <FontAwesomeIcon className="fa-5x" icon={faPrescription} />,
     path: "/mappings/treatmentSummary",
+    type: "link",
+    enabled: true,
   },
   {
     id: 3,
-    title: "Mapping rules",
-    description: "See mapping rules",
+    title: "Mapping Rules",
+    description: "Download",
     icon: <FontAwesomeIcon className="fa-5x" icon={faFileLines} />,
+    path: getDownloadMappingRulesUrl(),
+    type: "download",
+    enabled: true,
+  },
+  {
+    id: 4,
+    title: "New mappings",
+    description: "Load new mappings",
+    icon: <FontAwesomeIcon className="fa-5x" icon={faArrowRotateRight} />,
     path: "/mappings/mappingRules",
+    type: "executableAction",
+    enabled: true,
+    apiMethodToExecute: detectNewMappings,
   },
 ];
 
@@ -42,20 +64,21 @@ const MappingOptions = () => {
         marginLeft: "50px",
       }}
     >
-      <Box sx={{ width: "80%", height: 400 }}>
-        <div className="mappingsTitle">Mappings Options</div>
+      <Box sx={{ width: "80%" }}>
+        <Typography variant="h4" component="h2">
+          Mappings Options
+        </Typography>
 
         <Grid
           marginLeft={"200px"}
+          marginTop={"20px"}
           container
-          rowSpacing={1}
-          justifyContent="flex-end"
-          alignItems="center"
+          rowSpacing={2}
           columnSpacing={{ xs: 1, sm: 2, md: 3 }}
         >
           {options.map((option) => {
             return (
-              <Grid item xs={4}>
+              <Grid key={option.id} item xs={4}>
                 <CardMenuOption key={option.id} {...option} />
               </Grid>
             );

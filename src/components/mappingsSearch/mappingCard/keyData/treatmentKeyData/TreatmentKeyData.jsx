@@ -7,7 +7,7 @@ const TreatmentKeyData = ({ titleVariant, treatmentname, dataSource }) => {
   return (
     <React.Fragment>
       <Grid container spacing={2}>
-        <Grid item xs={3}>
+        <Grid item xs={12}>
           <Typography variant={titleVariant} component="div">
             {treatmentname}
           </Typography>

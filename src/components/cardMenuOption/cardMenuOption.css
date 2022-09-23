@@ -4,12 +4,17 @@
 
 
 .menuOptionTitle {
-    margin-bottom: 30px;
+    height: 50px;
 }
 
 .link {
     text-decoration: none;
     cursor: pointer;
+}
+
+.icon {
+    height: 100px;
+    margin-top: 20px;
 }
 
 .iconLink {

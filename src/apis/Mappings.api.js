@@ -8,7 +8,7 @@ const mappingKeyAttributes = ['dataSource', 'treatmentName', 'sampleDiagnosis', 
  */
 export async function getMappingsSummary(entityTypeName) {
     let response = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/mappings/getSummary?entityTypeName=${entityTypeName}`
+        `${process.env.REACT_APP_API_URL}/api/mappings/reports/getSummary?entityTypeName=${entityTypeName}`
     );
     if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -106,6 +106,32 @@ export async function updateEntity(mappingEntity) {
         throw new Error("Network response was not ok");
     }
     return response.json()
+}
+
+/**
+ * Detects new mappings by reading treatment and diagnosis data from the providers
+ * @returns Counts by entity type.
+ */
+export async function detectNewMappings() {
+    const settings = {
+        method: 'PUT',
+    };
+    let response = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/mappings/detectNewMappings`, settings
+    );
+    if (!response.ok) {
+        throw new Error("Network response was not ok");
+    }
+    return response.json()
+}
+
+/**
+ * Gets the url of the endpoint that returns a zip with the json mapping files 
+ * for treatment and diagnosis.
+ * @returns endpoint's url.
+ */
+export function getDownloadMappingRulesUrl() {
+    return `${process.env.REACT_APP_API_URL}/api/mappings/rules/mappingRules`;
 }
 
 

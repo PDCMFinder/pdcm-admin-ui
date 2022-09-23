@@ -10,7 +10,7 @@ import React from "react";
 function DiagnosisKeyData({
   titleVariant,
   sampleDiagnosis,
-  tumourType,
+  tumorType,
   dataSource,
   originTissue,
 }) {
@@ -28,13 +28,13 @@ function DiagnosisKeyData({
               style={{ marginRight: "5px" }}
               icon={faSuitcaseMedical}
             />
-            {tumourType}
+            {tumorType}
           </Typography>
           <Typography variant="caption" component="div">
             Tumor Type
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={3}>
+        <Grid item xs={12} sm={5}>
           <Typography variant="button" component="div">
             <FontAwesomeIcon style={{ marginRight: "5px" }} icon={faBullseye} />
             {originTissue}
@@ -43,7 +43,7 @@ function DiagnosisKeyData({
             Origin Tissue
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={3}>
+        <Grid item xs={12} sm={4}>
           <Typography variant="button" component="div">
             <FontAwesomeIcon style={{ marginRight: "5px" }} icon={faDatabase} />
             {dataSource}

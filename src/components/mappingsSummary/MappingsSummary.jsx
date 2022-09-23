@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 import { DataGrid } from "@mui/x-data-grid";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getMappingsSummary } from "../../apis/Mappings.api";
 
 import "./mappingsSummary.css";
@@ -43,18 +43,8 @@ const MappingsSummary = ({ type }) => {
   const navigate = useNavigate();
 
   const handleOnCellClick = (params) => {
-    console.log(params);
-    console.log(params.id);
-    console.log(params.field);
-
-    if (params.field === "mapped") {
-      console.log("Show mapped view");
-      navigate("/mappings/diagnosisSummary/detail/" + params.id + "/mapped");
-    }
-    if (params.field === "unmapped") {
-      console.log("Show unmapped view");
-    }
-    console.log("for", params.id);
+    const searchUrl = `/search?status=${params.field}&entityType=${type}&mq=dataSource:${params.id}`;
+    navigate(searchUrl);
   };
 
   return (

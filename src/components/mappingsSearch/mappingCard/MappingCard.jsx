@@ -13,7 +13,7 @@ import SuggestionsList from "../../suggestions/suggestionsList/SuggestionsList";
 import TreatmentKeyData from "./keyData/treatmentKeyData/TreatmentKeyData";
 import { getValueByKey } from "../../../util/Util";
 import { updateEntity } from "../../../apis/Mappings.api";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation } from "react-query";
 
 const EntityTypeSpecificData = ({ mappingEntity }) => {
   if (mappingEntity.entityTypeName.toLowerCase() === "diagnosis") {
@@ -24,7 +24,7 @@ const EntityTypeSpecificData = ({ mappingEntity }) => {
           mappingEntity.mappingValues,
           "SampleDiagnosis"
         )}
-        tumourType={getValueByKey(mappingEntity.mappingValues, "TumourType")}
+        tumorType={getValueByKey(mappingEntity.mappingValues, "TumorType")}
         dataSource={getValueByKey(mappingEntity.mappingValues, "DataSource")}
         originTissue={getValueByKey(
           mappingEntity.mappingValues,
@@ -46,21 +46,18 @@ const EntityTypeSpecificData = ({ mappingEntity }) => {
   }
 };
 
-function MappingCard({ mappingEntity }) {
+function MappingCard({ mappingEntity, onDataChanged, onOntoSearchOpen }) {
   const isMapped = mappingEntity.status.toLowerCase() === "mapped";
   const isUnmapped = mappingEntity.status.toLowerCase() === "unmapped";
   const isRevise = mappingEntity.status.toLowerCase() === "revise";
   const isRequest = mappingEntity.status.toLowerCase() === "request";
-
-  const queryClient = useQueryClient();
 
   const updateMutation = useMutation(
     ["updateEntity", { mappingEntity }],
     () => updateEntity(mappingEntity),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(["searchMappings"]);
-        queryClient.invalidateQueries(["getCountsByStatusWithFilter"]);
+        onDataChanged();
       },
     }
   );
@@ -68,6 +65,10 @@ function MappingCard({ mappingEntity }) {
   const changeStatus = (newStatus) => {
     mappingEntity.status = newStatus;
     updateMutation.mutate();
+  };
+
+  const handleOpenOntoSearch = () => {
+    onOntoSearchOpen(mappingEntity);
   };
 
   return (
@@ -82,7 +83,10 @@ function MappingCard({ mappingEntity }) {
             <CommonData mappingEntity={mappingEntity} />
           </Grid>
           <Grid item xs={12}>
-            <SuggestionsList mappingEntity={mappingEntity} />
+            <SuggestionsList
+              mappingEntity={mappingEntity}
+              onDataChanged={onDataChanged}
+            />
           </Grid>
         </Grid>
       </CardContent>
@@ -107,7 +111,10 @@ function MappingCard({ mappingEntity }) {
             Move to Unmapped
           </Button>
         )}
-        <Button size="small">Open Ontology Search</Button>
+
+        <Button size="small" onClick={handleOpenOntoSearch}>
+          Ontology Search
+        </Button>
       </CardActions>
     </Card>
   );

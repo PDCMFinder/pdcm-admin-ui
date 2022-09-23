@@ -14,7 +14,7 @@ import { useQuery } from "react-query";
 import { getMappingEntitySuggestions } from "../../../apis/Mappings.api";
 import { Box } from "@mui/system";
 
-const SuggestionsList = ({ mappingEntity }) => {
+const SuggestionsList = ({ mappingEntity, onDataChanged }) => {
   const [expanded, setExpanded] = React.useState(false);
 
   const suggestionsQuery = useQuery(
@@ -30,11 +30,16 @@ const SuggestionsList = ({ mappingEntity }) => {
   let suggestionsQueryIsLoading = suggestionsQuery.isLoading;
   const refetchSuggestions = suggestionsQuery.refetch;
 
-  const handleChange = (panel) => (_event, isExpanded) => {
+  const handleChange = (_event, isExpanded) => {
     if (suggestions.length === 0) {
       refetchSuggestions();
     }
-    setExpanded(isExpanded ? panel : false);
+    setExpanded(isExpanded);
+  };
+
+  const handleSuggestionAccepted = () => {
+    setExpanded(false);
+    onDataChanged();
   };
 
   return (
@@ -52,17 +57,14 @@ const SuggestionsList = ({ mappingEntity }) => {
         </Box>
       )}
 
-      <Accordion
-        expanded={expanded === "panel1"}
-        onChange={handleChange("panel1")}
-      >
+      <Accordion expanded={expanded} onChange={handleChange}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
           <Button variant="text">
-            {expanded ? "Hide sugestions" : "See suggestions"}
+            {expanded ? "Hide suggestions" : "See suggestions"}
           </Button>
         </AccordionSummary>
         <AccordionDetails>
@@ -74,6 +76,7 @@ const SuggestionsList = ({ mappingEntity }) => {
                     suggestion={suggestion}
                     key={index}
                     mappingEntity={mappingEntity}
+                    onDataChanged={handleSuggestionAccepted}
                   />
                 );
               })}
