@@ -50,6 +50,7 @@ function TopBar() {
               >
                 PDCM Admin
               </Typography>
+              {process.env.REACT_APP_TEXT}
             </Link>
           </Grid>
           <Grid item xs={1} style={{ textAlign: "end" }}>
