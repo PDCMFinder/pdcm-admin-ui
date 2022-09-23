@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pdcm-admin-ui-dev-service
+  namespace: pdx-admin-interface-dev
+  labels:
+    name: pdcm-admin-ui-dev-service
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 31294
+  selector:
+    app: pdcm-admin-ui-dev
+  type: NodePort
