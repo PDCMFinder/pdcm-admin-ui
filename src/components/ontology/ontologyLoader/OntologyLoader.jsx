@@ -25,7 +25,7 @@ const style = {
 };
 
 const OntologyLoader = ({ onProcessFinished }) => {
-  const { isLoading, isError, data, error, refetch, isFetching } = useQuery(
+  const { data, error, refetch, isFetching } = useQuery(
     "loadOntologies",
     loadOntologies,
     {
