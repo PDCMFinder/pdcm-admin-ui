@@ -14,10 +14,10 @@ import DiagnosisMappings from "./components/diagnosis-mappings/DiagnosisMappings
 import { createTheme, CssBaseline, Grid, ThemeProvider, useTheme } from "@mui/material";
 import MappingOptions from "./pages/mappings-options/MappingOptions";
 import Dashboard from "./pages/dashboard/Dashboard";
-import TopBar from "./components/topBar/TopBar";
 import Footer from "./components/footer/Footer";
 import MappingsSearch from "./components/mappingsSearch/mappingsSearch/MappingsSearch";
 import MappingsSearchPage from "./pages/mappingsSearchPage/MappingsSearchPage";
+import TopBar from "./components/topBar/TopBar";
 
 
 // Create a client
