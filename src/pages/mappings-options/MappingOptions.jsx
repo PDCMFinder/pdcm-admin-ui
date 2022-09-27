@@ -12,7 +12,6 @@ import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
 import {
   detectNewMappings,
-  downloadRules,
   getDownloadMappingRulesUrl,
 } from "../../apis/Mappings.api";
 
