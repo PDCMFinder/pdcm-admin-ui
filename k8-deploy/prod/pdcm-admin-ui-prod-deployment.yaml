@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pdcm-admin-ui
+  namespace: pdx-admin-interface
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: pdcm-admin-ui
+    spec:
+      containers:
+        - name: pdcm-admin-ui
+          image: "pdxfinder/pdcm-admin-ui:prod"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
