@@ -1,4 +1,5 @@
 import {
+  Alert,
   Button,
   Dialog,
   DialogActions,
@@ -40,11 +41,12 @@ const OntologySearchBar = ({
 }) => {
   let input = getSearchTextFromMappingEntity(mappingEntity);
 
-  const { isLoading, data, refetch } = useQuery(
+  const { isLoading, data, refetch, error } = useQuery(
     ["searchOntologies", { input }],
     () => searchOntologies(input),
     {
       enabled: false,
+      retry: false,
     }
   );
 
@@ -109,6 +111,7 @@ const OntologySearchBar = ({
           <DialogActions>
             <Button onClick={handleSearch}>Search</Button>
           </DialogActions>
+          {error && <Alert severity="error">{error.message}</Alert>}
           {!isLoading && data && (
             <OntologySearchResults
               results={data}

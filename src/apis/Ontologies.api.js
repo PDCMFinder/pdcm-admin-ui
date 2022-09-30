@@ -1,3 +1,4 @@
+import { callGET } from "./restCaller";
 
 /**
  * Get a summary of the loaded ontologies
@@ -33,11 +34,7 @@ export async function searchOntologies(input) {
 
     if (input && input !== "") {
         const url = `${process.env.REACT_APP_API_URL}/api/ontology/search?input=${input}`
-        let response = await fetch(url);
-        if (!response.ok) {
-            throw new Error("Network response was not ok");
-        }
-        result = response.json()
+        return callGET(url)
     }
 
     return result;
