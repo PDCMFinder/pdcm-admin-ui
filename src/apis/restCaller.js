@@ -2,6 +2,18 @@
  * This class offer methods to call the rest API and manage the possible errors
  */
 
+export async function callGET(url) {
+    const settings = {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        }
+    };
+
+    return processCall(url, settings)
+}
+
 export async function callPOST(url, body = null) {
     const settings = {
         method: 'POST',
@@ -11,6 +23,24 @@ export async function callPOST(url, body = null) {
         }
     };
 
+    try {
+        const res = await fetch(url, {
+            method: settings.method,
+            body,
+            headers: settings.headers
+        });
+
+        if (res.ok) {
+            return await (res.json());
+        }
+        const err = await res.json();
+        handleApiError(err)
+    } catch (err) {
+        handleGeneralError(err)
+    }
+}
+
+async function processCall(url, settings, body = null) {
     try {
         const res = await fetch(url, {
             method: settings.method,
