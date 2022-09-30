@@ -2,6 +2,7 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Alert,
   Button,
   CircularProgress,
 } from "@mui/material";
@@ -23,6 +24,7 @@ const SuggestionsList = ({ mappingEntity, onDataChanged }) => {
     {
       refetchOnWindowFocus: false,
       enabled: false, // disable this query from automatically running
+      retry: false,
     }
   );
 
@@ -44,6 +46,9 @@ const SuggestionsList = ({ mappingEntity, onDataChanged }) => {
 
   return (
     <>
+      {suggestionsQuery.error && (
+        <Alert severity="error">{suggestionsQuery.error.message}</Alert>
+      )}
       {suggestionsQueryIsLoading && (
         <Box
           sx={{

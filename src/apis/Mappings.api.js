@@ -1,4 +1,5 @@
 import { useLocation } from "react-router-dom";
+import { callPOST } from "./restCaller";
 
 const mappingKeyAttributes = ['dataSource', 'treatmentName', 'sampleDiagnosis', 'tumorType', 'originTissue'];
 
@@ -77,18 +78,7 @@ export async function getCountsByStatusWithFilter(facetSelections) {
 
 export async function getMappingEntitySuggestions(mappingEntityId) {
     const url = `${process.env.REACT_APP_API_URL}/api/mappings/${mappingEntityId}/suggestions`
-    const settings = {
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-        }
-    };
-    let response = await fetch(url, settings);
-    if (!response.ok) {
-        throw new Error("Network response was not ok");
-    }
-    return response.json()
+    return callPOST(url)
 }
 
 export async function updateEntity(mappingEntity) {
