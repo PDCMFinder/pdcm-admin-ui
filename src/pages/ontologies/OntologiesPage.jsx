@@ -38,65 +38,156 @@ const OntologiesPage = () => {
         <ul>
           <li>
             {" "}
-            <strong>Malignant Neoplasm:</strong>{" "}
-            http://purl.obolibrary.org/obo/NCIT_C9305
+            <strong>
+              <a
+                href="https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http://purl.obolibrary.org/obo/NCIT_C9305"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Malignant Neoplasm
+              </a>
+            </strong>{" "}
           </li>
         </ul>
         <h3>Treatment:</h3>
         <ul>
           <li>
             {" "}
-            <strong>Chemical Modifier Branch:</strong>
-            http://purl.obolibrary.org/obo/NCIT_C1932
+            <strong>
+              <a
+                href="https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http://purl.obolibrary.org/obo/NCIT_C1932"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Chemical Modifier
+              </a>
+            </strong>
           </li>
           <li>
-            <strong>Dietary Supplement branch:</strong>
-            http://purl.obolibrary.org/obo/NCIT_C1505
+            <strong>
+              <a
+                href="https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http://purl.obolibrary.org/obo/NCIT_C1505"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Dietary Supplement
+              </a>
+            </strong>
           </li>
           <li>
-            <strong>Drug or Chemical by Structure branch:</strong>
-            http://purl.obolibrary.org/obo/NCIT_C1913
+            <strong>
+              <a
+                href="https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http://purl.obolibrary.org/obo/NCIT_C1913"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Drug or Chemical by Structure
+              </a>
+            </strong>
           </li>
           <li>
-            <strong>Industrial Aid branch:</strong>{" "}
-            http://purl.obolibrary.org/obo/NCIT_C45678
+            <strong>
+              <a
+                href="https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http://purl.obolibrary.org/obo/NCIT_C45678"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Industrial Aid
+              </a>
+            </strong>
           </li>
           <li>
-            <strong>Pharma Substance branch:</strong>{" "}
-            http://purl.obolibrary.org/obo/NCIT_C1909
+            <strong>
+              <a
+                href="https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http://purl.obolibrary.org/obo/NCIT_C1909"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Pharmacologic Substance
+              </a>
+            </strong>
           </li>
           <li>
-            <strong>Physiology branch:</strong>{" "}
-            http://purl.obolibrary.org/obo/NCIT_C1899
+            <strong>
+              <a
+                href="https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http://purl.obolibrary.org/obo/NCIT_C1899"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Physiology-Regulatory Factor
+              </a>
+            </strong>
           </li>
           <li>
-            <strong>Hematopoietic Cell Transplantation branch:</strong>
-            http://purl.obolibrary.org/obo/NCIT_C15431
+            <strong>
+              <a
+                href="https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http://purl.obolibrary.org/obo/NCIT_C15431"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Hematopoietic Cell Transplantation
+              </a>
+            </strong>
           </li>
           <li>
-            <strong>Therapeutic Procedure branch:</strong>
-            http://purl.obolibrary.org/obo/NCIT_C49236
+            <strong>
+              <a
+                href="https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http://purl.obolibrary.org/obo/NCIT_C49236"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Therapeutic Procedure
+              </a>
+            </strong>
           </li>
           <li>
-            <strong>Clinical Study branch:</strong>{" "}
-            http://purl.obolibrary.org/obo/NCIT_C15206
+            <strong>
+              <a
+                href="https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http://purl.obolibrary.org/obo/NCIT_C15206"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Clinical Study
+              </a>
+            </strong>
           </li>
           <li>
-            <strong>Gene Product branch:</strong>{" "}
-            http://purl.obolibrary.org/obo/NCIT_C26548
+            <strong>
+              <a
+                href="https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http://purl.obolibrary.org/obo/NCIT_C26548"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Gene Product
+              </a>
+            </strong>
           </li>
         </ul>
         <h3>Regimen:</h3>
         <ul>
           <li>
             {" "}
-            <strong>Chemotherapy Regimen or Agent Combination:</strong>{" "}
-            http://purl.obolibrary.org/obo/NCIT_C12218
+            <strong>
+              <a
+                href="https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http://purl.obolibrary.org/obo/NCIT_C12218"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Chemotherapy Regimen or Agent Combination
+              </a>
+            </strong>
           </li>
           <li>
             {" "}
-            <strong>FOLFOX Regimen:</strong>{" "}
-            http://purl.obolibrary.org/obo/NCIT_C11197
+            <strong>
+              <a
+                href="https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http://purl.obolibrary.org/obo/NCIT_C11197"
+                target="_blank"
+                rel="noreferrer"
+              >
+                FOLFOX Regimen
+              </a>
+            </strong>
           </li>
         </ul>
         <div className="reloadingProcess">
