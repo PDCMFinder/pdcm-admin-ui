@@ -8,7 +8,7 @@ import { Chip, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 
 import React from "react";
-import { extractNCTiName } from "../../../util/Util";
+import { convertToOLSUrl, extractNCTiName } from "../../../util/Util";
 
 const OntologySuggestionData = ({ suggestion }) => {
   const ListItem = styled("li")(({ theme }) => ({
@@ -33,7 +33,7 @@ const OntologySuggestionData = ({ suggestion }) => {
             icon={faSquareArrowUpRight}
           />
           <a
-            href={suggestion.suggestedTermUrl}
+            href={convertToOLSUrl(suggestion.suggestedTermUrl)}
             target="_blank"
             rel="noreferrer"
           >

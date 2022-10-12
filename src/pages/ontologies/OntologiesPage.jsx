@@ -1,5 +1,4 @@
 import "./ontologiesPage.css";
-import { getOntologySummary } from "../../apis/Ontologies.api";
 import { useQuery } from "react-query";
 import OntologySummaryReport from "../../components/ontology/ontologySummaryReport/OntologySummaryReport";
 import OntologyLoader from "../../components/ontology/ontologyLoader/OntologyLoader";
