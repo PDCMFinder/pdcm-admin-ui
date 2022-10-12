@@ -3,25 +3,27 @@ import { getOntologySummary } from "../../apis/Ontologies.api";
 import { useQuery } from "react-query";
 import OntologySummaryReport from "../../components/ontology/ontologySummaryReport/OntologySummaryReport";
 import OntologyLoader from "../../components/ontology/ontologyLoader/OntologyLoader";
+import { getReport } from "../../apis/ProcessReport.api";
 
 const OntologiesPage = () => {
-  const { isLoading, isError, data, error, refetch } = useQuery(
-    "getOntologySummary",
-    getOntologySummary
+  const moduleName = "Ontologies";
+
+  const processReportQuery = useQuery(["getReport", moduleName], () =>
+    getReport(moduleName)
   );
 
   const handleOntologiesLoaded = (loaded) => {
     if (loaded) {
-      refetch();
+      processReportQuery.refetch();
     }
   };
 
-  if (isLoading) {
+  if (processReportQuery.isLoading) {
     return <span>Loading...</span>;
   }
 
-  if (isError) {
-    return <span>Error: {error.message}</span>;
+  if (processReportQuery.error) {
+    return <span>Error: {processReportQuery.error.message}</span>;
   }
 
   return (
@@ -100,7 +102,7 @@ const OntologiesPage = () => {
         <div className="reloadingProcess">
           <h2>Reloading process</h2>
           The reloading process takes around 5 minutes to finish.
-          <OntologySummaryReport {...data} />
+          <OntologySummaryReport data={processReportQuery.data} />
           <div className="loader">
             <OntologyLoader onProcessFinished={handleOntologiesLoaded} />
           </div>

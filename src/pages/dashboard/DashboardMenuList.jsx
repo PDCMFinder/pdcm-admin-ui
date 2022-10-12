@@ -27,12 +27,6 @@ export const ListItems = (
         <ListItemText primary="Dashboard" />
       </ListItemButton>
     </Link>
-    <ListItemButton disabled={true}>
-      <ListItemIcon>
-        <FontAwesomeIcon className="fa-1x" icon={faFolder} />
-      </ListItemIcon>
-      <ListItemText primary="Provider's data" />
-    </ListItemButton>
     <Link to="/ontologies" className="link">
       <ListItemButton>
         <ListItemIcon>
