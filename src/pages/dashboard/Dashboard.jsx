@@ -14,6 +14,10 @@ import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 
 import { ListItems } from "./DashboardMenuList";
+import ProcessSummary from "../../components/processSummary/ProcessSummary";
+import ProvidersDataWidget from "../../components/widgets/providersDataWidget/ProvidersDataWidget";
+import OntologiesWidget from "../../components/widgets/ontologiesWidget/OntologiesWidget";
+import IndexerWidget from "../../components/widgets/indexerWidget/IndexerWidget";
 
 const MAPPED = "mapped";
 const UNMAPPED = "unmapped";
@@ -140,6 +144,16 @@ const Dashboard = () => {
                     />
                   )}
                 </div>
+              </Grid>
+
+              <Grid item xs={12}>
+                <OntologiesWidget />
+              </Grid>
+              <Grid item xs={12}>
+                <IndexerWidget />
+              </Grid>
+              <Grid item xs={12}>
+                <ProvidersDataWidget />
               </Grid>
             </Grid>
           </Box>

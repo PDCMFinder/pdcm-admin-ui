@@ -14,9 +14,47 @@ export async function callGET(url) {
     return processCall(url, settings)
 }
 
+/**
+ * Executes POST call. This method asumes there will be a response with JSON format!
+ * @param {*} url Url to call
+ * @param {*} body Body of the request. Can be null
+ * @returns response.
+ */
 export async function callPOST(url, body = null) {
     const settings = {
         method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        }
+    };
+
+    try {
+        const res = await fetch(url, {
+            method: settings.method,
+            body,
+            headers: settings.headers
+        });
+
+        if (res.ok) {
+            return await (res.json());
+        }
+        const err = await res.json();
+        handleApiError(err)
+    } catch (err) {
+        handleGeneralError(err)
+    }
+}
+
+/**
+ * Executes PUT call. This method asumes there will be a response with JSON format!
+ * @param {*} url Url to call
+ * @param {*} body Body of the request. Can be null
+ * @returns response.
+ */
+export async function callPUT(url, body = null) {
+    const settings = {
+        method: 'PUT',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',

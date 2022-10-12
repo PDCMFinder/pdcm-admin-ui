@@ -8,64 +8,32 @@ const formatISODate = (isoDate) => {
   return date.toLocaleDateString() + " " + date.toLocaleTimeString();
 };
 
-const OntologySummaryReport = ({
-  totalCount,
-  latestLoadingDate,
-  previousLoadingDate,
-  countsByType,
-  countAddedTermsLatestLoadByType,
-  countAddedTermsPreviousLoadByType,
-  errors,
-}) => {
+const OntologySummaryReport = ({ data }) => {
   return (
     <div className="ontologySumaryContainer">
       <div className="loadingDateInfo">
         <span className="loadingDatelabel">Last Loading Date:</span>
         <span className="loadingDateValue">
-          {formatISODate(latestLoadingDate)}
-        </span>
-      </div>
-      <div className="loadingDateInfo">
-        <span className="loadingDatelabel">Previous Loading Date:</span>
-        <span className="loadingDateValue">
-          {formatISODate(previousLoadingDate)}
+          {formatISODate(data["Update date"])}
         </span>
       </div>
 
-      <div className="sectionTitle">Current Ontology Terms counts:</div>
+      <div className="sectionTitle">Number of loaded terms:</div>
 
       <div className="cards">
-        <FeatureCard title={"Total"} value={totalCount} />
-        {Object.entries(countsByType).map((item) => {
-          const title = item[0];
-          const value = item[1];
-          return <FeatureCard title={title} value={value} />;
-        })}
+        <FeatureCard
+          title={"Diagnosis"}
+          value={data["Number of diagnosis terms"]}
+        />
+        <FeatureCard
+          title={"Treatment"}
+          value={data["Number of treatment terms"]}
+        />
+        <FeatureCard
+          title={"Regimen"}
+          value={data["Number of regimen terms"]}
+        />
       </div>
-
-      <div className="sectionTitle">
-        Terms added during last loading process:
-      </div>
-      <div className="cards">
-        {Object.entries(countAddedTermsLatestLoadByType).map((item) => {
-          const key = item[0];
-          const value = item[1];
-          const previous = countAddedTermsPreviousLoadByType[key];
-
-          const differenceWithPrevious = value - previous;
-          return (
-            <FeatureCard
-              title={key}
-              value={value}
-              change={differenceWithPrevious}
-              note={"Compared to last loading"}
-            />
-          );
-        })}
-      </div>
-
-      <div className="sectionTitle">Errors in last loading process:</div>
-      <div className="errors">{errors}</div>
     </div>
   );
 };
