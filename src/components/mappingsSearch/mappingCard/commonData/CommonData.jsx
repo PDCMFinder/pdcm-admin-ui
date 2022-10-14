@@ -7,7 +7,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Grid, Typography } from "@mui/material";
 import React from "react";
-import { extractNCTiName } from "../../../../util/Util";
+import { convertToOLSUrl, extractNCTiName } from "../../../../util/Util";
 
 function CommonData({ mappingEntity }) {
   return (
@@ -34,7 +34,7 @@ function CommonData({ mappingEntity }) {
               icon={faSquareArrowUpRight}
             />
             <a
-              href={mappingEntity.mappedTermUrl}
+              href={convertToOLSUrl(mappingEntity.mappedTermUrl)}
               target="_blank"
               rel="noreferrer"
             >

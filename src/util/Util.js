@@ -10,6 +10,11 @@ export const extractNCTiName = (url) => {
     return name;
 };
 
+export const convertToOLSUrl = (url) => {
+    const ncit = extractNCTiName(url);
+    return "https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http://purl.obolibrary.org/obo/" + ncit;
+}
+
 export const getValueByKey = (mappingValues, key) => {
     const found = mappingValues.find(element => element.mappingKey.key.toLowerCase() === key.toLowerCase());
     return found.value;
