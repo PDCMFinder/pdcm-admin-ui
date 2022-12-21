@@ -114,6 +114,19 @@ const MappingsSearchTemplate = ({
               onDataChanged={onDataChanged}
             />
           </Grid>
+
+          <Grid item xs={9}>
+            <TablePagination
+              component="div"
+              count={totalElements}
+              page={page}
+              onPageChange={onPaginationChange}
+              rowsPerPage={size}
+              rowsPerPageOptions={[10, 20, 50]}
+              onRowsPerPageChange={onPageSizeChange}
+            />
+          </Grid>
+          
         </Grid>
       </Grid>
     </Grid>
