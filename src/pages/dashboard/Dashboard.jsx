@@ -74,6 +74,7 @@ const Dashboard = () => {
 
   return (
     <>
+    
       <Grid container spacing={2} style={{ marginLeft: "20px" }}>
         <Grid item xs={2}>
           <Drawer variant="permanent" open={true}>

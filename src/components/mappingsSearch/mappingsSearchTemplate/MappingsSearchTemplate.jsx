@@ -1,6 +1,7 @@
 import { Grid, TablePagination } from "@mui/material";
 import React from "react";
 import FacetSideBar from "../../facets/facetSideBar/FacetSideBar";
+import SearchBox from "../../searchBox/SearchBox";
 import MappingSearchResults from "../mappingSearchResults/MappingSearchResults";
 
 import TabsByStatus from "../tabsByStatus/TabsByStatus";
@@ -15,6 +16,7 @@ const MappingsSearchTemplate = ({
   facets,
   facetsSelection,
   onFacetSidebarChange,
+  onSearchBoxSelectionChange,
   onDataChanged,
   searchResults,
   loadingSearchResults,
@@ -77,9 +79,10 @@ const MappingsSearchTemplate = ({
           }}
         />
       </Grid>
+      
       <Grid item xs={9}>
         <Grid container spacing={2} style={{ marginTop: "5px" }}>
-          <Grid item xs={9}>
+        <Grid item xs={9}>
             <TablePagination
               component="div"
               count={totalElements}
@@ -89,6 +92,10 @@ const MappingsSearchTemplate = ({
               rowsPerPageOptions={[10, 20, 50]}
               onRowsPerPageChange={onPageSizeChange}
             />
+          </Grid>
+
+          <Grid item xs={9}>
+          <SearchBox onSearchBoxSelectionChange={onSearchBoxSelectionChange}/>
           </Grid>
 
           <Grid item xs={9}>

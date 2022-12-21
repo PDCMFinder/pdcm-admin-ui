@@ -17,15 +17,6 @@ export async function getMappingsSummary(entityTypeName) {
     return response.json()
 }
 
-export async function getMappingsWithFilters(type, dataSource, status, page, pageSize) {
-    let response = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/mappings/search?entityType=${type}&status=${status}&mq=DataSource:${dataSource}&size=${pageSize}&page=${page}`
-    );
-    if (!response.ok) {
-        throw new Error("Network response was not ok");
-    }
-    return response.json()
-}
 
 export function buildSearchParameters(facetSelections) {
     let searchParameters = "";
@@ -50,6 +41,7 @@ const buildQueryKeyAttribute = (key, values) => {
     }
     return query;
 }
+
 
 export async function searchMappings(facetSelections, page, pageSize) {
     let searchParameters = buildSearchParameters(facetSelections);
@@ -147,4 +139,14 @@ export function useQueryParams() {
         facetSelection = { status: ["unmapped"] }
     }
     return [facetSelection];
+}
+
+export async function getAllTreatmentsAndDiagnosis() {
+
+    const url = `${process.env.REACT_APP_API_URL}/api/mappings/treatmentsAndDiagnosis`
+    let response = await fetch(url);
+    if (!response.ok) {
+        throw new Error("Network response was not ok");
+    }
+    return response.json()
 }
