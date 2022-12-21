@@ -50,6 +50,15 @@ const MappingsSearchPage = () => {
     updateSearchParams(newFilters);
   };
 
+  const handleSearchBoxChange = (_e, v) => {
+    if (v) {
+      const query = '%' + v + '%';
+      facetSelection['label'] = [encodeURIComponent(query)];
+      handleFiltersChange(facetSelection)
+    }
+  };
+  
+
   const handleDataChange = () => {
     queryClient.invalidateQueries(["searchMappings"]);
     queryClient.invalidateQueries(["getCountsByStatusWithFilter"]);
@@ -66,6 +75,7 @@ const MappingsSearchPage = () => {
       facets={facets}
       facetsSelection={facetSelection}
       onFacetSidebarChange={handleFiltersChange}
+      onSearchBoxSelectionChange={handleSearchBoxChange}
       onDataChanged={handleDataChange}
       searchResults={data}
       loadingSearchResults={isLoading}
