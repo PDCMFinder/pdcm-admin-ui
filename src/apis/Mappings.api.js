@@ -108,6 +108,23 @@ export async function detectNewMappings() {
 }
 
 /**
+ * Assigns mappings in an automatic way
+ * @returns Counts by mapping type
+ */
+export async function assignAutomaticMappings() {
+    const settings = {
+        method: 'PUT',
+    };
+    let response = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/mappings/assignAutomaticMappings`, settings
+    );
+    if (!response.ok) {
+        throw new Error("Network response was not ok");
+    }
+    return response.json()
+}
+
+/**
  * Gets the url of the endpoint that returns a zip with the json mapping files 
  * for treatment and diagnosis.
  * @returns endpoint's url.

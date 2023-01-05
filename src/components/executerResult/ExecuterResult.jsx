@@ -21,6 +21,14 @@ const ExecuterResult = ({ active, onHandleClosed, data, isLoading }) => {
     onHandleClosed();
   };
 
+  const processResponse = (data) => {
+    let response = data;
+    if (data && data["response"]) {
+      response = data["response"];
+    }
+    return response;
+  };
+
   const style = {
     position: "absolute",
     top: "50%",
@@ -48,10 +56,10 @@ const ExecuterResult = ({ active, onHandleClosed, data, isLoading }) => {
         {data && !isLoading && (
           <div>
             <List>
-              {Object.keys(data).map((element, key) => {
+              {Object.keys(processResponse(data)).map((element, key) => {
                 return (
                   <ListItem key={key} disablePadding>
-                    <ListItemText primary={`${element}:  ${data[element]}`} />
+                    <ListItemText primary={`${element}:  ${processResponse(data)[element]}`} />
                   </ListItem>
                 );
               })}

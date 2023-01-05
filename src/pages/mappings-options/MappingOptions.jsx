@@ -3,6 +3,7 @@ import {
   faFileLines,
   faPrescription,
   faStethoscope,
+  faWandSparkles,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
@@ -11,6 +12,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
 import {
+  assignAutomaticMappings,
   detectNewMappings,
   getDownloadMappingRulesUrl,
 } from "../../apis/Mappings.api";
@@ -52,6 +54,16 @@ const options = [
     type: "executableAction",
     enabled: true,
     apiMethodToExecute: detectNewMappings,
+  },
+  {
+    id: 5,
+    title: "Automatic Mappings",
+    description: "Assign Automatic  Mappings",
+    icon: <FontAwesomeIcon className="fa-5x" icon={faWandSparkles} />,
+    path: null,
+    type: "executableAction",
+    enabled: true,
+    apiMethodToExecute: assignAutomaticMappings,
   },
 ];
 
