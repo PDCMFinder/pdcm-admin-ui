@@ -40,10 +40,11 @@ const OntologySearchBar = ({
   onClosed,
 }) => {
   let input = getSearchTextFromMappingEntity(mappingEntity);
+  let entityTypeName = mappingEntity?.entityTypeName;
 
   const { isLoading, data, refetch, error } = useQuery(
-    ["searchOntologies", { input }],
-    () => searchOntologies(input),
+    ["searchOntologies", { input, entityTypeName}],
+    () => searchOntologies(input, entityTypeName),
     {
       enabled: false,
       retry: false,
