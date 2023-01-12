@@ -87,6 +87,9 @@ const SuggestionsList = ({ mappingEntity, onDataChanged }) => {
               })}
             </div>
           )}
+          <Button variant="text" onClick={() => {setExpanded(false);}}>
+            {expanded ? "Hide suggestions" : "See suggestions"}
+          </Button>
         </AccordionDetails>
       </Accordion>
     </>
