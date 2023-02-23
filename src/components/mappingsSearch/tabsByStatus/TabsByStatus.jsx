@@ -49,7 +49,7 @@ const TabsByStatus = ({
           {loadingCountsByStatus && [
             <Tab key={0} label="Unmapped" {...a11yProps(0)} />,
             <Tab key={2} label="Mapped" {...a11yProps(1)} />,
-            <Tab key={3} label="Revise" {...a11yProps(2)} />,
+            <Tab key={3} label="Review" {...a11yProps(2)} />,
             <Tab key={4} label="Request" {...a11yProps(3)} />,
           ]}
           {!loadingCountsByStatus && [
@@ -65,7 +65,7 @@ const TabsByStatus = ({
             />,
             <Tab
               key={2}
-              label={"Revise (" + countsByStatus["Revise"] + ")"}
+              label={"Review (" + countsByStatus["Review"] + ")"}
               {...a11yProps(2)}
             />,
             <Tab
