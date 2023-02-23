@@ -20,12 +20,28 @@
             "name": "Data Source",
             "options": [
                 {
+                    "key": "BROD",
+                    "name": "BROD"
+                },
+                {
+                    "key": "CCIA",
+                    "name": "CCIA"
+                },
+                {
+                    "key": "CHOP",
+                    "name": "CHOP"
+                },
+                {
                     "key": "CMP",
                     "name": "CMP"
                 },
                 {
                     "key": "CRL",
                     "name": "CRL"
+                },
+                {
+                    "key": "CSHL",
+                    "name": "CSHL"
                 },
                 {
                     "key": "Curie-BC",
@@ -44,12 +60,12 @@
                     "name": "DFCI-CPDM"
                 },
                 {
-                    "key": "HCI-BCM",
-                    "name": "HCI-BCM"
+                    "key": "GCCRI",
+                    "name": "GCCRI"
                 },
                 {
-                    "key": "HCMI",
-                    "name": "HCMI"
+                    "key": "HCI-BCM",
+                    "name": "HCI-BCM"
                 },
                 {
                     "key": "IRCC-CRC",
@@ -68,8 +84,16 @@
                     "name": "LIH"
                 },
                 {
+                    "key": "LurieChildrens",
+                    "name": "LurieChildrens"
+                },
+                {
                     "key": "MDAnderson",
                     "name": "MDAnderson"
+                },
+                {
+                    "key": "MDAnderson-CCH",
+                    "name": "MDAnderson-CCH"
                 },
                 {
                     "key": "NKI",
@@ -84,8 +108,8 @@
                     "name": "PMLB"
                 },
                 {
-                    "key": "PPTC",
-                    "name": "PPTC"
+                    "key": "SANG",
+                    "name": "SANG"
                 },
                 {
                     "key": "SJCRH",
