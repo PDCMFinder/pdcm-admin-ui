@@ -104,11 +104,11 @@ function MappingCard({ mappingEntity, onDataChanged, onOntoSearchOpen }) {
         {isReview && (
           <Fragment>
             <Button size="small" onClick={() => changeStatus("Mapped")}>
-            Move to Mapped
-          </Button>
-          <Button size="small" onClick={() => changeStatus("Request")}>
-          Move to Request
-        </Button>
+              Move to Mapped
+            </Button>
+            <Button size="small" onClick={() => changeStatus("Request")}>
+              Move to Request
+            </Button>
           </Fragment>
           
         )}
