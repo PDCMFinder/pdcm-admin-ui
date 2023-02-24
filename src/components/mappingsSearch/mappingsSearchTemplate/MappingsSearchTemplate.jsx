@@ -9,7 +9,7 @@ import TabsByStatus from "../tabsByStatus/TabsByStatus";
 const tabStatusMap = new Map();
 tabStatusMap.set("unmapped", 0);
 tabStatusMap.set("mapped", 1);
-tabStatusMap.set("revise", 2);
+tabStatusMap.set("review", 2);
 tabStatusMap.set("request", 3);
 
 const MappingsSearchTemplate = ({
@@ -50,7 +50,7 @@ const MappingsSearchTemplate = ({
     } else if (selectedIndex === 1) {
       facetsSelection["status"] = ["mapped"];
     } else if (selectedIndex === 2) {
-      facetsSelection["status"] = ["revise"];
+      facetsSelection["status"] = ["review"];
     } else if (selectedIndex === 3) {
       facetsSelection["status"] = ["request"];
     }

@@ -49,7 +49,7 @@ const EntityTypeSpecificData = ({ mappingEntity }) => {
 function MappingCard({ mappingEntity, onDataChanged, onOntoSearchOpen }) {
   const isMapped = mappingEntity.status.toLowerCase() === "mapped";
   const isUnmapped = mappingEntity.status.toLowerCase() === "unmapped";
-  const isRevise = mappingEntity.status.toLowerCase() === "revise";
+  const isReview = mappingEntity.status.toLowerCase() === "review";
   const isRequest = mappingEntity.status.toLowerCase() === "request";
 
   const updateMutation = useMutation(
@@ -92,8 +92,8 @@ function MappingCard({ mappingEntity, onDataChanged, onOntoSearchOpen }) {
       </CardContent>
       <CardActions>
         {isMapped && (
-          <Button size="small" onClick={() => changeStatus("Revise")}>
-            Move to Revise
+          <Button size="small" onClick={() => changeStatus("Review")}>
+            Move to Review
           </Button>
         )}
         {isUnmapped && (
@@ -101,7 +101,7 @@ function MappingCard({ mappingEntity, onDataChanged, onOntoSearchOpen }) {
             Move to Request
           </Button>
         )}
-        {isRevise && (
+        {isReview && (
           <Button size="small" onClick={() => changeStatus("Mapped")}>
             Move to Mapped
           </Button>
