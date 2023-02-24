@@ -6,7 +6,7 @@ import {
   Divider,
   Grid,
 } from "@mui/material";
-import React from "react";
+import React, { Fragment } from "react";
 import CommonData from "./commonData/CommonData";
 import DiagnosisKeyData from "./keyData/diagnosisKeyData/DiagnosisKeyData";
 import SuggestionsList from "../../suggestions/suggestionsList/SuggestionsList";
@@ -102,9 +102,15 @@ function MappingCard({ mappingEntity, onDataChanged, onOntoSearchOpen }) {
           </Button>
         )}
         {isReview && (
-          <Button size="small" onClick={() => changeStatus("Mapped")}>
+          <Fragment>
+            <Button size="small" onClick={() => changeStatus("Mapped")}>
             Move to Mapped
           </Button>
+          <Button size="small" onClick={() => changeStatus("Request")}>
+          Move to Request
+        </Button>
+          </Fragment>
+          
         )}
         {isRequest && (
           <Button size="small" onClick={() => changeStatus("Unmapped")}>
