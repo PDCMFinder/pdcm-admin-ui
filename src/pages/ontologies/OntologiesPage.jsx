@@ -47,6 +47,30 @@ const OntologiesPage = () => {
               </a>
             </strong>{" "}
           </li>
+          <li>
+            {" "}
+            <strong>
+              <a
+                href="https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http://purl.obolibrary.org/obo/NCIT_C3262"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Neoplasm
+              </a>
+            </strong>{" "}
+          </li>
+          <li>
+            {" "}
+            <strong>
+              <a
+                href="https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http://purl.obolibrary.org/obo/NCIT_C35814"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Hematopoietic and Lymphoid System Disorder
+              </a>
+            </strong>{" "}
+          </li>
         </ul>
         <h3>Treatment:</h3>
         <ul>
