@@ -3,6 +3,7 @@ import {
   faFileLines,
   faPrescription,
   faStethoscope,
+  faUpload,
   faWandSparkles,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,6 +16,7 @@ import {
   assignAutomaticMappings,
   detectNewMappings,
   getDownloadMappingRulesUrl,
+  reloadMappingsFromJsonFiles,
 } from "../../apis/Mappings.api";
 
 const options = [
@@ -64,6 +66,16 @@ const options = [
     type: "executableAction",
     enabled: true,
     apiMethodToExecute: assignAutomaticMappings,
+  },
+  {
+    id: 6,
+    title: "Reload mappings",
+    description: "Reload",
+    icon: <FontAwesomeIcon className="fa-5x" icon={faUpload} />,
+    path: null,
+    type: "executableAction",
+    enabled: true,
+    apiMethodToExecute: reloadMappingsFromJsonFiles,
   },
 ];
 
