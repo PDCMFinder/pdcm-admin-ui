@@ -125,6 +125,22 @@ export async function assignAutomaticMappings() {
 }
 
 /**
+ * Reload mappings from the JSON rules
+ */
+export async function reloadMappingsFromJsonFiles() {
+    const settings = {
+        method: 'PUT',
+    };
+    let response = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/mappings/rules/restoreMappedMappingEntitiesFromJsons`, settings
+    );
+    if (!response.ok) {
+        throw new Error("Network response was not ok");
+    }
+    return response.json()
+}
+
+/**
  * Gets the url of the endpoint that returns a zip with the json mapping files 
  * for treatment and diagnosis.
  * @returns endpoint's url.
@@ -167,3 +183,4 @@ export async function getAllTreatmentsAndDiagnosis() {
     }
     return response.json()
 }
+
