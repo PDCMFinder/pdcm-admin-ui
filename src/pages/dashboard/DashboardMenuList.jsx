@@ -60,5 +60,13 @@ export const ListItems = (
         <ListItemText primary="Statistics" />
       </ListItemButton>
     </Link>
+    <Link to="/release-data-options" className="link">
+      <ListItemButton>
+        <ListItemIcon>
+          <FontAwesomeIcon className="fa-1x" icon={faChartLine} />
+        </ListItemIcon>
+        <ListItemText primary="Release Data" />
+      </ListItemButton>
+    </Link>
   </React.Fragment>
 );

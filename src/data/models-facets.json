@@ -1,0 +1,27 @@
+{
+    "facets": [
+        {
+            "key": "modelType",
+            "name": "Type",
+            "options": [
+                {
+                    "key": "PDX",
+                    "name": "PDX"
+                },
+                {
+                    "key": "cell line",
+                    "name": "cell line"
+                },
+                {
+                    "key": "organoid",
+                    "name": "organoid"
+                },
+                {
+                    "key": "other",
+                    "name": "other"
+                }
+            ],
+            "type": "check"
+        }
+    ]
+}
