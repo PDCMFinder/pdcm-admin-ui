@@ -17,14 +17,18 @@ const ReleaseSelector = ({ onSelectionChange }) => {
     // only when initialSelectedRelease is available.
     useEffect(() => {
         if (initialSelectedRelease) {
-          setSelectedRelease(initialSelectedRelease);
-          onSelectionChange(initialSelectedRelease);
+            if (!selectedRelease) {
+                setSelectedRelease(initialSelectedRelease);
+                onSelectionChange(initialSelectedRelease); 
+            }
+          
         }
-      }, [initialSelectedRelease, onSelectionChange]);
+      }, [initialSelectedRelease, selectedRelease, onSelectionChange]);
 
     const handleReleaseChange = (event) => {
-        setSelectedRelease(event.target.value);
-        onSelectionChange(event.target.value)
+        const newSelectedReleaseId = event.target.value;
+        setSelectedRelease(newSelectedReleaseId);
+        onSelectionChange(newSelectedReleaseId)
     };
 
     return (

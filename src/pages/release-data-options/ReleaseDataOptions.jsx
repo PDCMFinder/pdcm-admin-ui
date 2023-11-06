@@ -1,10 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { faArrowRotateRight, faChild, faFileLines, faList, faPrescription, faStethoscope } from '@fortawesome/free-solid-svg-icons';
+import { faChild, faList, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getDownloadMappingRulesUrl } from '../../apis/Mappings.api';
 import { Box, Grid, Typography } from '@mui/material';
 import CardMenuOption from '../../components/cardMenuOption/CardMenuOption';
+import { loadCurrentReleaseData } from '../../apis/Releases.api';
 
 const options = [
   {
@@ -24,6 +23,15 @@ const options = [
     path: "/paediatric-models-by-release",
     type: "link",
     enabled: true,
+  },
+  {
+    id: 3,
+    title: "Load Current Release Data",
+    description: "Load",
+    icon: <FontAwesomeIcon className="fa-5x" icon={faSpinner} />,
+    type: "executableAction",
+    enabled: true,
+    apiMethodToExecute: loadCurrentReleaseData,
   }
 ];
 

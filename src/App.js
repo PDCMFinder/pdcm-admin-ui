@@ -17,7 +17,6 @@ import Footer from "./components/footer/Footer";
 import MappingsSearchPage from "./pages/mappingsSearchPage/MappingsSearchPage";
 import TopBar from "./components/topBar/TopBar";
 import ReleaseDataOptions from "./pages/release-data-options/ReleaseDataOptions";
-import AllModelsByRelease from "./components/releaseData/modelsByRelease/ModelsByRelease";
 import ModelsByRelease from "./components/releaseData/modelsByRelease/ModelsByRelease";
 
 
@@ -56,8 +55,8 @@ function App() {
                     <Route path="mappings/treatmentSummary" element={<MappingsSummary type={TREATMENT_TYPE} />} />
                     <Route path="/search" element={<MappingsSearchPage />} />
                     <Route path="/release-data-options" element={<ReleaseDataOptions />} />
-                    <Route path="/all-models-by-release" element={<ModelsByRelease viewName={'allModels'} />} />
-                    <Route path="/paediatric-models-by-release" element={<ModelsByRelease viewName={'paediatricModels'} />} />
+                    <Route path="/all-models-by-release" element={<ModelsByRelease viewName={'allModels'} viewTitle={"All Models"} />} />
+                    <Route path="/paediatric-models-by-release" element={<ModelsByRelease viewName={'paediatricModels'} viewTitle={"Paediatric Models"} />} />
 
                   </Routes>
                 </ThemeProvider>

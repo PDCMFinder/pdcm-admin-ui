@@ -4,6 +4,7 @@ import { getModelsByViewAndRelease } from '../../../apis/Releases.api';
 import { useQuery } from 'react-query';
 import ModelsSearchTemplate from '../modelsSearchTemplate/ModelsSearchTemplate';
 import modelsFacets from "../../../data/models-facets.json";
+import { Typography } from '@mui/material';
 
 /**
  * A generic component that displays information about models in a specific release.
@@ -12,7 +13,7 @@ import modelsFacets from "../../../data/models-facets.json";
  * component can be reused to show several views of data keeping the same 
  * structure and logic
  */
-const ModelsByRelease = ({ viewName }) => {
+const ModelsByRelease = ({ viewName, viewTitle }) => {
   const [selectedRelease, setSelectedRelease] = useState('');
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(10);
@@ -49,6 +50,9 @@ const ModelsByRelease = ({ viewName }) => {
 
   return (
     <div>
+      <Typography variant="h4" gutterBottom>
+      {viewTitle}
+      </Typography>
       <ReleaseSelector onSelectionChange={handleSelectionChange}></ReleaseSelector>
       {selectedRelease &&
         <ModelsSearchTemplate

@@ -1,11 +1,12 @@
 const baseUrl = `${process.env.REACT_APP_API_URL}/api/releases`;
+
 /**
  * Gets a list of the releases processed in the ETL.
  * @returns Sorted list of releases. A release has an id, a name and a date.
  */
 export async function getReleases() {
 
-    const url = `${process.env.REACT_APP_API_URL}/api/releases`
+    const url = baseUrl
     let response = await fetch(url);
     if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -38,4 +39,20 @@ export function buildParameters(facetSelections) {
         }
     }
     return searchParameters;
+}
+
+/**
+ * Load data for the current release
+ */
+export async function loadCurrentReleaseData() {
+    const settings = {
+        method: 'PUT',
+    };
+    let response = await fetch(
+        `${baseUrl}/loadCurrentRelease`, settings
+    );
+    if (!response.ok) {
+        throw new Error("Network response was not ok");
+    }
+    return response.json()
 }
