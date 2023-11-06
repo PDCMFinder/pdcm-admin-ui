@@ -183,3 +183,4 @@ export async function getAllTreatmentsAndDiagnosis() {
     }
     return response.json()
 }
+
