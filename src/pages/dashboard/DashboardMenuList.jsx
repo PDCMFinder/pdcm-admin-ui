@@ -10,6 +10,7 @@ import { Divider } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChartLine,
+  faDatabase,
   faFolder,
   faFolderTree,
   faGauge,
@@ -63,7 +64,7 @@ export const ListItems = (
     <Link to="/release-data-options" className="link">
       <ListItemButton>
         <ListItemIcon>
-          <FontAwesomeIcon className="fa-1x" icon={faChartLine} />
+          <FontAwesomeIcon className="fa-1x" icon={faDatabase} />
         </ListItemIcon>
         <ListItemText primary="Release Data" />
       </ListItemButton>
