@@ -14,7 +14,6 @@ import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 
 import { ListItems } from "./DashboardMenuList";
-import ProcessSummary from "../../components/processSummary/ProcessSummary";
 import ProvidersDataWidget from "../../components/widgets/providersDataWidget/ProvidersDataWidget";
 import OntologiesWidget from "../../components/widgets/ontologiesWidget/OntologiesWidget";
 import IndexerWidget from "../../components/widgets/indexerWidget/IndexerWidget";

@@ -53,7 +53,7 @@ export const ListItems = (
       </ListItemButton>
     </Link>
     <Divider sx={{ my: 1 }} />
-    <Link to="/" className="link">
+    <Link to="/statistics" className="link">
       <ListItemButton>
         <ListItemIcon>
           <FontAwesomeIcon className="fa-1x" icon={faChartLine} />
