@@ -1,6 +1,5 @@
 import { ResponsiveBar } from "@nivo/bar";
 import React from "react";
-import "./dashboardBarChart.css";
 
 const DashboardBarChart = ({ title, data, indexKey, keys }) => {
   return (
