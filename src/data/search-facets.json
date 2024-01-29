@@ -179,8 +179,12 @@
                     "name": "Manual"
                 },
                 {
-                    "key": "automatic",
-                    "name": "Automatic"
+                    "key": "automatic-review",
+                    "name": "Automatic-Review"
+                },
+                {
+                    "key": "automatic-mapped",
+                    "name": "Automatic-Mapped"
                 }
             ],
             "type": "check"
