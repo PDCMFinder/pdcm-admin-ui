@@ -16,9 +16,6 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Footer from "./components/footer/Footer";
 import MappingsSearchPage from "./pages/mappingsSearchPage/MappingsSearchPage";
 import TopBar from "./components/topBar/TopBar";
-import ReleaseDataOptions from "./pages/release-data-options/ReleaseDataOptions";
-import ModelsByRelease from "./components/releaseData/modelsByRelease/ModelsByRelease";
-import StatisticsPage from "./pages/statistics/StatisticsPage";
 
 
 // Create a client
@@ -55,10 +52,6 @@ function App() {
                     <Route path="mappings/diagnosisSummary" element={<MappingsSummary type={DIAGNOSIS_TYPE} />} />
                     <Route path="mappings/treatmentSummary" element={<MappingsSummary type={TREATMENT_TYPE} />} />
                     <Route path="/search" element={<MappingsSearchPage />} />
-                    <Route path="/statistics" element={<StatisticsPage />} />
-                    <Route path="/release-data-options" element={<ReleaseDataOptions />} />
-                    <Route path="/all-models-by-release" element={<ModelsByRelease viewName={'allModels'} viewTitle={"All Models"} />} />
-                    <Route path="/paediatric-models-by-release" element={<ModelsByRelease viewName={'paediatricModels'} viewTitle={"Paediatric Models"} />} />
 
                   </Routes>
                 </ThemeProvider>
