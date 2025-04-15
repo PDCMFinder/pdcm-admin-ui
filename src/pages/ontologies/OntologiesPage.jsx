@@ -1,7 +1,5 @@
 import "./ontologiesPage.css";
 import { useQuery } from "react-query";
-import OntologySummaryReport from "../../components/ontology/ontologySummaryReport/OntologySummaryReport";
-import OntologyLoader from "../../components/ontology/ontologyLoader/OntologyLoader";
 import { getReport } from "../../apis/ProcessReport.api";
 
 const OntologiesPage = () => {
@@ -10,12 +8,6 @@ const OntologiesPage = () => {
   const processReportQuery = useQuery(["getReport", moduleName], () =>
     getReport(moduleName)
   );
-
-  const handleOntologiesLoaded = (loaded) => {
-    if (loaded) {
-      processReportQuery.refetch();
-    }
-  };
 
   if (processReportQuery.isLoading) {
     return <span>Loading...</span>;
@@ -213,14 +205,6 @@ const OntologiesPage = () => {
             </strong>
           </li>
         </ul>
-        <div className="reloadingProcess">
-          <h2>Reloading process</h2>
-          The reloading process takes around 5 minutes to finish.
-          <OntologySummaryReport data={processReportQuery.data} />
-          <div className="loader">
-            <OntologyLoader onProcessFinished={handleOntologiesLoaded} />
-          </div>
-        </div>
       </div>
     </div>
   );

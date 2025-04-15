@@ -99,7 +99,7 @@ export async function detectNewMappings() {
         method: 'PUT',
     };
     let response = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/mappings/detectNewMappings`, settings
+        `${process.env.REACT_APP_API_URL}/api/mappings/detect-new-mappings`, settings
     );
     if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -116,7 +116,7 @@ export async function assignAutomaticMappings() {
         method: 'PUT',
     };
     let response = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/mappings/assignAutomaticMappings`, settings
+        `${process.env.REACT_APP_API_URL}/api/mappings/auto-assign-mappings`, settings
     );
     if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -146,7 +146,7 @@ export async function reloadMappingsFromJsonFiles() {
  * @returns endpoint's url.
  */
 export function getDownloadMappingRulesUrl() {
-    return `${process.env.REACT_APP_API_URL}/api/mappings/rules/mappingRules`;
+    return `${process.env.REACT_APP_API_URL}/api/mappings/rules/rules-zip`;
 }
 
 

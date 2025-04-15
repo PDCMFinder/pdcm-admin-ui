@@ -60,7 +60,7 @@ const options = [
   {
     id: 5,
     title: "Automatic Mappings",
-    description: "Assign Automatic  Mappings",
+    description: "Assign Automatic Mappings",
     icon: <FontAwesomeIcon className="fa-5x" icon={faWandSparkles} />,
     path: null,
     type: "executableAction",

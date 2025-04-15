@@ -6,12 +6,8 @@ import ListItemText from "@mui/material/ListItemText";
 import { Link } from "react-router-dom";
 import "./dashboard.css";
 
-import { Divider } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faChartLine,
-  faDatabase,
-  faFolder,
   faFolderTree,
   faGauge,
   faMagnifyingGlass,
@@ -50,23 +46,6 @@ export const ListItems = (
           <FontAwesomeIcon className="fa-1x" icon={faMagnifyingGlass} />
         </ListItemIcon>
         <ListItemText primary="Search" />
-      </ListItemButton>
-    </Link>
-    <Divider sx={{ my: 1 }} />
-    <Link to="/statistics" className="link">
-      <ListItemButton>
-        <ListItemIcon>
-          <FontAwesomeIcon className="fa-1x" icon={faChartLine} />
-        </ListItemIcon>
-        <ListItemText primary="Statistics" />
-      </ListItemButton>
-    </Link>
-    <Link to="/release-data-options" className="link">
-      <ListItemButton>
-        <ListItemIcon>
-          <FontAwesomeIcon className="fa-1x" icon={faDatabase} />
-        </ListItemIcon>
-        <ListItemText primary="Release Data" />
       </ListItemButton>
     </Link>
   </React.Fragment>
